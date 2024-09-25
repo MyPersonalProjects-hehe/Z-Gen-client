@@ -1,6 +1,8 @@
-import axios from 'axios';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SERVER_URL } from '../../constants/ServerURL';
+import { UserContext } from '../../context/UserContext';
+import axios from 'axios';
 
 function Login() {
   const [user, setUser] = useState({
@@ -8,6 +10,7 @@ function Login() {
     password: '',
   });
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
 
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>, prop: string) => {
     setUser({
@@ -20,21 +23,16 @@ function Login() {
     try {
       e.preventDefault();
       const response = await axios.post(
-        'http://localhost:5000/loginUser',
+        SERVER_URL('loginUser'),
         { user },
         { withCredentials: true }
       );
       if (response.status === 200) {
-        const sessionResponse = await axios.post('http://localhost:5000/user', {
-          withCredentials: true,
-        });
-
-        if (sessionResponse.data.user) {
-          navigate('/', { state: { user: sessionResponse.data.user } });
-        }
+        userContext?.setSession(true);
+        navigate('/');
       }
     } catch (error: any) {
-      alert(error.message);
+      alert(error);
     }
   };
 

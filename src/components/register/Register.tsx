@@ -1,20 +1,22 @@
-import { FormEvent, useState } from 'react';
-import axios from 'axios';
+import { FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SERVER_URL } from '../../constants/ServerURL';
+import { UserContext } from '../../context/UserContext';
+import axios from 'axios';
 
 function Register() {
-  const [user, setUser] = useState({
+  const navigate = useNavigate();
+  const [userForm, setUserForm] = useState({
     username: '',
     email: '',
     password: '',
     phoneNumber: '',
   });
-
-  const navigate = useNavigate();
+  const userContext = useContext(UserContext);
 
   const updateForm = (e: React.ChangeEvent<HTMLInputElement>, prop: string) => {
-    setUser({
-      ...user,
+    setUserForm({
+      ...userForm,
       [prop]: e.target.value,
     });
   };
@@ -23,11 +25,15 @@ function Register() {
     try {
       e.preventDefault();
       const result: any = await axios.post(
-        'http://localhost:5000/registerUser',
-        { user }
+        SERVER_URL('registerUser'),
+        {
+          userForm,
+        },
+        { withCredentials: true }
       );
 
       if (result.status === 201) {
+        userContext?.setSession(true);
         navigate('/');
       }
     } catch (error: any) {
