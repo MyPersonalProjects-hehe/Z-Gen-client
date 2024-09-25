@@ -1,13 +1,14 @@
-import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
 import './home.scss';
+import { UserContext } from '../../context/UserContext';
 
 function Home() {
-  const location = useLocation();
-  const user = location.state?.user;
+  const userContext = useContext(UserContext);
+  console.log(userContext);
 
   return (
     <div className='body'>
-      <h1>Hello {user?.username}</h1>
+      <h1>Hello {userContext?.user?.username}</h1>
       <div className='user'></div>
     </div>
   );
