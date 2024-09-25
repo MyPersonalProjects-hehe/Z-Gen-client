@@ -4,3 +4,19 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+body,
+html {
+  min-height: 100%;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Roboto', Calibri, cursive;
+}
+
+button {
+  background-color: purple;
+  cursor: pointer;
+}
