@@ -21,33 +21,21 @@ function Navbar() {
   return (
     <div className='navbar'>
       <div className='links'>
-        {userContext?.user ? (
-          <>
-            <NavLink
-              className='nav__link '
-              to='/'
-            >
-              Home
-            </NavLink>
-            <button onClick={logout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <NavLink
-              className='nav__link'
-              to='/register'
-            >
-              Register
-            </NavLink>
+        <div className='logo'>
+          <NavLink
+            className='nav__link '
+            to='/'
+          >
+            ZGen
+          </NavLink>
+        </div>
 
-            <NavLink
-              className='nav__link'
-              to='/login'
-            >
-              Login
-            </NavLink>
-          </>
-        )}
+        <NavLink
+          className='nav__link '
+          to='/login'
+        >
+          Sign up
+        </NavLink>
       </div>
     </div>
   );

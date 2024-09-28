@@ -1,17 +1,32 @@
 .navbar {
-  background-color: rgba(240, 233, 233, 0.5);
+  display: flex;
+  align-items: center;
+  background: var(--c-linear);
+  background-size: 300% 300%;
+  animation: color_animation 12s ease-in-out infinite;
   width: 100vw;
-  height: 4rem;
+  height: 7rem;
 
   .links {
     display: flex;
-    justify-content: space-evenly;
-    padding: 10px;
+    margin: 0 auto;
 
     > * {
-      color: white;
+      margin-left: 20px;
+      color: black;
       text-decoration: none;
       font-size: x-large;
+    }
+  }
+
+  .logo {
+    > * {
+      text-decoration: none;
+      font-size: xx-large;
+      background: white;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
     }
   }
 }
