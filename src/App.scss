@@ -23,16 +23,18 @@
       margin: 20px;
       border-radius: 8px;
     }
+  }
+}
 
-    button {
-      border-radius: 8px;
-      width: 5rem;
-      height: 2rem;
-      cursor: pointer;
+//components
+.btn {
+  background-color: var(--c-primary);
+  border-radius: 8px;
+  width: 5rem;
+  height: 2rem;
+  cursor: pointer;
 
-      &:hover {
-        background-color: rgb(225, 141, 225);
-      }
-    }
+  &:hover {
+    background-color: var(--c-secondary);
   }
 }
