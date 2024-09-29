@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
@@ -14,7 +14,7 @@ function Register() {
   });
   const userContext = useContext(UserContext);
 
-  const updateForm = (e: React.ChangeEvent<HTMLInputElement>, prop: string) => {
+  const updateForm = (e: ChangeEvent<HTMLInputElement>, prop: string) => {
     setUserForm({
       ...userForm,
       [prop]: e.target.value,
