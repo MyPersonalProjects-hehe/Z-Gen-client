@@ -1,18 +1,24 @@
-.plan__card {
-  h1 {
-    background: var(--c-linear);
-    background-size: 300% 300%;
-    background-clip: text;
-    color: transparent;
-    animation: color_animation 12s ease-in-out infinite;
-  }
+.trending-plans {
+  text-align: center;
+}
 
+.plan__cards {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  background: url('../../assets/colorful-background.jpg') no-repeat center/100%;
+  background: url('../../assets/colorful-background.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
   width: 100%;
-  height: 35rem;
+  padding: 4rem 0px;
+  gap: 20px;
+
+  h2 {
+    color: transparent;
+    -webkit-text-stroke: 0.7px white;
+    font-size: 2.1rem;
+  }
 
   .glass {
     color: white;
@@ -29,7 +35,7 @@
       cursor: pointer;
       transform: scale(1.05);
 
-      h1 {
+      h2 {
         animation: none;
       }
     }
@@ -44,7 +50,9 @@
 
   .btn__learn__more {
     cursor: pointer;
-    background-color: var(--c-primary);
+    color: white;
+    font-size: larger;
+    background-color: rgba(255, 255, 255, 0.09);
     border-radius: 8px;
     width: 12rem;
     height: 4rem;
