@@ -20,6 +20,7 @@ function Navbar() {
 
   return (
     <div className='navbar'>
+      <div className='transparency'></div>
       <div className='links'>
         <div className='logo'>
           <NavLink
@@ -30,12 +31,32 @@ function Navbar() {
           </NavLink>
         </div>
 
-        <NavLink
-          className='nav__link '
-          to='/login'
-        >
-          Sign up
-        </NavLink>
+        <div>
+          <NavLink
+            className='nav__link '
+            to='/login'
+          >
+            Sign up
+          </NavLink>
+          <NavLink
+            to={'/createPlan'}
+            className='nav__link'
+          >
+            Create Plan
+          </NavLink>
+          <NavLink
+            to={'/devices'}
+            className='nav__link'
+          >
+            Devices
+          </NavLink>
+          <NavLink
+            to={'/devices'}
+            className='nav__link'
+          >
+            Plans
+          </NavLink>
+        </div>
       </div>
     </div>
   );
