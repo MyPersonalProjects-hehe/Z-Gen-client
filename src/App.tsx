@@ -7,6 +7,8 @@ import Register from './components/register/Register';
 import Home from './views/home/Home';
 import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
+import { ConfigProvider } from 'antd';
+import CreatePlan from './views/createPlan/createPlan.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -28,8 +30,6 @@ function App() {
   }, [session]);
 
   useEffect(() => {
-    console.log(user);
-
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
     } else {
@@ -40,21 +40,33 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{ user, setUser, setSession }}>
-        <Navbar />
-        <Routes>
-          <Route
-            path='/register'
-            element={<Register />}
-          />
-          <Route
-            path='/'
-            element={<Home />}
-          />
-          <Route
-            path='/login'
-            element={<Login />}
-          />
-        </Routes>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: 'white',
+            },
+          }}
+        >
+          <Navbar />
+          <Routes>
+            <Route
+              path='/register'
+              element={<Register />}
+            />
+            <Route
+              path='/'
+              element={<Home />}
+            />
+            <Route
+              path='/login'
+              element={<Login />}
+            />
+            <Route
+              path='/createPlan'
+              element={<CreatePlan />}
+            />
+          </Routes>
+        </ConfigProvider>
       </UserContext.Provider>
     </>
   );
