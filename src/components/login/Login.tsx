@@ -37,7 +37,7 @@ function Login() {
   };
 
   return (
-    <div className='form__body'>
+    <div className='form-body'>
       <h1>Login</h1>
       <form onSubmit={(e) => loginUser(e)}>
         <input

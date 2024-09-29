@@ -1,41 +1,47 @@
+import { Button } from 'antd';
 import './trending.plans.scss';
 
 function TrendingPlans() {
   return (
-    <div className='block'>
+    <div className='trending-plans'>
       <div className='heading'>
-        <h1>OUR BEST PLANS</h1>
+        <h2>OUR BEST PLANS</h2>
       </div>
-      <div className='plan__card'>
+      <div className='plan__cards'>
         <div className='glass'>
-          <h1>Gen Loyal Unlimited</h1>
+          <h2>Gen Loyal Unlimited</h2>
           <div className='content'>
-            <h2>
+            <h3>
               Unlimited minutes <br /> Unlimited MB
-            </h2>{' '}
+            </h3>{' '}
             <br /> 200 minutes for EU
-            <h2>32.99 - 28.99</h2>
-            <button className='btn__learn__more'>Learn more</button>
+            <h3>32.99 - 28.99</h3>
+            <Button
+              ghost
+              className='btn__learn__more'
+            >
+              Learn more
+            </Button>
           </div>
         </div>
         <div className='glass'>
-          <h1>Gen Loyal Unlimited</h1>
+          <h2>Gen Loyal Unlimited</h2>
           <div className='content'>
-            <h2>
+            <h3>
               Unlimited minutes <br /> Unlimited MB
-            </h2>{' '}
+            </h3>{' '}
             <br /> 200 minutes for EU
-            <h2>32.99 - 28.99</h2>
+            <h3>32.99 - 28.99</h3>
           </div>
         </div>
         <div className='glass'>
-          <h1>Gen Loyal Unlimited</h1>
+          <h2>Gen Loyal Unlimited</h2>
           <div className='content'>
-            <h2>
+            <h3>
               Unlimited minutes <br /> Unlimited MB
-            </h2>{' '}
+            </h3>{' '}
             <br /> 200 minutes for EU
-            <h2>32.99 - 28.99</h2>
+            <h3>32.99 - 28.99</h3>
           </div>
         </div>
       </div>
