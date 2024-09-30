@@ -16,6 +16,7 @@ function Navbar() {
       userContext?.setUser?.(null);
       userContext?.setSession(false);
     }
+    console.log(userContext?.user);
   };
 
   return (
@@ -33,12 +34,6 @@ function Navbar() {
 
         <div>
           <NavLink
-            className='nav__link '
-            to='/login'
-          >
-            Sign up
-          </NavLink>
-          <NavLink
             to={'/createPlan'}
             className='nav__link'
           >
@@ -51,11 +46,25 @@ function Navbar() {
             Devices
           </NavLink>
           <NavLink
-            to={'/devices'}
+            to={'/plans'}
             className='nav__link'
           >
             Plans
           </NavLink>
+          {!userContext?.user ? (
+            <>
+              <NavLink
+                className='nav__link '
+                to='/login'
+              >
+                Sign up
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <button onClick={logout}>Logout</button>
+            </>
+          )}
         </div>
       </div>
     </div>
