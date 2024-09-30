@@ -1,14 +1,15 @@
+import './home.scss';
 import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
 import iphoneImage from '../../assets/iphone-image.jpg';
 import samsungImage from '../../assets/samsung-image.jpg';
 import huaweiImage from '../../assets/huawei-image.jpeg';
-import TrendingPlans from '../../components/home/TrendingPlans';
-import './home.scss';
 import { Button } from 'antd';
+import PlanCard from '../../components/home/PlanCard';
+import { Plan } from '../../interfaces/plan';
+import { AllPlansContext } from '../../context/PlanContext';
 
 function Home() {
-  const userContext = useContext(UserContext);
+  const allPlans = useContext(AllPlansContext);
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
     'Iphone 15',
@@ -49,7 +50,13 @@ function Home() {
           </h2>
         </div>
       </div>
-      <TrendingPlans />
+      <div className='plan__cards'>
+        {allPlans?.plans.map((plan: Plan) => (
+          <div key={plan._id}>
+            <PlanCard plan={plan}></PlanCard>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
