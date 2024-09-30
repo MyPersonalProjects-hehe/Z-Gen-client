@@ -48,7 +48,7 @@ function CreatePlan() {
   };
 
   return (
-    <div className='form__body'>
+    <div className='form-body'>
       <h1>Create Plan</h1>
       <form onSubmit={(e) => submitPlan(e)}>
         <input
