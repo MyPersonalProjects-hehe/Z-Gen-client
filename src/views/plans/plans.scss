@@ -1,0 +1,24 @@
+.plan-body {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .toggle__button {
+    background: var(--c-linear);
+    background-size: 300% 300%;
+    animation: color_animation 12s ease-in-out infinite;
+    color: red;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+}
+
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
