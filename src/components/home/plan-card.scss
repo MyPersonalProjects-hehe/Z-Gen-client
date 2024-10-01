@@ -2,18 +2,25 @@
   text-align: center;
 }
 
-.plan__cards {
+.plan__card {
+  background: url('../../assets/colorful-background.jpg') no-repeat center;
+}
+
+.plan__card__corporate {
+  background: url('../../assets/2.jpg') no-repeat center;
+}
+
+.plan__card,
+.plan__card__corporate {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  background: url('../../assets/colorful-background.jpg') no-repeat center;
   background-attachment: fixed;
-  background-size: cover;
-  padding: 4rem 0px;
+  padding: 2.5rem 2.5rem;
   gap: 20px;
+  border-radius: 12px;
+  background-size: cover;
 
-  h2 {
+  .name-of-plan {
     color: transparent;
     -webkit-text-stroke: 0.7px white;
     font-size: 2.1rem;
@@ -33,34 +40,50 @@
     &:hover {
       cursor: pointer;
       transform: scale(1.05);
-
-      h2 {
-        animation: none;
-      }
+      backdrop-filter: none;
     }
   }
 }
 
 .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 0 auto;
+  font-size: 1.1rem;
   border: 3px solid rgba(255, 255, 255, 0.09);
   border-radius: 8px;
-  width: 75%;
+  width: 85%;
 
-  .btn__learn__more {
-    cursor: pointer;
-    color: white;
-    font-size: larger;
-    background-color: rgba(255, 255, 255, 0.09);
-    border-radius: 8px;
-    width: 12rem;
-    height: 4rem;
+  h3 {
+    margin: 8px;
+  }
+
+  .ribbon {
     position: absolute;
-    top: 22rem;
-    left: 4rem;
+    right: -4.3px;
+    bottom: 4.3rem;
+  }
 
-    &:hover {
-      background-color: var(--c-secondary);
-    }
+  .euro-icon {
+    margin-left: 8px;
+  }
+}
+
+.btn__learn__more {
+  cursor: pointer;
+  color: white;
+  font-size: larger;
+  background-color: rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  width: 12rem;
+  height: 4rem;
+  position: absolute;
+  top: 22rem;
+  left: 4rem;
+
+  &:hover {
+    background-color: var(--c-secondary);
   }
 }

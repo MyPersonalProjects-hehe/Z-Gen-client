@@ -76,6 +76,14 @@
   }
 }
 
+.plan__cards {
+  display: flex;
+  justify-content: center;
+  background: url('../../assets/colorful-background.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 @media (max-width: 400px) {
   .phone__block:hover {
     filter: none !important;
