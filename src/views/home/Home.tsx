@@ -1,21 +1,37 @@
-import './home.scss';
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import iphoneImage from '../../assets/iphone-image.jpg';
 import samsungImage from '../../assets/samsung-image.jpg';
 import huaweiImage from '../../assets/huawei-image.jpeg';
 import { Button } from 'antd';
 import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
-import { AllPlansContext } from '../../context/PlanContext';
+import { SERVER_URL } from '../../constants/ServerURL';
+import axios from 'axios';
+import './home.scss';
 
 function Home() {
-  const allPlans = useContext(AllPlansContext);
+  const [plans, setPlans] = useState([]);
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
     'Iphone 15',
     'Huawei Pura 70 ultra',
     'Samsung s24 Ultra',
   ];
+
+  useEffect(() => {
+    const fetchAllPlans = async () => {
+      try {
+        const result = await axios.get(SERVER_URL('allPlans'));
+        const sortedPlans = result.data.message.sort(
+          (planA: Plan, planB: Plan) =>
+            Number(planA.price) - Number(planB.price)
+        );
+        setPlans(sortedPlans || []);
+      } catch (error) {}
+    };
+
+    fetchAllPlans();
+  }, []);
 
   return (
     <div className='body'>
@@ -51,7 +67,7 @@ function Home() {
         </div>
       </div>
       <div className='plan__cards'>
-        {allPlans?.plans.map((plan: Plan) => (
+        {plans?.map((plan: Plan) => (
           <div key={plan._id}>
             <PlanCard plan={plan}></PlanCard>
           </div>
