@@ -69,7 +69,10 @@ function Home() {
       <div className='plan__cards'>
         {plans?.map((plan: Plan) => (
           <div key={plan._id}>
-            <PlanCard plan={plan}></PlanCard>
+            <PlanCard
+              plan={plan}
+              isCorporate={false}
+            ></PlanCard>
           </div>
         ))}
       </div>
