@@ -1,16 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import { User, UserContext } from './context/UserContext.ts';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './App.scss';
 import Register from './components/register/Register';
 import Home from './views/home/Home';
 import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import { ConfigProvider } from 'antd';
-import CreatePlan from './views/createPlan/createPlan.tsx';
 import Devices from './views/devices/Devices.tsx';
 import Plans from './views/plans/Plans.tsx';
+import CreatePlan from './views/createPlan/CreatePlan.tsx';
+import axios from 'axios';
+import './App.scss';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
