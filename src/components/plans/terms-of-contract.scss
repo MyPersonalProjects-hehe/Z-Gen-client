@@ -1,0 +1,30 @@
+.terms-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: small;
+  background-color: rgba(164, 158, 158, 0.2);
+  border-radius: 8px;
+
+  .term {
+    display: flex;
+    border-top: 4px solid var(--c-secondary);
+    position: relative;
+
+    .collapse-button {
+      padding: 1.6rem 0.5rem;
+      position: absolute;
+    }
+
+    .collapse-info {
+      h1,
+      h2 {
+        padding: 0rem 1.5rem;
+      }
+    }
+  }
+}
+
+.collapse-info h2 {
+  white-space: pre-line;
+}

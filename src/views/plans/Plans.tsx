@@ -3,8 +3,10 @@ import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
 import axios from 'axios';
 import { SERVER_URL } from '../../constants/ServerURL';
-import { Segmented } from 'antd';
+import { ConfigProvider, Segmented } from 'antd';
 import './plans.scss';
+import TermsOfContract from '../../components/plans/TermsOfContract';
+import StepsHeading from '../../components/plans/Steps';
 
 function Plans() {
   const [allPlans, setAllPlans] = useState([]);
@@ -44,6 +46,19 @@ function Plans() {
 
   return (
     <div className='plan-body'>
+      <div className='steps'>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: toggle ? '#5c4b5b' : '#7462ff',
+              fontSize: 15,
+            },
+          }}
+        >
+          <StepsHeading />
+        </ConfigProvider>
+      </div>
+
       <div className='toggle__button'>
         <Segmented
           onChange={() => setToggle((prev) => !prev)}
@@ -61,6 +76,16 @@ function Plans() {
             ></PlanCard>
           </div>
         ))}
+      </div>
+      <div className='easy-signing'>
+        <h2>
+          Signing a contract is a few clicks away! <br /> To provide the best
+          service you can sign contracts and buy devices entirely through your
+          phone!
+        </h2>
+      </div>
+      <div className='terms'>
+        <TermsOfContract />
       </div>
     </div>
   );
