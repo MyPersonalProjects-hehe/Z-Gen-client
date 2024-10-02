@@ -15,6 +15,7 @@ function PlanCard({ plan, isCorporate }: PlanCardProps) {
         key={plan._id}
       >
         <h2 className='name-of-plan'>{plan.nameOfPlan}</h2>
+        <h3>{plan?.cards}</h3>
         <div className='content'>
           <h3>
             {isNaN(plan.minutesInBG)
