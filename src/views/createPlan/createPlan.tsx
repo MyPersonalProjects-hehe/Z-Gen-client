@@ -25,11 +25,7 @@ function CreatePlan() {
   const submitPlan = async (e: FormEvent) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
-        SERVER_URL('createPlan'),
-        { plan }
-        // { withCredentials: true }
-      );
+      const response = await axios.post(SERVER_URL('createPlan'), { plan });
       console.log(response);
       setPlan({
         nameOfPlan: '',
