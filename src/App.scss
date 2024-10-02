@@ -25,16 +25,3 @@
     }
   }
 }
-
-//components
-.btn {
-  background-color: var(--c-primary);
-  font-size: larger;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--c-secondary);
-  }
-}
