@@ -1,13 +1,9 @@
-.trending-plans {
-  text-align: center;
-}
-
 .plan__card {
   background: url('../../assets/colorful-background.jpg') no-repeat center;
 }
 
 .plan__card__corporate {
-  background: url('../../assets/2.jpg') no-repeat center;
+  background: url('../../assets/2-2.jpg') no-repeat center;
 }
 
 .plan__card,
@@ -43,6 +39,16 @@
       backdrop-filter: none;
     }
   }
+
+  .btn__learn__more {
+    cursor: pointer;
+    font-size: larger;
+    width: 12rem;
+    height: 4rem;
+    position: absolute;
+    top: 24rem;
+    left: 4rem;
+  }
 }
 
 .content {
@@ -68,22 +74,5 @@
 
   .euro-icon {
     margin-left: 8px;
-  }
-}
-
-.btn__learn__more {
-  cursor: pointer;
-  color: white;
-  font-size: larger;
-  background-color: rgba(255, 255, 255, 0.09);
-  border-radius: 8px;
-  width: 12rem;
-  height: 4rem;
-  position: absolute;
-  top: 22rem;
-  left: 4rem;
-
-  &:hover {
-    background-color: var(--c-secondary);
   }
 }
