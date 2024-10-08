@@ -1,0 +1,25 @@
+.sign-contract-body {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rem;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.device-regular {
+  background: url('../../assets/colorful-background.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.device-corporate {
+  background: url('../../assets/2-2.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.glass-effect-wrapper {
+  .device-info {
+    padding: 20px;
+  }
+}
