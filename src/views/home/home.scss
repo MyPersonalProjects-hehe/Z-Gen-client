@@ -22,7 +22,7 @@
       img {
         filter: brightness(0.7);
       }
-      .btn {
+      .btn-home {
         opacity: 1;
       }
     }
@@ -57,17 +57,12 @@
   }
 }
 
-.btn {
+.btn-home {
   z-index: 1;
-  font-size: 1.6rem;
-  border-radius: 8px;
-  width: 12rem;
-  height: 4rem;
   position: absolute;
   opacity: 0;
   top: 10rem;
   left: 6rem;
-  cursor: pointer;
   transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
 
   &:hover {
@@ -88,7 +83,7 @@
   .phone__block:hover {
     filter: none !important;
   }
-  .btn {
+  .btn-home {
     position: static;
     opacity: 1;
     margin: 20px;
