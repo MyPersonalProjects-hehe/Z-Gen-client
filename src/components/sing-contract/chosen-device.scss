@@ -1,0 +1,30 @@
+.device-regular {
+  background: url('../../assets/colorful-background.jpg') no-repeat center;
+}
+
+.device-corporate {
+  background: url('../../assets/2-2.jpg') no-repeat center;
+}
+
+.device-corporate,
+.device-regular {
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.device-image {
+  img {
+    width: 90%;
+    border-bottom: 2px solid grey;
+  }
+}
+
+.device-content {
+  margin-top: 3rem;
+}
+
+.transparent-text {
+  color: transparent;
+  -webkit-text-stroke: 0.7px white;
+  font-size: 2rem;
+}
