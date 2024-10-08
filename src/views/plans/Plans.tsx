@@ -47,6 +47,7 @@ function Plans() {
   return (
     <div className='plan-body'>
       <div className='steps'>
+        <h1>Signing contracts was never easier!</h1>
         <ConfigProvider
           theme={{
             token: {
