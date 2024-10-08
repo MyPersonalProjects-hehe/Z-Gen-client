@@ -1,7 +1,8 @@
 import './chosen-device.scss';
 import { Device } from '../../interfaces/device';
 import { Plan } from '../../interfaces/plan';
-import { EuroCircleOutlined } from '@ant-design/icons';
+import { EuroCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 interface DeviceProps {
   planCard: Plan | null;
@@ -9,6 +10,8 @@ interface DeviceProps {
 }
 
 function ChosenDevice({ planCard, device }: DeviceProps) {
+  const navigate = useNavigate();
+
   return (
     <>
       <h2>Device:</h2>
@@ -43,11 +46,17 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
               </h3>
             </div>
           ) : (
-            <h2 className='device-info'>
-              You have not picked a device yet. If you wish to continue anyway,
-              during the contract length you will not be able to pick a device
-              with the discount provided.
-            </h2>
+            <div className='no-device'>
+              <h2>
+                You have not picked a device yet. If you wish to continue
+                anyway, during the contract length you will not be able to pick
+                a device with the discount provided.
+              </h2>
+              <PlusCircleOutlined
+                className='plus-icon'
+                onClick={() => navigate('/devices')}
+              />
+            </div>
           )}
         </div>
       </div>

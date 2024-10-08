@@ -28,3 +28,14 @@
   -webkit-text-stroke: 0.7px white;
   font-size: 2rem;
 }
+
+.no-device {
+  h2 {
+    padding: 1.5rem;
+  }
+  .plus-icon {
+    font-size: 10rem;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+  }
+}
