@@ -7,6 +7,11 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { Plan } from '../../interfaces/plan';
 import ChosenDevice from '../../components/sing-contract/ChosenDevice';
 import { ConfigProvider, Steps } from 'antd';
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+  PlusCircleOutlined,
+} from '@ant-design/icons';
 
 function SingContract() {
   const { contractId } = useParams();
@@ -46,14 +51,21 @@ function SingContract() {
               {
                 title: 'Finished',
                 description: 'Pick a plan',
+                icon: <CheckCircleOutlined />,
               },
               {
                 title: device ? 'Finished' : 'In Progress',
                 description: 'Pick a device',
+                icon: device ? (
+                  <CheckCircleOutlined />
+                ) : (
+                  <ExclamationCircleOutlined />
+                ),
               },
               {
                 title: 'Waiting',
                 description: 'e',
+                icon: <ExclamationCircleOutlined />,
               },
             ]}
           />
@@ -66,6 +78,7 @@ function SingContract() {
               isCorporate={planCard?.typeOfPlan === 'corporate'}
             />
           </div>
+          <PlusCircleOutlined className='plus-icon' />
           <div className='chosen-device'>
             <ChosenDevice
               device={device}
