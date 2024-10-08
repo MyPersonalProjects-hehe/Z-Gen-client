@@ -8,14 +8,6 @@
 
 .plan__card,
 .plan__card__corporate {
-  display: flex;
-  flex-wrap: wrap;
-  background-attachment: fixed;
-  padding: 2.5rem 2.5rem;
-  gap: 20px;
-  border-radius: 12px;
-  background-size: cover;
-
   .name-of-plan {
     color: transparent;
     -webkit-text-stroke: 0.7px white;
@@ -23,21 +15,7 @@
   }
 
   .glass {
-    color: white;
-    text-align: center;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.09);
-    width: 20rem;
-    height: 32rem;
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-      backdrop-filter: none;
-    }
   }
 
   .btn__learn__more {
@@ -46,7 +24,6 @@
     width: 12rem;
     height: 4rem;
     position: absolute;
-    top: 24rem;
     left: 4rem;
   }
 }

@@ -25,3 +25,31 @@
     }
   }
 }
+
+.style-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 2.5rem 2.5rem;
+  gap: 20px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.glass-effect-wrapper {
+  color: white;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.09);
+  width: 20rem;
+  height: 32rem;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    backdrop-filter: none;
+  }
+}
