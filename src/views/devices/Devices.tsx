@@ -1,12 +1,14 @@
 import './devices.scss';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
 import { Button } from 'antd';
+import { DeviceContext } from '../../context/PickedDeviceContext';
 
 function Devices() {
   const [allDevices, setAllDevices] = useState([]);
+  const deviceContext = useContext(DeviceContext);
 
   useEffect(() => {
     try {
@@ -23,7 +25,7 @@ function Devices() {
   const storeChosenDevice = (device: Device) => {
     if (device) {
       localStorage.setItem('device', JSON.stringify(device));
-      console.log('yes');
+      deviceContext?.setDevicePicked(true);
     }
   };
 
@@ -36,6 +38,10 @@ function Devices() {
             className='device'
             key={device._id}
           >
+            <img
+              src={device.image}
+              alt=''
+            />
             <h1>{device.model}</h1>
             <h1>{device.RAM}</h1>
             <h1>{device.price}</h1>
