@@ -6,7 +6,7 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { ConfigProvider, Segmented } from 'antd';
 import './plans.scss';
 import TermsOfContract from '../../components/plans/TermsOfContract';
-import StepsHeading from '../../components/plans/Steps';
+import StepsHeading from '../../components/plans/Steps-heading';
 
 function Plans() {
   const [allPlans, setAllPlans] = useState([]);
