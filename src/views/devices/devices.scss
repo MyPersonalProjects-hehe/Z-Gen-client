@@ -1,8 +1,13 @@
-.image-poster {
-  padding: 25rem;
-  justify-content: center;
-  background: url('../../assets/devices-page-image.png') no-repeat center/100%;
-  background-attachment: fixed;
+.images-poster {
+  display: flex;
+  margin-top: 12rem;
+
+  img {
+    width: 50%;
+    justify-content: center;
+    background: no-repeat center;
+    background-attachment: fixed;
+  }
 }
 
 .devices {
@@ -12,12 +17,17 @@
   gap: 20px;
 
   .device {
-    background-color: var(--c-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
     border-radius: 8px;
-    width: 30%;
+    width: 20rem;
 
     img {
-      width: 50%;
+      width: 90%;
+      border-bottom: 2px solid grey;
     }
   }
 }
