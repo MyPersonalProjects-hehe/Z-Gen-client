@@ -83,6 +83,7 @@ function Navbar() {
                 shape='square'
                 size={60}
                 icon={<UserOutlined />}
+                className='avatar'
               />
             </Badge>
           </Dropdown>
@@ -99,10 +100,10 @@ function Navbar() {
 
         <div>
           <NavLink
-            to={'/createPlan'}
+            to={'/upload'}
             className='nav__link'
           >
-            Create Plan
+            Upload
           </NavLink>
           <NavLink
             to={'/devices'}
