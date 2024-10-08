@@ -8,9 +8,10 @@ import Login from './components/login/Login';
 import { ConfigProvider } from 'antd';
 import Devices from './views/devices/Devices.tsx';
 import Plans from './views/plans/Plans.tsx';
-import CreatePlan from './views/createPlan/CreatePlan.tsx';
+import CreatePlan from './views/create-plan/CreatePlan.tsx';
 import axios from 'axios';
 import './App.scss';
+import SingContract from './views/sing-contract/SignContract.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -74,6 +75,10 @@ function App() {
             <Route
               path='/plans'
               element={<Plans />}
+            />
+            <Route
+              path='/signContract/:contractId'
+              element={<SingContract />}
             />
           </Routes>
         </ConfigProvider>
