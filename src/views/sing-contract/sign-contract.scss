@@ -1,25 +1,20 @@
 .sign-contract-body {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 10rem;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-}
 
-.device-regular {
-  background: url('../../assets/colorful-background.jpg') no-repeat center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-.device-corporate {
-  background: url('../../assets/2-2.jpg') no-repeat center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-.glass-effect-wrapper {
-  .device-info {
-    padding: 20px;
+  .picked__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
   }
+}
+
+.progress {
+  border: 1px solid red;
+  width: 30rem;
 }

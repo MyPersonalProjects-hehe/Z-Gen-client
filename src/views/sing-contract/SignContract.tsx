@@ -1,17 +1,18 @@
-import { useParams } from 'react-router-dom';
 import './sign-contract.scss';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import PlanCard from '../../components/home/PlanCard';
-import axios from 'axios';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Plan } from '../../interfaces/plan';
+import ChosenDevice from '../../components/sing-contract/ChosenDevice';
+import { ConfigProvider, Steps } from 'antd';
 
 function SingContract() {
   const { contractId } = useParams();
   const [planCard, setPlanCard] = useState<Plan | null>(null);
-  const deviceData = localStorage.getItem('device');
-  const device = deviceData ? JSON.parse(deviceData) : null;
-  console.log(device);
+  const deviceToken = localStorage.getItem('device');
+  const device = deviceToken ? JSON.parse(deviceToken) : null;
 
   useEffect(() => {
     try {
@@ -30,41 +31,50 @@ function SingContract() {
   }, []);
 
   return (
-    <div className='sign-contract-body'>
-      <div className='chosen__plan'>
-        <h2>Chosen plan</h2>
-        <PlanCard
-          plan={planCard}
-          isCorporate={planCard?.typeOfPlan === 'corporate'}
-        />
-      </div>
-      <div className='chosen__device'>
-        <h2>Device:</h2>
-        <div
-          className={
-            planCard?.typeOfPlan === 'corporate'
-              ? 'device-corporate style-wrapper'
-              : 'device-regular style-wrapper'
-          }
-        >
-          <div className='glass-effect-wrapper'>
-            {device ? (
-              <div>
-                <h1>{device.model}</h1>
-                <h1>{device.RAM}</h1>
-                <h1>{device.price}</h1>
-              </div>
-            ) : (
-              <h2 className='device-info'>
-                You have not picked a device yet. If you wish to continue
-                anyway, during the contract length you will not be able to pick
-                a device with the discount provided.
-              </h2>
-            )}
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#5c4b5b',
+        },
+      }}
+    >
+      <div className='sign-contract-body'>
+        <div className='progress'>
+          <Steps
+            current={1}
+            items={[
+              {
+                title: 'Finished',
+                description: 'Pick a plan',
+              },
+              {
+                title: device ? 'Finished' : 'In Progress',
+                description: 'Pick a device',
+              },
+              {
+                title: 'Waiting',
+                description: 'e',
+              },
+            ]}
+          />
+        </div>
+        <div className='picked__items'>
+          <div className='chosen-plan'>
+            <h2>Chosen plan</h2>
+            <PlanCard
+              plan={planCard}
+              isCorporate={planCard?.typeOfPlan === 'corporate'}
+            />
+          </div>
+          <div className='chosen-device'>
+            <ChosenDevice
+              device={device}
+              planCard={planCard}
+            />
           </div>
         </div>
       </div>
-    </div>
+    </ConfigProvider>
   );
 }
 export default SingContract;
