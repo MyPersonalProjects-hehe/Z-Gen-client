@@ -11,9 +11,15 @@
   display: flex;
   justify-content: center;
   margin-top: 5rem;
+  gap: 20px;
 
   .device {
     background-color: var(--c-secondary);
     border-radius: 8px;
+    width: 30%;
+
+    img {
+      width: 50%;
+    }
   }
 }

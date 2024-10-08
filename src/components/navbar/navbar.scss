@@ -14,10 +14,12 @@
 
   .links {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-end;
+    justify-content: space-evenly;
     z-index: 1;
     width: 100%;
     max-width: 1000px;
+    margin-bottom: 10px;
 
     .nav__link {
       margin-left: 2rem;
@@ -28,7 +30,6 @@
   }
 
   .logo {
-    margin-left: 20px;
     > * {
       text-decoration: none;
       font-size: xx-large;
@@ -40,13 +41,10 @@
   }
 }
 
-.transparency {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.1);
-  width: 100%;
-  padding: 45px 0px;
+.circle-icon {
+  padding: 0px 9px;
+
+  :hover {
+    font-size: large;
+  }
 }
-
-// @media (max-width: 600px){
-
-// }
