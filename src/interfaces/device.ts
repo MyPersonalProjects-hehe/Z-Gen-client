@@ -4,6 +4,7 @@ export interface Device {
   _id: Key | null | undefined;
   RAM: string;
   model: string;
+  image: string;
   price: any;
 }
 
