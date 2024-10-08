@@ -9,9 +9,9 @@ import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import Devices from './views/devices/Devices.tsx';
 import Plans from './views/plans/Plans.tsx';
-import CreatePlan from './views/create-plan/CreatePlan.tsx';
 import SingContract from './views/sing-contract/SignContract.tsx';
 import { DeviceContext } from './context/PickedDeviceContext.ts';
+import Upload from './views/upload/Upload.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -62,8 +62,8 @@ function App() {
               element={<Login />}
             />
             <Route
-              path='/createPlan'
-              element={<CreatePlan />}
+              path='/upload'
+              element={<Upload />}
             />
             <Route
               path='/devices'

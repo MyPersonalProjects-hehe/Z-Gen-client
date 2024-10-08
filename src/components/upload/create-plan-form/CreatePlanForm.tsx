@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { SERVER_URL } from '../../constants/ServerURL';
+import { SERVER_URL } from '../../../constants/ServerURL';
 
-function CreatePlan() {
+function CreatePlanForm() {
   const [plan, setPlan] = useState({
     nameOfPlan: '',
     typeOfClient: '',
@@ -42,9 +42,8 @@ function CreatePlan() {
       console.log(error);
     }
   };
-
   return (
-    <div className='form-body'>
+    <>
       <h1>Create Plan</h1>
       <form onSubmit={(e) => submitPlan(e)}>
         <input
@@ -104,8 +103,8 @@ function CreatePlan() {
 
         <button type='submit'>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 
-export default CreatePlan;
+export default CreatePlanForm;
