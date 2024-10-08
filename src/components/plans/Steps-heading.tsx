@@ -7,8 +7,7 @@ import { Steps } from 'antd';
 
 function StepsHeading() {
   return (
-    <div className='terms-info'>
-      <h1>Signing contracts was never easier!</h1>
+    <>
       <Steps
         items={[
           {
@@ -28,7 +27,7 @@ function StepsHeading() {
           },
         ]}
       />
-    </div>
+    </>
   );
 }
 
