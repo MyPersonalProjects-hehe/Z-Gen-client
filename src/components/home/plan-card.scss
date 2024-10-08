@@ -1,9 +1,13 @@
 .plan__card {
   background: url('../../assets/colorful-background.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .plan__card__corporate {
   background: url('../../assets/2-2.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .plan__card,
