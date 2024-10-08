@@ -55,7 +55,7 @@ function Home() {
               />
 
               <Button
-                className='btn'
+                className='btn btn-home'
                 ghost
               >
                 Learn more

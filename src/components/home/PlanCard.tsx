@@ -72,7 +72,7 @@ function PlanCard({ plan, isCorporate }: PlanCardProps) {
           <Button
             onClick={() => navigateToSignContract(plan?._id)}
             ghost
-            className='btn__learn__more'
+            className='btn-choose-plan btn'
           >
             Choose Plan
           </Button>
