@@ -7,9 +7,9 @@ import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
 import { SERVER_URL } from '../../constants/ServerURL';
 import axios from 'axios';
-import './home.scss';
+import './home-page.scss';
 
-function Home() {
+function HomePage() {
   const [plans, setPlans] = useState([]);
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
@@ -89,4 +89,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

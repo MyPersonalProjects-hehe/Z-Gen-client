@@ -1,17 +1,18 @@
 import axios from 'axios';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
-import { User, UserContext } from './context/UserContext.ts';
+import { UserContext } from './context/UserContext.ts';
 import { useEffect, useState } from 'react';
-import Register from './components/register/Register';
-import Home from './views/home/Home';
-import Navbar from './components/navbar/Navbar';
-import Login from './components/login/Login';
-import Devices from './views/devices/Devices.tsx';
-import Plans from './views/plans/Plans.tsx';
-import SingContract from './views/sing-contract/SignContract.tsx';
 import { DeviceContext } from './context/PickedDeviceContext.ts';
-import Upload from './views/upload/Upload.tsx';
+import { User } from './interfaces/user.ts';
+import Navbar from './components/navbar/Navbar';
+import HomePage from './views/home/HomePage.tsx';
+import UploadPage from './views/upload/UploadPage.tsx';
+import DevicesPage from './views/devices/DevicesPage.tsx';
+import PlansPage from './views/plans/PlansPage.tsx';
+import SingContractPage from './views/sing-contract/SignContractPage.tsx';
+import LoginPage from './views/login/LoginPage.tsx';
+import RegisterPage from './views/register/RegisterPage.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -51,31 +52,31 @@ function App() {
           <Routes>
             <Route
               path='/register'
-              element={<Register />}
+              element={<RegisterPage />}
             />
             <Route
               path='/'
-              element={<Home />}
+              element={<HomePage />}
             />
             <Route
               path='/login'
-              element={<Login />}
+              element={<LoginPage />}
             />
             <Route
               path='/upload'
-              element={<Upload />}
+              element={<UploadPage />}
             />
             <Route
               path='/devices'
-              element={<Devices />}
+              element={<DevicesPage />}
             />
             <Route
               path='/plans'
-              element={<Plans />}
+              element={<PlansPage />}
             />
             <Route
               path='/signContract/:contractId'
-              element={<SingContract />}
+              element={<SingContractPage />}
             />
           </Routes>
         </DeviceContext.Provider>

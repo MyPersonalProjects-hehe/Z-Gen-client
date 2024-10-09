@@ -4,7 +4,7 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
 import axios from 'axios';
 
-function Register() {
+function RegisterPage() {
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
     username: '',
@@ -74,4 +74,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterPage;

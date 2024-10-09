@@ -1,4 +1,4 @@
-import './sign-contract.scss';
+import './sign-contract-page.scss';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ import {
   PlusCircleOutlined,
 } from '@ant-design/icons';
 
-function SingContract() {
+function SingContractPage() {
   const { contractId } = useParams();
   const [planCard, setPlanCard] = useState<Plan | null>(null);
   const deviceToken = localStorage.getItem('device');
@@ -90,4 +90,4 @@ function SingContract() {
     </ConfigProvider>
   );
 }
-export default SingContract;
+export default SingContractPage;

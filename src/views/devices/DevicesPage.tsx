@@ -1,4 +1,4 @@
-import './devices.scss';
+import './devices-page.scss';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
@@ -8,7 +8,7 @@ import { DeviceContext } from '../../context/PickedDeviceContext';
 import yellowImage from '../../assets/devices-page-yellow-image.png';
 import purpleImage from '../../assets/devices-page-image.png';
 
-function Devices() {
+function DevicesPage() {
   const [allDevices, setAllDevices] = useState([]);
   const deviceContext = useContext(DeviceContext);
 
@@ -59,7 +59,7 @@ function Devices() {
             >
               <h2>{device.model}</h2>
               <img
-                src={device.image}
+                src={device.mainImage}
                 alt='device-image'
               />
               <h2>{device.RAM}</h2>
@@ -81,4 +81,4 @@ function Devices() {
   );
 }
 
-export default Devices;
+export default DevicesPage;

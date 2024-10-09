@@ -4,11 +4,11 @@ import { Plan } from '../../interfaces/plan';
 import axios from 'axios';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { ConfigProvider, Segmented } from 'antd';
-import './plans.scss';
+import './plans-page.scss';
 import TermsOfContract from '../../components/plans/TermsOfContract';
 import StepsHeading from '../../components/plans/Steps-heading';
 
-function Plans() {
+function PlansPage() {
   const [allPlans, setAllPlans] = useState([]);
   /**
    false is for regular plans
@@ -92,4 +92,4 @@ function Plans() {
   );
 }
 
-export default Plans;
+export default PlansPage;

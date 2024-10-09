@@ -4,7 +4,7 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
 import axios from 'axios';
 
-function Login() {
+function LoginPage() {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -56,4 +56,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
