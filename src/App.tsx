@@ -13,6 +13,7 @@ import PlansPage from './views/plans/PlansPage.tsx';
 import SingContractPage from './views/sing-contract/SignContractPage.tsx';
 import LoginPage from './views/login/LoginPage.tsx';
 import RegisterPage from './views/register/RegisterPage.tsx';
+import CharacteristicsPage from './views/characteristics/CharacteristicPage.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -77,6 +78,10 @@ function App() {
             <Route
               path='/signContract/:contractId'
               element={<SingContractPage />}
+            />
+            <Route
+              path='/characteristics/:deviceId'
+              element={<CharacteristicsPage />}
             />
           </Routes>
         </DeviceContext.Provider>
