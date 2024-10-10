@@ -1,5 +1,6 @@
 import CreatePlanForm from '../../components/upload/create-plan-form/CreatePlanForm';
-import UploadDeviceForm from '../../components/upload/upload-new-device/UploadDeviceForm';
+import DeviceLongForm from '../../components/upload/upload-device/DeviceLongForm';
+import DeviceShortForm from '../../components/upload/upload-device/DeviceShortForm';
 import './upload-page.scss';
 
 function UploadPage() {
@@ -9,7 +10,10 @@ function UploadPage() {
         <CreatePlanForm />
       </div>
       <div className='form-body'>
-        <UploadDeviceForm />
+        <DeviceShortForm />
+      </div>
+      <div className='form-body'>
+        <DeviceLongForm />
       </div>
     </div>
   );
