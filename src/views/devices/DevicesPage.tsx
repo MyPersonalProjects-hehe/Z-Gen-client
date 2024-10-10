@@ -7,10 +7,12 @@ import { Button, ConfigProvider } from 'antd';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 import yellowImage from '../../assets/devices-page-yellow-image.png';
 import purpleImage from '../../assets/devices-page-image.png';
+import { useNavigate } from 'react-router-dom';
 
 function DevicesPage() {
   const [allDevices, setAllDevices] = useState([]);
   const deviceContext = useContext(DeviceContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -29,6 +31,10 @@ function DevicesPage() {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked(true);
     }
+  };
+
+  const navigateToCharacteristics = (deviceId: any) => {
+    navigate(`/characteristics/${deviceId}`);
   };
 
   return (
@@ -71,7 +77,12 @@ function DevicesPage() {
                 >
                   Pick device
                 </Button>
-                <Button className='btn'>Characteristics</Button>
+                <Button
+                  className='btn'
+                  onClick={() => navigateToCharacteristics(device._id)}
+                >
+                  Characteristics
+                </Button>
               </div>
             </div>
           ))}
