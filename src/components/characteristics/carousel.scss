@@ -1,0 +1,16 @@
+.img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  margin-top: 17rem;
+
+  img {
+    width: 80%;
+  }
+}
+
+.carousel {
+  width: 35%;
+  border-bottom: 3px solid grey;
+}
