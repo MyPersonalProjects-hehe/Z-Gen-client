@@ -1,9 +1,10 @@
 import './device-card.scss';
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Device } from '../../../interfaces/device';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
+import { SmileOutlined } from '@ant-design/icons';
 
 interface DeviceProp {
   device: Device;
@@ -11,12 +12,21 @@ interface DeviceProp {
 
 function DeviceCard({ device }: DeviceProp) {
   const deviceContext = useContext(DeviceContext);
+  const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
+  const openNotification = () => {
+    api.open({
+      message: 'Success',
+      description: 'Device added!',
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+    });
+  };
   const storeChosenDevice = (device: Device) => {
     if (device) {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked(true);
+      openNotification();
     }
   };
 
@@ -29,6 +39,7 @@ function DeviceCard({ device }: DeviceProp) {
       className='device'
       key={device._id}
     >
+      {contextHolder}
       <h2>{device.model}</h2>
       <img
         src={device.mainImage}

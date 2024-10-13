@@ -4,14 +4,19 @@ import { NavLink } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { SERVER_URL } from '../../constants/ServerURL';
-import { Avatar, Badge, Dropdown, MenuProps } from 'antd';
-import { CloseCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Badge, Dropdown, MenuProps, notification } from 'antd';
+import {
+  CloseCircleOutlined,
+  SmileOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 
 function Navbar() {
   const [device, setDevice] = useState<Device | null>(null);
   const userContext = useContext(UserContext);
+  const [api, contextHolder] = notification.useNotification();
   const deviceContext = useContext(DeviceContext);
 
   const items: MenuProps['items'] = [
@@ -42,6 +47,17 @@ function Navbar() {
         </>
       ),
     },
+    {
+      key: '3',
+      label: (
+        <button
+          className='logout-btn'
+          onClick={logout}
+        >
+          Logout
+        </button>
+      ),
+    },
   ];
 
   useEffect(() => {
@@ -51,44 +67,37 @@ function Navbar() {
     setDevice(deviceParsed);
   }, [deviceContext?.isDevicePicked]);
 
-  const logout = async () => {
+  const openNotification = () => {
+    api.open({
+      message: 'success',
+      description: 'Device removed!',
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+    });
+  };
+
+  async function logout() {
     const response = await axios.get(SERVER_URL('logout'), {
       withCredentials: true,
     });
     if (response.status === 200) {
       userContext?.setUser?.(null);
       userContext?.setSession(false);
+      localStorage.removeItem('device');
     }
-  };
+  }
 
   function removeDevice() {
     if (localStorage.getItem('device')) {
       localStorage.removeItem('device');
       deviceContext?.setDevicePicked(false);
+      openNotification();
     }
   }
 
   return (
     <div className='navbar'>
+      {contextHolder}
       <div className='links'>
-        <div className='avatar'>
-          <Dropdown
-            menu={{ items }}
-            placement='bottomLeft'
-            arrow
-            className='dropdown'
-          >
-            <Badge count={device ? 1 : ''}>
-              <Avatar
-                shape='square'
-                size={60}
-                icon={<UserOutlined />}
-                className='avatar'
-              />
-            </Badge>
-          </Dropdown>
-        </div>
-
         <div className='logo'>
           <NavLink
             className='nav__link '
@@ -117,19 +126,29 @@ function Navbar() {
           >
             Plans
           </NavLink>
-          {!userContext?.user ? (
-            <>
-              <NavLink
-                className='nav__link '
-                to='/login'
-              >
-                Sign up
-              </NavLink>
-            </>
+          {userContext?.user ? (
+            <Dropdown
+              menu={{ items }}
+              placement='bottomLeft'
+              arrow
+              className='dropdown'
+            >
+              <Badge count={device ? 1 : ''}>
+                <Avatar
+                  shape='square'
+                  size={60}
+                  icon={<UserOutlined />}
+                  className='avatar nav__link'
+                />
+              </Badge>
+            </Dropdown>
           ) : (
-            <>
-              <button onClick={logout}>Logout</button>
-            </>
+            <NavLink
+              className='nav__link '
+              to='/login'
+            >
+              Sign up
+            </NavLink>
           )}
         </div>
       </div>

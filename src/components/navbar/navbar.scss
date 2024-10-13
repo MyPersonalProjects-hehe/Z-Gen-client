@@ -11,15 +11,14 @@
   animation: color_animation 12s ease-in-out infinite;
   width: 100%;
   padding: 30px 0px;
+  box-shadow: 0px 4px 5px rgb(45, 44, 44);
 
   .links {
     display: flex;
-    align-items: flex-end;
     justify-content: space-evenly;
     z-index: 1;
     width: 100%;
     max-width: 1000px;
-    margin-bottom: 10px;
 
     .nav__link {
       margin-left: 2rem;
@@ -30,12 +29,11 @@
   }
 
   .logo {
+    margin-top: 0.7rem;
     > * {
       text-decoration: none;
       font-size: xx-large;
-      background: white;
-      background-clip: text;
-      color: transparent;
+      color: white;
       font-weight: 700;
     }
   }
