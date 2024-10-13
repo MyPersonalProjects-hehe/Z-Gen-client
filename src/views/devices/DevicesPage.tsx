@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 import yellowImage from '../../assets/devices-page-yellow-image.png';
 import purpleImage from '../../assets/devices-page-image.png';
 import MenuComponent from '../../components/devices/Menu';
-import DeviceCard from '../../components/devices/DeviceCard';
+import DeviceCard from '../../components/devices/device-card/DeviceCard';
 
 function DevicesPage() {
   const [allDevices, setAllDevices] = useState([]);
@@ -45,7 +45,7 @@ function DevicesPage() {
         },
       }}
     >
-      <div>
+      <div className='devices-body'>
         <div className='images-poster'>
           <img
             src={yellowImage}
@@ -57,10 +57,8 @@ function DevicesPage() {
           />
         </div>
 
-        <div className='devices-body'>
-          <div className='menu'>
-            <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
-          </div>
+        <div className='menu__and__devices'>
+          <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
 
           {selectedFilterValue ? (
             <div className='devices'>

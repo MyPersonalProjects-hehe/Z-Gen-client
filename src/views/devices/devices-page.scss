@@ -10,30 +10,17 @@
   }
 }
 
-.devices-body {
+.menu__and__devices {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 5rem;
-  gap: 6rem;
+  justify-content: center;
+  gap: 5rem;
+  padding-top: 5rem;
 
   .devices {
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
-  }
-
-  .device {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid grey;
-    border-radius: 8px;
-    width: 20rem;
-
-    img {
-      width: 85%;
-      border-bottom: 2px solid grey;
-    }
+    width: 70%;
   }
 }
