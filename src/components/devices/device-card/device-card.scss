@@ -1,0 +1,18 @@
+.device {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid grey;
+  border-radius: 8px;
+  width: 20rem;
+
+  img {
+    width: 85%;
+    border-bottom: 2px solid grey;
+  }
+
+  .buttons {
+    width: 60%;
+  }
+}

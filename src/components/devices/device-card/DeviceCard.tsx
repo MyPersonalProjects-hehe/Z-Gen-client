@@ -1,8 +1,9 @@
+import './device-card.scss';
 import { Button } from 'antd';
-import { Device } from '../../interfaces/device';
 import { useContext } from 'react';
-import { DeviceContext } from '../../context/PickedDeviceContext';
 import { useNavigate } from 'react-router-dom';
+import { Device } from '../../../interfaces/device';
+import { DeviceContext } from '../../../context/PickedDeviceContext';
 
 interface DeviceProp {
   device: Device;
