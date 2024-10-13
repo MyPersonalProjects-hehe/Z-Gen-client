@@ -1,0 +1,35 @@
+.login-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rem;
+  margin: 12rem 3rem;
+
+  .btn-login {
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.image__poster {
+  position: relative;
+  width: 35%;
+
+  img {
+    filter: brightness(0.6);
+    width: 100%;
+  }
+
+  h1 {
+    z-index: 1;
+    position: absolute;
+    background-color: var(--c-secondary);
+    top: -10px;
+    color: white;
+    text-align: center;
+    padding: 1.4rem;
+    box-shadow: 0px 4px 10px rgb(45, 44, 44);
+  }
+}

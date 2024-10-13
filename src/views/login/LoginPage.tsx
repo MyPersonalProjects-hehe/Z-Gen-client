@@ -1,8 +1,11 @@
+import './login-page.scss';
+import axios from 'axios';
 import { FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
-import axios from 'axios';
+import { Button, ConfigProvider } from 'antd';
+import imagePoster from '../../assets/login-page-image.jpg';
 
 function LoginPage() {
   const [user, setUser] = useState({
@@ -37,22 +40,50 @@ function LoginPage() {
   };
 
   return (
-    <div className='form-body'>
-      <h1>Login</h1>
-      <form onSubmit={(e) => loginUser(e)}>
-        <input
-          type='email'
-          placeholder='email'
-          onChange={(e) => updateForm(e, 'email')}
-        />
-        <input
-          type='password'
-          placeholder='password'
-          onChange={(e) => updateForm(e, 'password')}
-        />
-        <button type='submit'>click</button>
-      </form>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: 'white',
+        },
+        components: {
+          Button: {
+            defaultHoverColor: 'black',
+          },
+        },
+      }}
+    >
+      <div className='login-body'>
+        <div className='image__poster'>
+          <h1>Enjoy Generation`s best choice for telecom provider!</h1>
+
+          <img
+            src={imagePoster}
+            alt='image-poster'
+          />
+        </div>
+        <div className='form__body'>
+          <h1>Login</h1>
+          <form>
+            <input
+              type='email'
+              placeholder='email'
+              onChange={(e) => updateForm(e, 'email')}
+            />
+            <input
+              type='password'
+              placeholder='password'
+              onChange={(e) => updateForm(e, 'password')}
+            />
+            <Button
+              className='btn btn-login'
+              onClick={(e) => loginUser(e)}
+            >
+              click
+            </Button>
+          </form>
+        </div>
+      </div>
+    </ConfigProvider>
   );
 }
 
