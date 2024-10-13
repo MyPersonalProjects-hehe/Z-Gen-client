@@ -10,11 +10,17 @@
   }
 }
 
-.devices {
+.devices-body {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 5rem;
-  gap: 20px;
+  gap: 6rem;
+
+  .devices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
 
   .device {
     display: flex;
