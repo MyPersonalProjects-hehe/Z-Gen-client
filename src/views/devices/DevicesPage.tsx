@@ -1,18 +1,18 @@
 import './devices-page.scss';
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
-import { Button, ConfigProvider } from 'antd';
-import { DeviceContext } from '../../context/PickedDeviceContext';
+import { ConfigProvider } from 'antd';
 import yellowImage from '../../assets/devices-page-yellow-image.png';
 import purpleImage from '../../assets/devices-page-image.png';
-import { useNavigate } from 'react-router-dom';
+import MenuComponent from '../../components/devices/Menu';
+import DeviceCard from '../../components/devices/DeviceCard';
 
 function DevicesPage() {
   const [allDevices, setAllDevices] = useState([]);
-  const deviceContext = useContext(DeviceContext);
-  const navigate = useNavigate();
+  const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
+  const [filteredDevices, setFilteredDevices] = useState([]);
 
   useEffect(() => {
     try {
@@ -26,16 +26,16 @@ function DevicesPage() {
     }
   }, []);
 
-  const storeChosenDevice = (device: Device) => {
-    if (device) {
-      localStorage.setItem('device', JSON.stringify(device));
-      deviceContext?.setDevicePicked(true);
+  /*Menu filtering */
+  useEffect(() => {
+    if (selectedFilterValue === 'Clear filters') {
+      setSelectedFilterValue('');
     }
-  };
-
-  const navigateToCharacteristics = (deviceId: any) => {
-    navigate(`/characteristics/${deviceId}`);
-  };
+    const devices = allDevices.filter((device: Device) =>
+      device.model.includes(selectedFilterValue)
+    );
+    setFilteredDevices(devices);
+  }, [selectedFilterValue]);
 
   return (
     <ConfigProvider
@@ -57,35 +57,30 @@ function DevicesPage() {
           />
         </div>
 
-        <div className='devices'>
-          {allDevices?.map((device: Device) => (
-            <div
-              className='device'
-              key={device._id}
-            >
-              <h2>{device.model}</h2>
-              <img
-                src={device.mainImage}
-                alt='device-image'
-              />
-              <h2>{device.RAM}</h2>
-              <h2>{device.price}</h2>
-              <div className='buttons'>
-                <Button
-                  className='btn'
-                  onClick={() => storeChosenDevice(device)}
-                >
-                  Pick device
-                </Button>
-                <Button
-                  className='btn'
-                  onClick={() => navigateToCharacteristics(device._id)}
-                >
-                  Characteristics
-                </Button>
-              </div>
+        <div className='devices-body'>
+          <div className='menu'>
+            <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
+          </div>
+
+          {selectedFilterValue ? (
+            <div className='devices'>
+              {filteredDevices.map((device: Device) => (
+                <DeviceCard
+                  device={device}
+                  key={device._id}
+                />
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className='devices'>
+              {allDevices?.map((device: Device) => (
+                <DeviceCard
+                  device={device}
+                  key={device._id}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </ConfigProvider>
