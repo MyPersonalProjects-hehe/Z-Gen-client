@@ -6,11 +6,17 @@ import { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
 import { DeviceFullInfo } from '../../interfaces/deviceCharacteristics';
+import PlanCard from '../../components/home/PlanCard';
+import { Plan } from '../../interfaces/plan';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
+  /*main device info */
   const [mainInfo, setMainInfo] = useState<Device | null>(null);
+  /*full characteristics device info */
   const [fullInfo, setFullInfo] = useState<DeviceFullInfo | null>(null);
+  /*plan with the biggest discount for device */
+  const [bestPlan, setBestPlan] = useState<Plan | null>(null);
 
   useEffect(() => {
     try {
@@ -21,11 +27,11 @@ function CharacteristicsPage() {
         const responseTwo = await axios.get(
           SERVER_URL(`fetchFullInfo/${responseOne.data.device.model}`)
         );
+        const fetchPlan = await axios.get(SERVER_URL('bestPlan'));
 
-        if (responseOne.data.device || responseTwo.data.info) {
-          setMainInfo(responseOne.data.device);
-          setFullInfo(responseTwo.data.info[0]);
-        }
+        setMainInfo(responseOne.data.device);
+        setFullInfo(responseTwo.data.info[0]);
+        setBestPlan(fetchPlan.data.plan);
       };
       fetchDeviceInfo();
     } catch (error) {
@@ -35,12 +41,20 @@ function CharacteristicsPage() {
 
   return (
     <div className='characteristics-body'>
+      <h1>{mainInfo?.model}</h1>
       <CarouselComponent device={mainInfo} />
-      <div className='device__primary__info'>
-        <h1>{mainInfo?.model}</h1>
-        <h2>{mainInfo?.RAM}</h2>
-        <h2>{mainInfo?.price}</h2>
+      <h1>Best Offers:</h1>
+      <div className='best__plans'>
+        <PlanCard
+          isCorporate={false}
+          plan={bestPlan}
+        ></PlanCard>
+        <PlanCard
+          isCorporate={false}
+          plan={bestPlan}
+        ></PlanCard>
       </div>
+
       <div className='full__characteristics'>
         <h1>Characteristics</h1>
         <h2>

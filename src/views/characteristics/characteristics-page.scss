@@ -1,14 +1,20 @@
 .characteristics-body {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  margin-top: 10rem;
 
-  .device__primary__info {
-    border: 2px solid rebeccapurple;
-    width: 50%;
-    height: 20rem;
-    margin-top: 5rem;
+  h1 {
+    -webkit-text-stroke: 1.5px black;
+    color: transparent;
+    font-size: 3rem;
+  }
+
+  .best__plans {
+    display: flex;
+    margin-top: 1rem;
+    gap: 3rem;
   }
 }
 
