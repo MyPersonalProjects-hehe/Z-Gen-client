@@ -6,13 +6,13 @@ import './upload-page.scss';
 function UploadPage() {
   return (
     <div className='upload-body'>
-      <div className='form-body'>
+      <div className='form__body'>
         <CreatePlanForm />
       </div>
-      <div className='form-body'>
+      <div className='form__body'>
         <DeviceShortForm />
       </div>
-      <div className='form-body'>
+      <div className='form__body'>
         <DeviceLongForm />
       </div>
     </div>

@@ -43,7 +43,7 @@ function RegisterPage() {
   };
 
   return (
-    <div className='form-body'>
+    <div className='form__body'>
       <h1>Register</h1>
       <form onSubmit={(e) => registerUser(e)}>
         <div>
