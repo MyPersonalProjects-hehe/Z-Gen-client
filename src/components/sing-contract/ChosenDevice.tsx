@@ -28,8 +28,8 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
             <div className='content device-content'>
               <div className='device-image'>
                 <img
-                  src={device.image}
-                  alt=''
+                  src={device?.mainImage}
+                  alt='image'
                 />
               </div>
               <h3>{device.RAM}</h3>
