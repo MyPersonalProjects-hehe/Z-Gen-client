@@ -11,6 +11,7 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   PlusCircleOutlined,
+  SmileOutlined,
 } from '@ant-design/icons';
 
 function SingContractPage() {
@@ -80,11 +81,19 @@ function SingContractPage() {
           </div>
           <PlusCircleOutlined className='plus-icon' />
           <div className='chosen-device'>
-            <ChosenDevice
-              device={device}
-              planCard={planCard}
-            />
+            <ChosenDevice planCard={planCard} />
           </div>
+        </div>
+        <div className='text-block'>
+          <SmileOutlined className='smile-icon' />
+          <h2 className='heading'>
+            For best experience, all contracts have trial period of 14 days!
+          </h2>
+          <h2>
+            If you are not delighted with our contract you can visit the nearest
+            shop and declare a contract cancelation. The cancelation is
+            considered for processing of how we can improve our services.
+          </h2>
         </div>
       </div>
     </ConfigProvider>
