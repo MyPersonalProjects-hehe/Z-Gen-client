@@ -136,7 +136,7 @@ function Navbar() {
               <Badge count={device ? 1 : ''}>
                 <Avatar
                   shape='square'
-                  size={60}
+                  size={50}
                   icon={<UserOutlined />}
                   className='avatar nav__link'
                 />

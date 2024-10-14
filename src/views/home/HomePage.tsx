@@ -80,7 +80,7 @@ function HomePage() {
               <PlanCard
                 plan={plan}
                 isCorporate={false}
-              ></PlanCard>
+              />
             </div>
           ))}
         </div>

@@ -48,11 +48,15 @@ function CharacteristicsPage() {
         <PlanCard
           isCorporate={false}
           plan={bestPlan}
-        ></PlanCard>
+          isPickedFromChar={true}
+          device={mainInfo}
+        />
         <PlanCard
           isCorporate={false}
           plan={bestPlan}
-        ></PlanCard>
+          isPickedFromChar={true}
+          device={mainInfo}
+        />
       </div>
 
       <div className='full__characteristics'>
