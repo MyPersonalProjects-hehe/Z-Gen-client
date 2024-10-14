@@ -1,0 +1,39 @@
+.time-line {
+  width: 80%;
+  font-size: 1.3rem;
+  text-align: end;
+
+  .heading {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  > * {
+    padding: 1rem 0rem;
+    img {
+      width: 40%;
+    }
+  }
+
+  .second__node {
+    display: flex;
+  }
+
+  .first__node {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  border-bottom: 3px solid grey;
+}
+
+.linear-text {
+  background: var(--c-primary);
+  background-clip: text;
+  color: transparent;
+}
+
+.last-text {
+  text-align: center;
+}

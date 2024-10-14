@@ -1,16 +1,15 @@
 .plan-body {
-  margin-top: 6rem;
+  margin-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
 
   .toggle__button {
-    background: var(--c-linear);
+    background: var(--c-secondary);
     background-size: 300% 300%;
     animation: color_animation 12s ease-in-out infinite;
-    color: red;
-    padding: 5px;
+    padding: 3px;
     border-radius: 10px;
   }
 }
@@ -40,13 +39,6 @@
 }
 
 .steps {
-  h1 {
-    background: var(--c-linear);
-    background-size: 300% 300%;
-    animation: color_animation 12s ease-in-out infinite, fade_down 1.2s;
-    color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    transform: translateX(10px);
-  }
+  width: 60%;
+  text-align: center;
 }

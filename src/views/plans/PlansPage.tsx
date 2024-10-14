@@ -5,8 +5,9 @@ import axios from 'axios';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { ConfigProvider, Segmented } from 'antd';
 import './plans-page.scss';
-import TermsOfContract from '../../components/plans/TermsOfContract';
+import TermsOfContract from '../../components/plans/terms/TermsOfContract';
 import StepsHeading from '../../components/plans/Steps-heading';
+import WhyChooseUs from '../../components/plans/why-choose-us/WhyChooseUs';
 
 function PlansPage() {
   const [allPlans, setAllPlans] = useState([]);
@@ -51,7 +52,7 @@ function PlansPage() {
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: toggle ? '#5c4b5b' : '#7462ff',
+              colorPrimary: toggle ? '#3d2450' : '#7462ff',
               fontSize: 15,
             },
           }}
@@ -68,6 +69,8 @@ function PlansPage() {
           className='toggle'
         />
       </div>
+
+      <h2>Plans for new customers: </h2>
       <div className='plans'>
         {allPlans?.map((plan: Plan) => (
           <div key={plan._id}>
@@ -78,12 +81,11 @@ function PlansPage() {
           </div>
         ))}
       </div>
+
+      <WhyChooseUs />
+
       <div className='easy-signing'>
-        <h2>
-          Signing a contract is a few clicks away! <br /> To provide the best
-          service you can sign contracts and buy devices entirely through your
-          phone!
-        </h2>
+        <h2>Before signing a contract be sure to read our terms of use!</h2>
       </div>
       <div className='terms'>
         <TermsOfContract />
