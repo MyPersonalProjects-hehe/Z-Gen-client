@@ -41,7 +41,15 @@ function DevicesPage() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#230565',
+          colorPrimary: '#7462ff',
+        },
+        components: {
+          Button: {
+            defaultHoverBg: '#afa7e6',
+            defaultBg: '#afa7e6',
+            defaultColor: 'black',
+            defaultHoverColor: 'black',
+          },
         },
       }}
     >
