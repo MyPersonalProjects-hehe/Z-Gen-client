@@ -25,7 +25,7 @@ function DeviceCard({ device }: DeviceProp) {
   const storeChosenDevice = (device: Device) => {
     if (device) {
       localStorage.setItem('device', JSON.stringify(device));
-      deviceContext?.setDevicePicked(true);
+      deviceContext?.setDevicePicked((prev) => !prev);
       openNotification();
     }
   };

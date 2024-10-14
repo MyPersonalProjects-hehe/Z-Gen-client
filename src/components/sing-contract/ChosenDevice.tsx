@@ -3,14 +3,24 @@ import { Device } from '../../interfaces/device';
 import { Plan } from '../../interfaces/plan';
 import { EuroCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { DeviceContext } from '../../context/PickedDeviceContext';
 
 interface DeviceProps {
   planCard: Plan | null;
-  device: Device;
 }
 
-function ChosenDevice({ planCard, device }: DeviceProps) {
+function ChosenDevice({ planCard }: DeviceProps) {
+  const [device, setDevice] = useState<Device | null>(null);
+  const deviceContext = useContext(DeviceContext);
   const navigate = useNavigate();
+
+  /*Use local storage and context provider to display notification without refresh*/
+  useEffect(() => {
+    const deviceUnparsed = localStorage.getItem('device');
+    const deviceItem = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
+    setDevice(deviceItem);
+  }, [deviceContext?.isDevicePicked]);
 
   return (
     <>

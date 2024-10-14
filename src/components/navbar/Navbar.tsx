@@ -15,8 +15,8 @@ import { DeviceContext } from '../../context/PickedDeviceContext';
 
 function Navbar() {
   const [device, setDevice] = useState<Device | null>(null);
-  const userContext = useContext(UserContext);
   const [api, contextHolder] = notification.useNotification();
+  const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
 
   const items: MenuProps['items'] = [
@@ -89,7 +89,7 @@ function Navbar() {
   function removeDevice() {
     if (localStorage.getItem('device')) {
       localStorage.removeItem('device');
-      deviceContext?.setDevicePicked(false);
+      deviceContext?.setDevicePicked((prev: boolean) => !prev);
       openNotification();
     }
   }

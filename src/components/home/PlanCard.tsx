@@ -5,18 +5,32 @@ import { EuroCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { Device } from '../../interfaces/device';
+import { DeviceContext } from '../../context/PickedDeviceContext';
 
 interface PlanCardProps {
   plan: Plan | null;
   isCorporate: boolean;
+  isPickedFromChar?: boolean;
+  device?: Device | null;
 }
-function PlanCard({ plan, isCorporate }: PlanCardProps) {
+function PlanCard({
+  plan,
+  isCorporate,
+  isPickedFromChar,
+  device,
+}: PlanCardProps) {
   const navigate = useNavigate();
   const userObject = useContext(UserContext);
+  const deviceContext = useContext(DeviceContext);
 
   const navigateToSignContract = (planId: any) => {
     if (!userObject?.user) {
       navigate('/login');
+    } else if (userObject?.user && isPickedFromChar) {
+      localStorage.setItem('device', JSON.stringify(device));
+      deviceContext?.setDevicePicked((prev: boolean) => !prev);
+      navigate(`/signContract/${planId}`);
     } else {
       navigate(`/signContract/${planId}`);
     }
