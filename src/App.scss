@@ -34,7 +34,7 @@
   flex-wrap: wrap;
   background-attachment: fixed;
   background-size: cover;
-  padding: 3.5rem 3.5rem;
+  padding: 3rem 3rem;
   gap: 20px;
   height: auto;
   border-radius: 12px;
@@ -63,6 +63,7 @@
 .btn {
   cursor: pointer;
   font-size: larger;
+  font-weight: 500;
   width: 12rem;
   height: 4rem;
 }

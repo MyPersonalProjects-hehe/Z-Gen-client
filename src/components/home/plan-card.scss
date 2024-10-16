@@ -20,11 +20,8 @@
 
   .glass {
     position: relative;
-  }
-
-  .btn-choose-plan {
-    position: absolute;
-    left: 4rem;
+    width: 100%;
+    padding: 1rem 2rem;
   }
 }
 
@@ -37,7 +34,6 @@
   font-size: 1.1rem;
   border: 3px solid rgba(255, 255, 255, 0.09);
   border-radius: 8px;
-  width: 85%;
 
   h3 {
     margin: 8px;
@@ -46,7 +42,7 @@
   .ribbon {
     position: absolute;
     right: -4.3px;
-    bottom: 4.3rem;
+    bottom: 4.4rem;
   }
 
   .euro-icon {
