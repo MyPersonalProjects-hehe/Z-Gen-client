@@ -2,6 +2,7 @@
   width: 80%;
   font-size: 1.3rem;
   text-align: end;
+  border-bottom: 3px solid grey;
 
   .heading {
     text-align: center;
@@ -24,12 +25,10 @@
     flex-direction: row-reverse;
     align-items: center;
   }
-
-  border-bottom: 3px solid grey;
 }
 
 .linear-text {
-  background: var(--c-primary);
+  background: var(--c-third);
   background-clip: text;
   color: transparent;
 }

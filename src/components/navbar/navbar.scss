@@ -6,16 +6,16 @@
   top: 0;
   left: 0;
   z-index: 4;
-  background: var(--c-linear);
-  background-size: 300% 300%;
-  animation: color_animation 12s ease-in-out infinite;
+  background: url('../../assets/1cede1ae01ffc75c72ab8fc809c2a6e0.jpg') no-repeat
+    center/100%;
+  background-attachment: fixed;
   width: 100%;
-  padding: 30px 0px;
-  box-shadow: 0px 4px 5px rgb(45, 44, 44);
+  padding: 20px 0px;
 
   .links {
     display: flex;
     justify-content: space-evenly;
+    align-items: flex-end;
     z-index: 1;
     width: 100%;
     max-width: 1000px;
@@ -29,7 +29,6 @@
   }
 
   .logo {
-    margin-top: 0.7rem;
     > * {
       text-decoration: none;
       font-size: xx-large;
