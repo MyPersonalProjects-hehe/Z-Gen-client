@@ -16,6 +16,7 @@ import {
   Skeleton,
 } from 'antd';
 import { CarOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import poster from '../../assets/charac-page-poster.png';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -105,7 +106,14 @@ function CharacteristicsPage() {
 
   return (
     <div className='characteristics-body'>
-      <div className='model-info'>
+      <div className='poster'>
+        <h2>We make life more stylish every contract at a time</h2>
+        <img
+          src={poster}
+          alt='poster'
+        />
+      </div>
+      <div className='model__info'>
         {!mainInfo ? (
           <Skeleton.Image
             active={true}
@@ -114,7 +122,7 @@ function CharacteristicsPage() {
         ) : (
           <CarouselComponent device={mainInfo} />
         )}
-        <div className='model__info'>
+        <div className='info__block'>
           <h1>{mainInfo?.model}</h1>
           <span className='line dot'>
             <Badge
@@ -132,7 +140,7 @@ function CharacteristicsPage() {
 
             <Badge.Ribbon
               text='Fast delivery'
-              color='var(--c-secondary)'
+              color='var(--c-third)'
               className='ribbon'
             />
           </span>
@@ -140,12 +148,10 @@ function CharacteristicsPage() {
           <h2>sdasd</h2>
           <h2>sdasd</h2>
           <h2>sdasd</h2>
-          <h2>sdasd</h2>
-          <h2>sdasd</h2>
         </div>
 
         <div className='best__plan'>
-          <h2 className='headings-char-page'>Best Offers</h2>
+          <h2 className='headings-char-page'>Our offer</h2>
           <PlanCard
             isCorporate={false}
             plan={bestPlan}
@@ -161,7 +167,7 @@ function CharacteristicsPage() {
           },
           components: {
             Descriptions: {
-              colorTextSecondary: 'var(--c-primary)',
+              colorTextSecondary: 'var(--c-third)',
             },
           },
         }}
