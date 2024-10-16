@@ -1,5 +1,4 @@
 import './carousel.scss';
-import { EuroCircleOutlined } from '@ant-design/icons';
 import { Device } from '../../interfaces/device';
 import { Carousel, ConfigProvider, Image } from 'antd';
 
@@ -19,17 +18,6 @@ function CarouselComponent({ device }: DeviceProp) {
       }}
     >
       <div className='carousel-body'>
-        <div className='model-info'>
-          <h2>RAM {device?.RAM}</h2>
-          <h2>
-            Regular price: {device?.price}{' '}
-            <EuroCircleOutlined
-              className='euro'
-              color='black'
-            />
-          </h2>
-        </div>
-
         <div className='carousel'>
           <Carousel
             autoplay

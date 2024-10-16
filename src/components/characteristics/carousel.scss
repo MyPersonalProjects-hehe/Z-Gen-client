@@ -1,34 +1,20 @@
 .carousel-body {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 40%;
+}
 
-  .model-info {
-    padding-top: 5rem;
-    padding-right: 1rem;
-    font-size: 1.5rem;
-    text-align: center;
+.carousel {
+  width: 70%;
 
-    h2 {
-      border-bottom: 2px solid grey;
-    }
-
-    .euro {
-      color: rgb(64, 63, 63);
-    }
-  }
-
-  .carousel {
-    width: 50%;
-    .image {
-      width: 100%;
-    }
+  .image {
+    width: 10%;
   }
 }
 
 .mini-images {
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
-  width: 15%;
+  padding-top: 4rem;
+  width: 20%;
 }
