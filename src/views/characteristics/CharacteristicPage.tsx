@@ -8,6 +8,14 @@ import { Device } from '../../interfaces/device';
 import { DeviceFullInfo } from '../../interfaces/deviceCharacteristics';
 import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
+import {
+  Badge,
+  ConfigProvider,
+  Descriptions,
+  DescriptionsProps,
+  Skeleton,
+} from 'antd';
+import { CarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -39,56 +47,135 @@ function CharacteristicsPage() {
     }
   }, []);
 
+  /**Model characteristics */
+  const items: DescriptionsProps['items'] = [
+    {
+      key: '1',
+      label: 'Product',
+      children: mainInfo?.model,
+    },
+    {
+      key: '2',
+      label: 'RAM',
+      children: mainInfo?.RAM,
+    },
+    {
+      key: '3',
+      label: 'Water proof',
+      children: fullInfo?.waterProof,
+    },
+    {
+      key: '4',
+      label: 'Selfie camera',
+      children: fullInfo?.selfieCamera,
+    },
+    {
+      key: '5',
+      label: 'Main camera',
+      span: 2,
+      children: fullInfo?.camera,
+    },
+    {
+      key: '6',
+      label: 'Processor',
+      span: 3,
+      children: fullInfo?.processor,
+    },
+    {
+      key: '7',
+      label: 'Battery',
+      children: fullInfo?.batteryCapacity,
+    },
+    {
+      key: '8',
+      label: 'Operation system',
+      children: fullInfo?.operationSystem,
+    },
+    {
+      key: '9',
+      label: 'Weight',
+      children: fullInfo?.weight,
+    },
+    {
+      key: '10',
+      label: 'Functions',
+      children: fullInfo?.functions,
+    },
+  ];
+
   return (
     <div className='characteristics-body'>
-      <h1>{mainInfo?.model}</h1>
-      <CarouselComponent device={mainInfo} />
-      <h1>Best Offers:</h1>
-      <div className='best__plans'>
-        <PlanCard
-          isCorporate={false}
-          plan={bestPlan}
-          isPickedFromChar={true}
-          device={mainInfo}
-        />
-        <PlanCard
-          isCorporate={false}
-          plan={bestPlan}
-          isPickedFromChar={true}
-          device={mainInfo}
-        />
-      </div>
+      <div className='model-info'>
+        {!mainInfo ? (
+          <Skeleton.Image
+            active={true}
+            className='skeleton'
+          />
+        ) : (
+          <CarouselComponent device={mainInfo} />
+        )}
+        <div className='model__info'>
+          <h1>{mainInfo?.model}</h1>
+          <span className='line dot'>
+            <Badge
+              color='green'
+              text='in stock'
+              style={{ fontWeight: 700 }}
+            />
+          </span>
 
-      <div className='full__characteristics'>
-        <h1>Characteristics</h1>
-        <h2>
-          Main camera: <span> {fullInfo?.camera}</span>
-        </h2>
-        <h2>
-          Selfie camera/Front camera: <span> {fullInfo?.selfieCamera}</span>
-        </h2>
-        <h2>
-          Operation system: <span> {fullInfo?.operationSystem}</span>
-        </h2>
-        <h2>
-          Battery: <span> {fullInfo?.batteryCapacity}</span>
-        </h2>
-        <h2>
-          Corpus: <span> {fullInfo?.corpus}</span>
-        </h2>
-        <h2>
-          Processor: <span> {fullInfo?.processor}</span>
-        </h2>
-        <h2>
-          Functions: <span> {fullInfo?.functions}</span>
-        </h2>
-        <h2>
-          Water proof: <span> {fullInfo?.waterProof}</span>
-        </h2>
-        <h2>
-          Weight: <span> {fullInfo?.weight}</span>
-        </h2>
+          <span className='line delivery'>
+            <CarOutlined style={{ fontSize: 25 }} />
+            <p>Free delivery!</p>
+            <ClockCircleOutlined style={{ fontSize: 25 }} />
+            <p>Delivery time is between 5 to 15 work days</p>
+
+            <Badge.Ribbon
+              text='Fast delivery'
+              color='var(--c-secondary)'
+              className='ribbon'
+            />
+          </span>
+          <h2>sdasd</h2>
+          <h2>sdasd</h2>
+          <h2>sdasd</h2>
+          <h2>sdasd</h2>
+          <h2>sdasd</h2>
+          <h2>sdasd</h2>
+        </div>
+
+        <div className='best__plan'>
+          <h2 className='headings-char-page'>Best Offers</h2>
+          <PlanCard
+            isCorporate={false}
+            plan={bestPlan}
+            isPickedFromChar={true}
+            device={mainInfo}
+          />
+        </div>
       </div>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontSize: 25,
+          },
+          components: {
+            Descriptions: {
+              colorTextSecondary: 'var(--c-primary)',
+            },
+          },
+        }}
+      >
+        <div className='characteristics'>
+          <h2 className='headings-char-page'>Characteristics</h2>
+          <Descriptions
+            layout='vertical'
+            bordered
+            items={items}
+            className='table'
+          />
+        </div>
+      </ConfigProvider>
     </div>
   );
 }
