@@ -4,7 +4,9 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Device } from '../../../interfaces/device';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
-import { SmileOutlined } from '@ant-design/icons';
+import { SmileOutlined, WarningOutlined } from '@ant-design/icons';
+import { UserContext } from '../../../context/UserContext';
+import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
 interface DeviceProp {
   device: Device;
@@ -12,21 +14,27 @@ interface DeviceProp {
 
 function DeviceCard({ device }: DeviceProp) {
   const deviceContext = useContext(DeviceContext);
+  const userContext = useContext(UserContext);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
-  const openNotification = () => {
-    api.open({
-      message: 'Success',
-      description: 'Device added!',
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-    });
-  };
   const storeChosenDevice = (device: Device) => {
-    if (device) {
+    if (device && userContext?.user) {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked((prev) => !prev);
-      openNotification();
+      openNotification({
+        api: api,
+        icon: <SmileOutlined />,
+        message: 'Success',
+        description: 'Device stored!',
+      });
+    } else {
+      openNotification({
+        api: api,
+        icon: <WarningOutlined />,
+        message: 'Warning',
+        description: 'Please login to store device!',
+      });
     }
   };
 

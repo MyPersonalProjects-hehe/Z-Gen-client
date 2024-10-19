@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
+import { openNotification } from '../../helpers/notifications-functions/openNotification';
 
 function Navbar() {
   const [device, setDevice] = useState<Device | null>(null);
@@ -67,14 +68,6 @@ function Navbar() {
     setDevice(deviceParsed);
   }, [deviceContext?.isDevicePicked]);
 
-  const openNotification = () => {
-    api.open({
-      message: 'success',
-      description: 'Device removed!',
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-    });
-  };
-
   async function logout() {
     const response = await axios.get(SERVER_URL('logout'), {
       withCredentials: true,
@@ -90,12 +83,17 @@ function Navbar() {
     if (localStorage.getItem('device')) {
       localStorage.removeItem('device');
       deviceContext?.setDevicePicked((prev: boolean) => !prev);
-      openNotification();
+      openNotification({
+        api: api,
+        icon: <SmileOutlined />,
+        message: 'Success',
+        description: 'Device removed!',
+      });
     }
   }
 
   return (
-    <div className='navbar'>
+    <div className='navbar poster'>
       {contextHolder}
       <div className='links'>
         <div className='logo'>
