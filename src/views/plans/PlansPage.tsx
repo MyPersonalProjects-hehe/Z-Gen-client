@@ -84,7 +84,7 @@ function PlansPage() {
 
       <WhyChooseUs />
 
-      <div className='easy-signing'>
+      <div className='easy__signing'>
         <h2>Before signing a contract be sure to read our terms of use!</h2>
       </div>
       <div className='terms'>

@@ -55,7 +55,7 @@ function DevicesPage() {
       }}
     >
       <div className='devices-body'>
-        <div className='images-poster'>
+        <div className='poster__images'>
           <img
             src={yellowImage}
             alt='image'

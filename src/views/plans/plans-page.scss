@@ -5,6 +5,11 @@
   align-items: center;
   gap: 2rem;
 
+  .steps {
+    width: 60%;
+    text-align: center;
+  }
+
   .toggle__button {
     background: var(--c-secondary);
     background-size: 300% 300%;
@@ -26,7 +31,7 @@
   width: 60%;
 }
 
-.easy-signing {
+.easy__signing {
   display: flex;
   text-align: center;
   background-color: var(--c-secondary);
@@ -36,9 +41,4 @@
   h2 {
     padding: 0px 5rem;
   }
-}
-
-.steps {
-  width: 60%;
-  text-align: center;
 }

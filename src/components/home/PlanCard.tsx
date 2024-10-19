@@ -55,7 +55,7 @@ function PlanCard({
           className='glass glass-effect-wrapper'
           key={plan?._id}
         >
-          <h2 className='transparent-text'>{plan?.nameOfPlan}</h2>
+          <h2 className='text-style-wrapper'>{plan?.nameOfPlan}</h2>
           <h3>{plan?.cards}</h3>
           <div className='content'>
             <h3>
