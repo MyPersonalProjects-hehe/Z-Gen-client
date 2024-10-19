@@ -1,15 +1,12 @@
 .navbar {
   display: flex;
-  align-items: center;
   position: fixed;
   justify-content: center;
   top: 0;
   left: 0;
   z-index: 4;
-  background: url('../../assets/1cede1ae01ffc75c72ab8fc809c2a6e0.jpg') no-repeat
-    center/100%;
-  background-attachment: fixed;
   width: 100%;
+  box-shadow: none;
   padding: 20px 0px;
 
   .links {

@@ -24,25 +24,22 @@ function CarouselComponent({ device }: DeviceProp) {
             arrows={true}
           >
             <Image
-              className='image'
               src={device?.mainImage}
               alt='device-image'
             />
 
             <Image
-              className='image'
               src={device?.secondImage}
               alt='device-image'
             />
 
             <Image
-              className='image'
               src={device?.thirdImage}
               alt='device-image'
             />
           </Carousel>
         </div>
-        <div className='mini-images'>
+        <div className='mini__images'>
           <img
             src={device?.mainImage}
             alt='mini-image'
