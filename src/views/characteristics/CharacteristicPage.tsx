@@ -8,6 +8,7 @@ import { Device } from '../../interfaces/device';
 import { DeviceFullInfo } from '../../interfaces/deviceCharacteristics';
 import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
+import poster from '../../assets/char-page.png';
 import {
   Badge,
   ConfigProvider,
@@ -16,7 +17,6 @@ import {
   Skeleton,
 } from 'antd';
 import { CarOutlined, ClockCircleOutlined } from '@ant-design/icons';
-import poster from '../../assets/charac-page-poster.png';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -107,11 +107,11 @@ function CharacteristicsPage() {
   return (
     <div className='characteristics-body'>
       <div className='poster'>
-        <h2>We make life more stylish every contract at a time</h2>
         <img
           src={poster}
           alt='poster'
         />
+        <h2>sds</h2>
       </div>
       <div className='model__info'>
         {!mainInfo ? (
@@ -124,15 +124,7 @@ function CharacteristicsPage() {
         )}
         <div className='info__block'>
           <h1>{mainInfo?.model}</h1>
-          <span className='line dot'>
-            <Badge
-              color='green'
-              text='in stock'
-              style={{ fontWeight: 700 }}
-            />
-          </span>
-
-          <span className='line delivery'>
+          <span className='in-line delivery'>
             <CarOutlined style={{ fontSize: 25 }} />
             <p>Free delivery!</p>
             <ClockCircleOutlined style={{ fontSize: 25 }} />

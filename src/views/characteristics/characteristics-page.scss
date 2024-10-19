@@ -2,31 +2,11 @@
   margin-top: 3rem;
 
   .poster {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: url('../../assets/1cede1ae01ffc75c72ab8fc809c2a6e0.jpg')
-      no-repeat center/100%;
-    background-attachment: fixed;
-    color: white;
-    font-size: 2rem;
-    box-shadow: 0px 3px 4px black;
-
-    h2 {
-      padding-left: 3rem;
-    }
-
     img {
-      width: 50%;
+      width: 20%;
       padding-top: 5rem;
       filter: brightness(0.9);
     }
-  }
-
-  h1 {
-    -webkit-text-stroke: 1.5px var(--c-secondary);
-    color: transparent;
-    font-size: 3rem;
   }
 
   .model__info {
@@ -40,6 +20,12 @@
   .characteristics {
     width: 80%;
     margin: 0 auto;
+  }
+
+  h1 {
+    -webkit-text-stroke: 1.5px var(--c-secondary);
+    color: transparent;
+    font-size: 3rem;
   }
 }
 
@@ -56,7 +42,7 @@
     font-weight: 700;
   }
 
-  .line {
+  .in-line {
     display: flex;
   }
 
