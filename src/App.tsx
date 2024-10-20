@@ -18,7 +18,7 @@ import CharacteristicsPage from './views/characteristics/CharacteristicPage.tsx'
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState(false);
-  const [device, setDevice] = useState<boolean | null>(null);
+  const [device, setDevice] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUser = async () => {
