@@ -4,7 +4,11 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Device } from '../../../interfaces/device';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
-import { SmileOutlined, WarningOutlined } from '@ant-design/icons';
+import {
+  EuroCircleOutlined,
+  SmileOutlined,
+  WarningOutlined,
+} from '@ant-design/icons';
 import { UserContext } from '../../../context/UserContext';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
@@ -54,7 +58,9 @@ function DeviceCard({ device }: DeviceProp) {
         alt='device-image'
       />
       <h2>{device.RAM}</h2>
-      <h2>{device.price}</h2>
+      <h2>
+        {device.price} <EuroCircleOutlined />{' '}
+      </h2>
       <div className='buttons'>
         <Button
           className='btn'

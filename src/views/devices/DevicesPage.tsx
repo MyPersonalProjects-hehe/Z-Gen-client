@@ -29,13 +29,27 @@ function DevicesPage() {
   /*Menu filtering */
   useEffect(() => {
     if (selectedFilterValue === 'Clear filters') {
+      setFilteredDevices([...allDevices]);
       setSelectedFilterValue('');
+    } else if (selectedFilterValue === 'Price') {
+      const devices = [...allDevices].sort(
+        (deviceA: Device, deviceB: Device) =>
+          Number(deviceA.price) - Number(deviceB.price)
+      );
+      setFilteredDevices(devices);
+    } else if (selectedFilterValue === 'RAM memory') {
+      const devices = [...allDevices].sort(
+        (deviceA: Device, deviceB: Device) =>
+          Number(deviceB.RAM.split('/')[0]) - Number(deviceA.RAM.split('/')[0])
+      );
+      setFilteredDevices(devices);
+    } else {
+      const devices = allDevices.filter((device: Device) =>
+        device.model.includes(selectedFilterValue)
+      );
+      setFilteredDevices(devices);
     }
-    const devices = allDevices.filter((device: Device) =>
-      device.model.includes(selectedFilterValue)
-    );
-    setFilteredDevices(devices);
-  }, [selectedFilterValue]);
+  }, [selectedFilterValue, allDevices]);
 
   return (
     <ConfigProvider
