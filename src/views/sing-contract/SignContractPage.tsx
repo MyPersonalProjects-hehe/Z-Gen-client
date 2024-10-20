@@ -13,6 +13,7 @@ import {
   PlusCircleOutlined,
   SmileOutlined,
 } from '@ant-design/icons';
+import ContactDetails from '../../components/sing-contract/form/ContactDetails';
 
 function SingContractPage() {
   const { contractId } = useParams();
@@ -94,6 +95,24 @@ function SingContractPage() {
             shop and declare a contract cancelation. The cancelation is
             considered for processing of how we can improve our services.
           </h2>
+        </div>
+        <div className='user__contacts'>
+          <ContactDetails></ContactDetails>
+        </div>
+        <div
+          className='test
+        '
+        >
+          <h1>ssd</h1>
+          <h1>ssd</h1>
+          <h1>ssd</h1>
+          <h1>ssd</h1>
+
+          <h1>ssd</h1>
+
+          <h1>ssd</h1>
+
+          <h1>ssd</h1>
         </div>
       </div>
     </ConfigProvider>
