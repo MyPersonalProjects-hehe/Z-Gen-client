@@ -16,7 +16,12 @@ import {
   DescriptionsProps,
   Skeleton,
 } from 'antd';
-import { CarOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import {
+  CarOutlined,
+  ClockCircleOutlined,
+  PercentageOutlined,
+  SafetyCertificateOutlined,
+} from '@ant-design/icons';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -107,11 +112,11 @@ function CharacteristicsPage() {
   return (
     <div className='characteristics-body'>
       <div className='poster'>
+        <h2>sds</h2>
         <img
           src={poster}
           alt='poster'
         />
-        <h2>sds</h2>
       </div>
       <div className='model__info'>
         {!mainInfo ? (
@@ -123,23 +128,31 @@ function CharacteristicsPage() {
           <CarouselComponent device={mainInfo} />
         )}
         <div className='info__block'>
-          <h1>{mainInfo?.model}</h1>
-          <span className='in-line delivery'>
+          <h1 className='headings-char-page'>{mainInfo?.model}</h1>
+          <span className='line'>
             <CarOutlined style={{ fontSize: 25 }} />
             <p>Free delivery!</p>
-            <ClockCircleOutlined style={{ fontSize: 25 }} />
-            <p>Delivery time is between 5 to 15 work days</p>
-
+          </span>
+          <span className='line relative'>
             <Badge.Ribbon
               text='Fast delivery'
               color='var(--c-third)'
               className='ribbon'
             />
+            <ClockCircleOutlined style={{ fontSize: 25 }} />
+            <p>Delivery time is between 5 to 15 work days</p>
           </span>
-          <h2>sdasd</h2>
-          <h2>sdasd</h2>
-          <h2>sdasd</h2>
-          <h2>sdasd</h2>
+          <span className='line'>
+            <PercentageOutlined style={{ fontSize: 25 }} />
+            <p>
+              Every device has a 10% discount from its regular price. We are the
+              first and only providers who offers two types of discount!
+            </p>
+          </span>
+          <span className='line'>
+            <SafetyCertificateOutlined style={{ fontSize: 25 }} />
+            <p>24 months warranty with the option for 1 year extension!</p>
+          </span>
         </div>
 
         <div className='best__plan'>
@@ -159,7 +172,7 @@ function CharacteristicsPage() {
           },
           components: {
             Descriptions: {
-              colorTextSecondary: 'var(--c-third)',
+              colorTextSecondary: 'var(--c-primary)',
             },
           },
         }}
