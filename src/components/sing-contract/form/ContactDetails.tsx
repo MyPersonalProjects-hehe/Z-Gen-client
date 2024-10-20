@@ -8,20 +8,17 @@ import {
   notification,
   Select,
 } from 'antd';
-import { useState } from 'react';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 import { SmileOutlined } from '@ant-design/icons';
+import { ContactInfo } from '../../../interfaces/contactInfo';
 
-function ContactDetails() {
+interface ContactDetailsProps {
+  form: ContactInfo;
+  setForm: any;
+}
+
+function ContactDetails({ form, setForm }: ContactDetailsProps) {
   const [formComponent] = Form.useForm();
-  const [form, setForm] = useState({
-    fullName: '',
-    address: '',
-    typeOfPayment: '',
-    paperContract: '',
-    delivery: '',
-    nameOfDeliveryFirm: '',
-  });
 
   const [api, contextHolder] = notification.useNotification();
 
@@ -54,9 +51,6 @@ function ContactDetails() {
   return (
     <ConfigProvider
       theme={{
-        token: {
-          colorPrimary: '#7e31a1',
-        },
         components: {
           Form: {
             labelFontSize: 22,
