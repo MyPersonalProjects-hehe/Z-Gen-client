@@ -10,6 +10,8 @@
   .picked__items {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 3rem;
   }
 }
@@ -35,7 +37,7 @@
   text-align: center;
 
   .smile-icon {
-    font-size: 10rem;
+    font-size: 7rem;
     color: var(--c-primary);
   }
   .heading {
