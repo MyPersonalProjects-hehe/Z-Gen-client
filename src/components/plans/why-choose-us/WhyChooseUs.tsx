@@ -3,11 +3,11 @@ import './why-choose-us.scss';
 function WhyChooseUs() {
   return (
     <div className='time-line'>
-      <h1 className='heading linear-text'>Why choose us?</h1>
+      <h1 className='heading colored-text'>Why choose us?</h1>
       <div className='first__node'>
         <h2>
-          Every <span className='linear-text'>Unlimited Plan</span> MB and calls
-          can be used free for six months in Europe.
+          Every <span className='colored-text'>Unlimited Plan</span> MB and
+          calls can be used free for six months in Europe.
         </h2>
         <img
           className='first__image'
@@ -18,7 +18,7 @@ function WhyChooseUs() {
       <div className='second__node'>
         <h2>
           No more frequent calls for retention deals! <br /> Since we are{' '}
-          <span className='linear-text'>Gen-z best choice</span>, most of our
+          <span className='colored-text'>Gen-z best choice</span>, most of our
           services are entirely from your mobile device!{' '}
         </h2>
         <img
