@@ -15,6 +15,7 @@ import {
   FilePdfOutlined,
   PercentageOutlined,
 } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const [plans, setPlans] = useState([]);
@@ -22,8 +23,9 @@ function HomePage() {
   const phoneModels: string[] = [
     'Iphone 15',
     'Huawei Pura 70 ultra',
-    'Samsung s24 Ultra',
+    'Samsung s24 ultra',
   ];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllPlans = async () => {
@@ -39,6 +41,18 @@ function HomePage() {
 
     fetchAllPlans();
   }, []);
+
+  const fetchDeviceModel = async (model: string) => {
+    try {
+      console.log(model);
+
+      const result = await axios.get(SERVER_URL(`device/${model}`));
+      const modelId = result.data.device[0]._id;
+      navigate(`/characteristics/${modelId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ConfigProvider
@@ -73,6 +87,7 @@ function HomePage() {
               <Button
                 className='btn btn-home'
                 ghost
+                onClick={() => fetchDeviceModel(phoneModels[index])}
               >
                 Learn more
               </Button>
