@@ -14,6 +14,8 @@ import SingContractPage from './views/sing-contract/SignContractPage.tsx';
 import LoginPage from './views/login/LoginPage.tsx';
 import RegisterPage from './views/register/RegisterPage.tsx';
 import CharacteristicsPage from './views/characteristics/CharacteristicPage.tsx';
+import ScrollTop from './helpers/scroll/ScrollTop.tsx';
+import Account from './views/account/Account.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -49,41 +51,47 @@ function App() {
         <DeviceContext.Provider
           value={{ isDevicePicked: device, setDevicePicked: setDevice }}
         >
-          <Navbar />
-          <Routes>
-            <Route
-              path='/register'
-              element={<RegisterPage />}
-            />
-            <Route
-              path='/'
-              element={<HomePage />}
-            />
-            <Route
-              path='/login'
-              element={<LoginPage />}
-            />
-            <Route
-              path='/upload'
-              element={<UploadPage />}
-            />
-            <Route
-              path='/devices'
-              element={<DevicesPage />}
-            />
-            <Route
-              path='/plans'
-              element={<PlansPage />}
-            />
-            <Route
-              path='/signContract/:contractId'
-              element={<SingContractPage />}
-            />
-            <Route
-              path='/characteristics/:deviceId'
-              element={<CharacteristicsPage />}
-            />
-          </Routes>
+          <ScrollTop>
+            <Navbar />
+            <Routes>
+              <Route
+                path='/register'
+                element={<RegisterPage />}
+              />
+              <Route
+                path='/'
+                element={<HomePage />}
+              />
+              <Route
+                path='/login'
+                element={<LoginPage />}
+              />
+              <Route
+                path='/upload'
+                element={<UploadPage />}
+              />
+              <Route
+                path='/devices'
+                element={<DevicesPage />}
+              />
+              <Route
+                path='/plans'
+                element={<PlansPage />}
+              />
+              <Route
+                path='/signContract/:contractId'
+                element={<SingContractPage />}
+              />
+              <Route
+                path='/characteristics/:deviceId'
+                element={<CharacteristicsPage />}
+              />
+              <Route
+                path='/account'
+                element={<Account />}
+              />
+            </Routes>
+          </ScrollTop>
         </DeviceContext.Provider>
       </UserContext.Provider>
     </>
