@@ -1,22 +1,21 @@
 import axios from 'axios';
 import './navbar.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { SERVER_URL } from '../../constants/ServerURL';
-import { Avatar, Badge, Dropdown, MenuProps, notification } from 'antd';
+import { Avatar, Badge, Dropdown, MenuProps, Tooltip } from 'antd';
 import {
-  CloseCircleOutlined,
-  SmileOutlined,
+  LogoutOutlined,
+  ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
-import { openNotification } from '../../helpers/notifications-functions/openNotification';
 
 function Navbar() {
+  const navigate = useNavigate();
   const [device, setDevice] = useState<Device | null>(null);
-  const [api, contextHolder] = notification.useNotification();
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
 
@@ -26,16 +25,22 @@ function Navbar() {
       label: (
         <>
           {device ? (
-            <h3>
-              {' '}
-              Picked device: {device?.model}
-              <CloseCircleOutlined
-                className='circle-icon'
-                onClick={removeDevice}
+            <span className='menu-item'>
+              <ShoppingCartOutlined
+                style={{ fontSize: 25 }}
+                onClick={() => navigate('/account')}
               />
-            </h3>
+              <Badge count={1}></Badge>
+            </span>
           ) : (
-            <h3>No device</h3>
+            <span className='menu-item'>
+              <Tooltip
+                placement='bottomRight'
+                title='No device picked'
+              >
+                <ShoppingCartOutlined style={{ fontSize: 25 }} />
+              </Tooltip>
+            </span>
           )}
         </>
       ),
@@ -44,19 +49,20 @@ function Navbar() {
       key: '2',
       label: (
         <>
-          <h3>Account balance</h3>
+          <span onClick={() => navigate('/account')}>
+            <UserOutlined style={{ fontSize: 25 }} />
+          </span>
         </>
       ),
     },
     {
       key: '3',
       label: (
-        <button
-          className='logout-btn'
-          onClick={logout}
-        >
-          Logout
-        </button>
+        <>
+          <span onClick={logout}>
+            <LogoutOutlined style={{ fontSize: 25 }} />
+          </span>
+        </>
       ),
     },
   ];
@@ -79,22 +85,8 @@ function Navbar() {
     }
   }
 
-  function removeDevice() {
-    if (localStorage.getItem('device')) {
-      localStorage.removeItem('device');
-      deviceContext?.setDevicePicked((prev: boolean) => !prev);
-      openNotification({
-        api: api,
-        icon: <SmileOutlined />,
-        message: 'Success',
-        description: 'Device removed!',
-      });
-    }
-  }
-
   return (
     <div className='navbar poster'>
-      {contextHolder}
       <div className='links'>
         <div className='logo'>
           <NavLink
@@ -131,12 +123,14 @@ function Navbar() {
               arrow
               className='dropdown'
             >
-              <Badge count={device ? 1 : ''}>
+              <Badge
+                count={device ? 1 : ''}
+                className='avatar nav__link'
+              >
                 <Avatar
                   shape='square'
                   size={50}
                   icon={<UserOutlined />}
-                  className='avatar nav__link'
                 />
               </Badge>
             </Dropdown>
