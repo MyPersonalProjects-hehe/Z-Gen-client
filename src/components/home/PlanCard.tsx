@@ -13,12 +13,14 @@ interface PlanCardProps {
   isCorporate: boolean;
   isPickedFromChar?: boolean;
   device?: Device | null;
+  signContractPage?: boolean;
 }
 function PlanCard({
   plan,
   isCorporate,
   isPickedFromChar,
   device,
+  signContractPage,
 }: PlanCardProps) {
   const navigate = useNavigate();
   const userObject = useContext(UserContext);
@@ -83,13 +85,15 @@ function PlanCard({
             {(Number(plan?.price) - 4).toFixed(2)}
             <EuroCircleOutlined className='euro-icon' />
           </h3>
-          <Button
-            onClick={() => navigateToSignContract(plan?._id)}
-            ghost
-            className='btn-choose-plan btn'
-          >
-            Choose Plan
-          </Button>
+          {!signContractPage && (
+            <Button
+              onClick={() => navigateToSignContract(plan?._id)}
+              ghost
+              className='btn-choose-plan btn'
+            >
+              Choose Plan
+            </Button>
+          )}
         </div>
       </div>
     </ConfigProvider>
