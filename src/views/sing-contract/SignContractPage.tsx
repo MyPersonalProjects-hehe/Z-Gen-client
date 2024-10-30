@@ -1,6 +1,6 @@
 import './sign-contract-page.scss';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import PlanCard from '../../components/home/PlanCard';
 import { SERVER_URL } from '../../constants/ServerURL';
@@ -23,11 +23,13 @@ import {
 
 function SingContractPage() {
   const { contractId } = useParams();
-  const [planCard, setPlanCard] = useState<Plan | null>(null);
+  const navigate = useNavigate();
   const deviceToken = localStorage.getItem('device');
   const device = deviceToken ? JSON.parse(deviceToken) : null;
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isDetailsComplete, setIsDetailsComplete] = useState(false);
+  const [planCard, setPlanCard] = useState<Plan | null>(null);
   const [open, setOpen] = useState(false);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState(
     'Are you sure you would like to continue?'
@@ -37,9 +39,11 @@ function SingContractPage() {
     fullName: '',
     address: '',
     typeOfPayment: '',
-    paperContract: '',
+    paperContract: false,
     delivery: '',
-    nameOfDeliveryFirm: '',
+    email: '',
+    device: '',
+    plan: '',
   });
 
   useEffect(() => {
@@ -58,6 +62,15 @@ function SingContractPage() {
     }
   }, []);
 
+  useEffect(() => {
+    if (isDetailsComplete) {
+      window.scroll({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [isDetailsComplete]);
+
   return (
     <ConfigProvider
       theme={{
@@ -72,21 +85,16 @@ function SingContractPage() {
           <Result
             style={{ marginTop: '10rem' }}
             status='success'
-            title='Successfully signed contract! You can view your contract update in profile menu.'
-            subTitle='Order number: 2017182818828182881 .'
+            title='Successfully signed contract! You can view your contract update in Account menu.'
+            subTitle={`Contract ID: ${contractId}`}
             extra={[
               <Button
+                onClick={() => navigate('/account')}
                 type='primary'
                 key='console'
                 className='btn'
               >
-                Go Console
-              </Button>,
-              <Button
-                key='buy'
-                className='btn'
-              >
-                Buy Again
+                Account
               </Button>,
             ]}
           />
@@ -126,6 +134,7 @@ function SingContractPage() {
                 <PlanCard
                   plan={planCard}
                   isCorporate={planCard?.typeOfPlan === 'corporate'}
+                  signContractPage={true}
                 />
               </div>
               <PlusCircleOutlined className='plus-icon' />
@@ -138,33 +147,40 @@ function SingContractPage() {
               <ContactDetails
                 setForm={setForm}
                 form={form}
+                device={device}
+                plan={planCard}
+                setIsDetailsComplete={setIsDetailsComplete}
               />
             </div>
-            <div className='text-block'>
-              <h2>You are almost done!</h2>
-              <SmileOutlined className='smile-icon' />
-              <h2 className='heading'>
-                For best experience, all contracts have trial period of 14 days!
-              </h2>
-              <h2>
-                If you are not delighted with our contract you can visit the
-                nearest shop and declare a contract cancelation. The cancelation
-                is considered for processing of how we can improve our services.
-              </h2>
-              <a
-                href={contract}
-                download='Contract'
-                target='_blank'
-              >
-                <Button
-                  className='btn'
-                  type='primary'
-                  onClick={() => setToggleCheckBox(true)}
+            {isDetailsComplete && (
+              <div className='text-block'>
+                <h2>You are almost done!</h2>
+                <SmileOutlined className='smile-icon' />
+                <h2 className='heading'>
+                  For best experience, all contracts have trial period of 14
+                  days!
+                </h2>
+                <h2>
+                  If you are not delighted with our contract you can visit the
+                  nearest shop and declare a contract cancelation. The
+                  cancelation is considered for processing of how we can improve
+                  our services.
+                </h2>
+                <a
+                  href={contract}
+                  download='Contract'
+                  target='_blank'
                 >
-                  Download Contract
-                </Button>
-              </a>
-            </div>
+                  <Button
+                    className='btn'
+                    type='primary'
+                    onClick={() => setToggleCheckBox(true)}
+                  >
+                    Download Contract
+                  </Button>
+                </a>
+              </div>
+            )}
             {toggleCheckBox && (
               <>
                 <Checkbox>I have read all the terms and conditions.</Checkbox>
