@@ -9,23 +9,38 @@ import {
   Select,
 } from 'antd';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
-import { SmileOutlined } from '@ant-design/icons';
+import { EuroCircleOutlined, SmileOutlined } from '@ant-design/icons';
 import { ContactInfo } from '../../../interfaces/contactInfo';
+import { useContext } from 'react';
+import { DeviceContext } from '../../../context/PickedDeviceContext';
+import { Device } from '../../../interfaces/device';
+import { Plan } from '../../../interfaces/plan';
 
 interface ContactDetailsProps {
   form: ContactInfo;
   setForm: any;
+  device: Device;
+  plan: Plan | null;
+  setIsDetailsComplete: any;
 }
 
-function ContactDetails({ form, setForm }: ContactDetailsProps) {
+function ContactDetails({
+  form,
+  setForm,
+  device,
+  plan,
+  setIsDetailsComplete,
+}: ContactDetailsProps) {
   const [formComponent] = Form.useForm();
-
   const [api, contextHolder] = notification.useNotification();
+  const isDevicePicked = useContext(DeviceContext);
 
-  const updateForm = (e: any, prop: string) => {
+  const updateForm = (e: any, prop: any) => {
     setForm({
       ...form,
       [e]: prop,
+      device: device,
+      plan: plan,
     });
   };
 
@@ -36,17 +51,10 @@ function ContactDetails({ form, setForm }: ContactDetailsProps) {
       message: 'Success',
       description: 'Form filled successfully!',
     });
-    console.log(form);
-    handleScroll();
-  };
 
-  function handleScroll() {
-    window.scroll({
-      top: document.body.offsetHeight,
-      left: 0,
-      behavior: 'smooth',
-    });
-  }
+    console.log(form);
+    setIsDetailsComplete(true);
+  };
 
   return (
     <ConfigProvider
@@ -77,7 +85,15 @@ function ContactDetails({ form, setForm }: ContactDetailsProps) {
             label='Full name'
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className='input' />
+          </Form.Item>
+
+          <Form.Item
+            name='email'
+            label='Email'
+            rules={[{ required: true }]}
+          >
+            <Input className='input' />
           </Form.Item>
 
           <Form.Item
@@ -85,55 +101,7 @@ function ContactDetails({ form, setForm }: ContactDetailsProps) {
             label='Address'
             rules={[{ required: true }]}
           >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name='delivery'
-            label='Delivery by a firm ?'
-            rules={[{ required: true }]}
-          >
-            <Select
-              options={[
-                { label: 'Yes', value: 'yes' },
-                { label: 'No', value: 'no' },
-              ]}
-            />
-          </Form.Item>
-
-          {form.delivery === 'yes' && (
-            <>
-              <p>
-                Econt offers express delivery from 1 to 2 work days for 5.99
-                Euro!
-              </p>
-              <Form.Item
-                label='Pick firm'
-                name='nameOfDeliveryFirm'
-                rules={[{ required: true }]}
-              >
-                <Select
-                  options={[
-                    { label: 'Econt', value: 'Econt' },
-                    { label: 'Speedy', value: 'Speedy' },
-                  ]}
-                />
-              </Form.Item>
-            </>
-          )}
-
-          <Form.Item
-            label='Type of payment'
-            name='typeOfPayment'
-            rules={[{ required: true }]}
-          >
-            <Select
-              options={[
-                { label: 'Cash', value: 'cash' },
-                { label: 'By card', value: 'byCard' },
-                { label: 'No device picked', value: 'noDevicePicked' },
-              ]}
-            />
+            <Input className='input' />
           </Form.Item>
 
           <Form.Item
@@ -142,12 +110,56 @@ function ContactDetails({ form, setForm }: ContactDetailsProps) {
             rules={[{ required: true }]}
           >
             <Select
+              className='input'
               options={[
                 { label: 'Yes', value: true },
                 { label: 'No', value: false },
               ]}
             />
           </Form.Item>
+          <p>
+            Econt offers express delivery from 1 to 2 work days for 5.99 Euro!
+          </p>
+          <Form.Item
+            name='delivery'
+            label='Delivery by firm'
+            rules={[{ required: true }]}
+          >
+            <Select
+              className='input'
+              options={[
+                { label: 'Econt', value: 'Econt' },
+                { label: 'Speedy', value: 'Speedy' },
+              ]}
+            />
+          </Form.Item>
+          {isDevicePicked && (
+            <>
+              <Form.Item
+                label='Type of payment'
+                name='typeOfPayment'
+                rules={[{ required: true }]}
+              >
+                <Select
+                  className='input'
+                  options={[
+                    { label: 'Cash', value: 'cash' },
+                    { label: 'By card', value: 'byCard' },
+                    {
+                      label: (
+                        <>
+                          Monthly installment agreement -{' '}
+                          {Math.ceil(device.price / 24)}
+                          <EuroCircleOutlined />
+                        </>
+                      ),
+                      value: 'Monthly installment agreement',
+                    },
+                  ]}
+                />
+              </Form.Item>
+            </>
+          )}
 
           <>
             <p>Submit form to load contract documents</p>

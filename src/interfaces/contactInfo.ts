@@ -2,7 +2,7 @@ export interface ContactInfo {
   fullName: string;
   address: string;
   typeOfPayment: string;
-  paperContract: string;
+  paperContract: boolean;
   delivery: string;
-  nameOfDeliveryFirm: string;
+  email: string;
 }
