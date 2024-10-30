@@ -27,7 +27,7 @@ export const handleOk = async ({
     setModalText(modalText);
     setConfirmLoading(true);
 
-    const result = await axios.post(SERVER_URL('signedContract'), contactInfo, {
+    const result = await axios.post(SERVER_URL('uploadContract'), contactInfo, {
       withCredentials: true,
     });
 

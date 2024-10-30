@@ -64,9 +64,9 @@ function HomePage() {
     >
       <div className='body'>
         <div className='poster'>
-          <h2 className='text-style-wrapper'>
+          <h1 className='text-style-wrapper'>
             We make life more stylish every contract at a time
-          </h2>
+          </h1>
           <img
             src={poster}
             alt='poster'
