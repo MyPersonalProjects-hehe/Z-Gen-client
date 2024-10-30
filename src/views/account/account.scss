@@ -1,50 +1,51 @@
 .account-body {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   margin-top: 10rem;
 
   img {
-    width: 35%;
+    width: 35rem;
     margin-right: 4rem;
   }
+}
 
-  .contract__usage {
-    display: flex;
-    margin-bottom: 3rem;
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  .contract-name {
     text-align: center;
+    -webkit-text-stroke: 1px var(--c-primary);
+    color: transparent;
+    font-size: 3.3rem;
+  }
+
+  .progress {
+    display: flex;
+    width: 100%;
 
     > * {
       width: 100%;
     }
   }
 
-  .blocks {
+  .contract {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 
-    .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+    .border {
+      padding: 10px;
+      border: 3px solid var(--c-primary);
+      border-radius: 8px;
+    }
+
+    .device-info {
+      border-top: 3px solid var(--c-primary);
+      text-align: center;
     }
   }
-
-  .card {
-    background-color: rgba(73, 73, 73, 0.5);
-    padding: 3rem;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 1.5rem;
-  }
-}
-
-.device__picked {
-  text-align: center;
-  margin-bottom: 6rem;
-  border: 2px solid var(--c-secondary);
-  border-radius: 8px;
-  padding: 2px;
 }
