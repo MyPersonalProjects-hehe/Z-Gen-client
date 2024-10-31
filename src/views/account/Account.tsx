@@ -1,5 +1,5 @@
 import './account.scss';
-import { Progress } from 'antd';
+import { Progress, Result } from 'antd';
 import pngImage from '../../assets/account/account-page.png';
 import {
   EuroCircleOutlined,
@@ -35,101 +35,116 @@ function Account() {
   }, [userContext?.user]);
 
   return (
-    <div className='account-body'>
-      <img
-        src={pngImage}
-        alt='image'
-      />
-
-      <div className='details'>
-        <div className='progress'>
-          <span>
-            <h2>MB</h2>
-            <Progress
-              percent={100}
-              type='line'
-              strokeColor={'#7e31a1'}
-              status='exception'
-            />
-          </span>
-          <Progress
-            percent={31}
-            type='circle'
-            strokeColor={'#7e31a1'}
+    <>
+      {contract ? (
+        <div className='account-body'>
+          <img
+            src={pngImage}
+            alt='image'
           />
 
-          <span>
-            <h2>Minutes</h2>
-            <Progress
-              percent={20}
-              type='line'
-              strokeColor={'#7e31a1'}
-            />
-          </span>
-          <Progress
-            percent={20}
-            type='circle'
-            strokeColor={'#7e31a1'}
-          />
-        </div>
+          <div className='details'>
+            <div className='progress'>
+              <span>
+                <h2>MB</h2>
+                <Progress
+                  percent={100}
+                  type='line'
+                  strokeColor={'#7e31a1'}
+                  status='exception'
+                />
+              </span>
+              <Progress
+                percent={31}
+                type='circle'
+                strokeColor={'#7e31a1'}
+              />
 
-        <h1 className='contract-name'>Contract {contract?.plan.nameOfPlan}</h1>
-        <div className='contract'>
-          <div className='contract__info'>
-            <h2 className='border'>
-              <FieldTimeOutlined /> Duration: 24 months
-            </h2>
-            <h2 className='border'>
-              <FieldTimeOutlined /> Start/End date:{' '}
-              {new Date(contract?.date).toLocaleDateString()} -{' '}
-              {new Date(
-                new Date(contract?.date).setFullYear(
-                  new Date(contract?.date).getFullYear() + 2
-                )
-              ).toLocaleDateString()}
-            </h2>
-            <h2 className='border'>
-              <PhoneOutlined /> Calls: {contract?.plan.minutesInBG} in BG
-            </h2>
-            <h2 className='border'>
-              <PhoneOutlined /> Calls: {contract?.plan.minutesInEU} in EU
-            </h2>
-            <h2 className='border'>
-              <WifiOutlined /> MB: {contract?.plan.MB} - {contract?.plan.MBps}{' '}
-              MBps
-            </h2>
-            <h2 className='border'>
-              Price: {contract?.plan.price} <EuroCircleOutlined />
-            </h2>
-          </div>
+              <span>
+                <h2>Minutes</h2>
+                <Progress
+                  percent={20}
+                  type='line'
+                  strokeColor={'#7e31a1'}
+                />
+              </span>
+              <Progress
+                percent={20}
+                type='circle'
+                strokeColor={'#7e31a1'}
+              />
+            </div>
 
-          <br />
-          <div className='device-info'>
-            {contract?.device && (
-              <>
-                <h2>
-                  <MobileOutlined /> Device: {contract?.device.model}
+            <h1 className='contract-name'>
+              Contract {contract?.plan.nameOfPlan}
+            </h1>
+            <div className='contract'>
+              <div className='contract__info'>
+                <h2 className='border'>
+                  <FieldTimeOutlined /> Duration: 24 months
                 </h2>
-                {contract.typeOfPayment.includes('Monthly') && (
-                  <h2>
-                    {contract.typeOfPayment}:{' '}
-                    {Math.ceil(
-                      (contract.device.price -
-                        contract.plan.discountForDevice) /
-                        24
-                    )}{' '}
-                    <EuroCircleOutlined />
-                  </h2>
+                <h2 className='border'>
+                  <FieldTimeOutlined /> Start/End date:{' '}
+                  {new Date(contract?.date).toLocaleDateString()} -{' '}
+                  {new Date(
+                    new Date(contract?.date).setFullYear(
+                      new Date(contract?.date).getFullYear() + 2
+                    )
+                  ).toLocaleDateString()}
+                </h2>
+                <h2 className='border'>
+                  <PhoneOutlined /> Calls: {contract?.plan.minutesInBG} in BG
+                </h2>
+                <h2 className='border'>
+                  <PhoneOutlined /> Calls: {contract?.plan.minutesInEU} in EU
+                </h2>
+                <h2 className='border'>
+                  <WifiOutlined /> MB: {contract?.plan.MB} -{' '}
+                  {contract?.plan.MBps} MBps
+                </h2>
+                <h2 className='border'>
+                  Price: {contract?.plan.price} <EuroCircleOutlined />
+                </h2>
+              </div>
+
+              <br />
+              <div className='device-info'>
+                {contract?.device && (
+                  <>
+                    <h2>
+                      <MobileOutlined /> Device: {contract?.device.model}
+                    </h2>
+                    {contract.typeOfPayment.includes('Monthly') && (
+                      <h2>
+                        {contract.typeOfPayment}:{' '}
+                        {Math.ceil(
+                          (contract.device.price -
+                            contract.plan.discountForDevice) /
+                            24
+                        )}{' '}
+                        <EuroCircleOutlined />
+                      </h2>
+                    )}
+                    <h2>
+                      Contract: <FilePdfOutlined />
+                    </h2>
+                  </>
                 )}
-                <h2>
-                  Contract: <FilePdfOutlined />
-                </h2>
-              </>
-            )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className='no-contract'>
+          <h1>It seems you have not signed a contract yet!</h1>
+          <h2>What are you waiting for? Dive in the best telecom providers!</h2>
+          <Result
+            status='404'
+            subTitle='No signed contract!'
+          />
+        </div>
+      )}
+    </>
   );
 }
 
