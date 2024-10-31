@@ -41,6 +41,7 @@ function ContactDetails({
       [e]: prop,
       device: device,
       plan: plan,
+      date: new Date().toLocaleDateString(),
     });
   };
 
@@ -51,8 +52,6 @@ function ContactDetails({
       message: 'Success',
       description: 'Form filled successfully!',
     });
-
-    console.log(form);
     setIsDetailsComplete(true);
   };
 
@@ -133,7 +132,7 @@ function ContactDetails({
               ]}
             />
           </Form.Item>
-          {isDevicePicked && (
+          {isDevicePicked && device && (
             <>
               <Form.Item
                 label='Type of payment'

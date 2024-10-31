@@ -5,7 +5,7 @@
   margin-top: 10rem;
 
   img {
-    width: 35rem;
+    width: 37rem;
     margin-right: 4rem;
   }
 }
@@ -33,12 +33,17 @@
 
   .contract {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    flex-direction: column;
+
+    .contract__info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
 
     .border {
-      padding: 10px;
+      padding: 10px 25px;
       border: 3px solid var(--c-primary);
       border-radius: 8px;
     }

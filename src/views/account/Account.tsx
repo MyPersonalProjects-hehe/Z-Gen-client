@@ -75,22 +75,34 @@ function Account() {
 
         <h1 className='contract-name'>Contract {contract?.plan.nameOfPlan}</h1>
         <div className='contract'>
-          <h2 className='border'>
-            <FieldTimeOutlined /> Duration: 24 months
-          </h2>
-          <h2 className='border'>
-            <PhoneOutlined /> Calls: {contract?.plan.minutesInBG} in BG
-          </h2>
-          <h2 className='border'>
-            <PhoneOutlined /> Calls: {contract?.plan.minutesInEU} in EU
-          </h2>
-          <h2 className='border'>
-            <WifiOutlined /> MB: {contract?.plan.MB} - {contract?.plan.MBps}{' '}
-            MBps
-          </h2>
-          <h2 className='border'>
-            Price: {contract?.plan.price} <EuroCircleOutlined />
-          </h2>
+          <div className='contract__info'>
+            <h2 className='border'>
+              <FieldTimeOutlined /> Duration: 24 months
+            </h2>
+            <h2 className='border'>
+              <FieldTimeOutlined /> Start/End date:{' '}
+              {new Date(contract?.date).toLocaleDateString()} -{' '}
+              {new Date(
+                new Date(contract?.date).setFullYear(
+                  new Date(contract?.date).getFullYear() + 2
+                )
+              ).toLocaleDateString()}
+            </h2>
+            <h2 className='border'>
+              <PhoneOutlined /> Calls: {contract?.plan.minutesInBG} in BG
+            </h2>
+            <h2 className='border'>
+              <PhoneOutlined /> Calls: {contract?.plan.minutesInEU} in EU
+            </h2>
+            <h2 className='border'>
+              <WifiOutlined /> MB: {contract?.plan.MB} - {contract?.plan.MBps}{' '}
+              MBps
+            </h2>
+            <h2 className='border'>
+              Price: {contract?.plan.price} <EuroCircleOutlined />
+            </h2>
+          </div>
+
           <br />
           <div className='device-info'>
             {contract?.device && (
