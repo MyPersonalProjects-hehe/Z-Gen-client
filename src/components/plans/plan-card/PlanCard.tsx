@@ -80,7 +80,7 @@ function PlanCard({
               <EuroCircleOutlined className='euro-icon' />
             </h3>
           </div>
-          <h3>
+          <h3 className='price'>
             Price: {plan?.price}
             <EuroCircleOutlined className='euro-icon' /> -{' '}
             {(Number(plan?.price) - 4).toFixed(2)}
