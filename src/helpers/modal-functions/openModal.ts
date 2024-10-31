@@ -8,7 +8,7 @@ interface ModalProps {
   setOpen: (value: boolean) => void;
   modalText: string;
   contactInfo: ContactInfo;
-  setUploadingResult: (value: boolean) => void;
+  setIsFinished: (value: boolean) => void;
 }
 
 export const showModal = (setOpen: any) => {
@@ -21,7 +21,7 @@ export const handleOk = async ({
   setOpen,
   modalText,
   contactInfo,
-  setUploadingResult,
+  setIsFinished,
 }: ModalProps) => {
   try {
     setModalText(modalText);
@@ -35,11 +35,11 @@ export const handleOk = async ({
       setTimeout(() => {
         setOpen(false);
         setConfirmLoading(false);
-        setUploadingResult(true);
+        setIsFinished(true);
         localStorage.removeItem('device');
       }, 3000);
     } else {
-      setUploadingResult(false);
+      setIsFinished(false);
     }
   } catch (error) {
     console.log(error);

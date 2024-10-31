@@ -19,9 +19,9 @@ import { Plan } from '../../../interfaces/plan';
 interface ContactDetailsProps {
   form: ContactInfo;
   setForm: any;
-  device: Device;
+  device: Device | null;
   plan: Plan | null;
-  setIsDetailsComplete: any;
+  setIsFormComplete: any;
 }
 
 function ContactDetails({
@@ -29,7 +29,7 @@ function ContactDetails({
   setForm,
   device,
   plan,
-  setIsDetailsComplete,
+  setIsFormComplete,
 }: ContactDetailsProps) {
   const [formComponent] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
@@ -52,7 +52,7 @@ function ContactDetails({
       message: 'Success',
       description: 'Form filled successfully!',
     });
-    setIsDetailsComplete(true);
+    setIsFormComplete(true);
   };
 
   return (
