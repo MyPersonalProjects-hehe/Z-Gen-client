@@ -1,12 +1,9 @@
-import axios from 'axios';
 import './home-page.scss';
-import { useEffect, useState } from 'react';
+import axios from 'axios';
 import iphoneImage from '../../assets/iphone-image.jpg';
 import samsungImage from '../../assets/samsung-image.jpg';
 import huaweiImage from '../../assets/huawei-image.jpeg';
 import { Button, ConfigProvider } from 'antd';
-import PlanCard from '../../components/home/PlanCard';
-import { Plan } from '../../interfaces/plan';
 import { SERVER_URL } from '../../constants/ServerURL';
 import poster from '../../assets/charac-page-poster.png';
 import {
@@ -18,34 +15,16 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
-  const [plans, setPlans] = useState([]);
+  const navigate = useNavigate();
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
     'Iphone 15',
     'Huawei Pura 70 ultra',
     'Samsung s24 ultra',
   ];
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchAllPlans = async () => {
-      try {
-        const result = await axios.get(SERVER_URL('allPlans'));
-        const sortedPlans = result.data.message.sort(
-          (planA: Plan, planB: Plan) =>
-            Number(planA.price) - Number(planB.price)
-        );
-        setPlans(sortedPlans || []);
-      } catch (error) {}
-    };
-
-    fetchAllPlans();
-  }, []);
 
   const fetchDeviceModel = async (model: string) => {
     try {
-      console.log(model);
-
       const result = await axios.get(SERVER_URL(`device/${model}`));
       const modelId = result.data.device[0]._id;
       navigate(`/characteristics/${modelId}`);
@@ -75,7 +54,7 @@ function HomePage() {
         <div className='phone__models'>
           {phoneImages.map((image, index) => (
             <div
-              className='phone__block'
+              className='phone'
               key={index}
             >
               <h1>{phoneModels[index]}</h1>
@@ -117,17 +96,6 @@ function HomePage() {
               <CreditCardOutlined /> Online payments
             </span>
           </div>
-        </div>
-
-        <div className='plan__cards'>
-          {plans?.map((plan: Plan) => (
-            <div key={plan._id}>
-              <PlanCard
-                plan={plan}
-                isCorporate={false}
-              />
-            </div>
-          ))}
         </div>
       </div>
     </ConfigProvider>
