@@ -6,6 +6,7 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
 import { Button, ConfigProvider } from 'antd';
 import imagePoster from '../../assets/login/login-img.jpg';
+import RegisterPage from '../register/RegisterPage';
 
 function LoginPage() {
   const [user, setUser] = useState({
@@ -82,6 +83,7 @@ function LoginPage() {
             </Button>
           </form>
         </div>
+        <RegisterPage></RegisterPage>
       </div>
     </ConfigProvider>
   );
