@@ -5,4 +5,5 @@ export interface ContactInfo {
   paperContract: boolean;
   delivery: string;
   email: string;
+  date: any;
 }

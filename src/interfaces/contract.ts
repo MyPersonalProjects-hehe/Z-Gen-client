@@ -10,6 +10,7 @@ export interface Contract {
   email: String;
   paperContract: Boolean;
   typeOfPayment: String;
+  date: any;
 }
 
 export default Contract;
