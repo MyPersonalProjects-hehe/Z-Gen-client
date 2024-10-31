@@ -83,6 +83,7 @@ function Navbar() {
     if (response.status === 200) {
       userContext?.setUser?.(null);
       userContext?.setSession(false);
+      deviceContext?.setDevicePicked((prev) => !prev);
       localStorage.removeItem('device');
     }
   }
@@ -100,12 +101,6 @@ function Navbar() {
         </div>
 
         <div>
-          <NavLink
-            to={'/upload'}
-            className='nav__link'
-          >
-            Upload
-          </NavLink>
           <NavLink
             to={'/devices'}
             className='nav__link'
