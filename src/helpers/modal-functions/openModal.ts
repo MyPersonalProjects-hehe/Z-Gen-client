@@ -36,6 +36,7 @@ export const handleOk = async ({
         setOpen(false);
         setConfirmLoading(false);
         setUploadingResult(true);
+        localStorage.removeItem('device');
       }, 3000);
     } else {
       setUploadingResult(false);
