@@ -2,10 +2,9 @@ import './sign-contract-page.scss';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import PlanCard from '../../components/home/PlanCard';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Plan } from '../../interfaces/plan';
-import ChosenDevice from '../../components/sing-contract/ChosenDevice';
+import ChosenDevice from '../../components/sing-contract/chosen-device/ChosenDevice';
 import { Button, Checkbox, ConfigProvider, Modal, Result, Steps } from 'antd';
 import {
   CheckCircleOutlined,
@@ -20,6 +19,7 @@ import {
   handleOk,
   showModal,
 } from '../../helpers/modal-functions/openModal';
+import PlanCard from '../../components/plans/plan-card/PlanCard';
 
 function SingContractPage() {
   const { contractId } = useParams();
@@ -44,6 +44,7 @@ function SingContractPage() {
     email: '',
     device: '',
     plan: '',
+    date: '',
   });
 
   useEffect(() => {

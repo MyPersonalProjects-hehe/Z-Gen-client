@@ -6,9 +6,8 @@ import { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
 import { DeviceFullInfo } from '../../interfaces/deviceCharacteristics';
-import PlanCard from '../../components/home/PlanCard';
 import { Plan } from '../../interfaces/plan';
-import poster from '../../assets/char-page.png';
+
 import {
   Badge,
   ConfigProvider,
@@ -22,6 +21,7 @@ import {
   PercentageOutlined,
   SafetyCertificateOutlined,
 } from '@ant-design/icons';
+import PlanCard from '../../components/plans/plan-card/PlanCard';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -111,13 +111,6 @@ function CharacteristicsPage() {
 
   return (
     <div className='characteristics-body'>
-      <div className='poster'>
-        <h2>sds</h2>
-        <img
-          src={poster}
-          alt='poster'
-        />
-      </div>
       <div className='model__info'>
         {!mainInfo ? (
           <Skeleton.Image

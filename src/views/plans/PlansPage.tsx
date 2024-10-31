@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import PlanCard from '../../components/home/PlanCard';
-import { Plan } from '../../interfaces/plan';
+import './plans-page.scss';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Plan } from '../../interfaces/plan';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { ConfigProvider, Segmented } from 'antd';
-import './plans-page.scss';
 import TermsOfContract from '../../components/plans/terms/TermsOfContract';
-import StepsHeading from '../../components/plans/Steps-heading';
+import StepsHeading from '../../components/plans/steps/Steps-heading';
 import WhyChooseUs from '../../components/plans/why-choose-us/WhyChooseUs';
+import PlanCard from '../../components/plans/plan-card/PlanCard';
 
 function PlansPage() {
   const [allPlans, setAllPlans] = useState([]);
@@ -77,7 +77,7 @@ function PlansPage() {
             <PlanCard
               plan={plan}
               isCorporate={toggle}
-            ></PlanCard>
+            />
           </div>
         ))}
       </div>
