@@ -60,8 +60,8 @@ function SingContractPage() {
           { withCredentials: true }
         );
         /**Get picked device every time global Device Context changes */
-        const deviceUnparsed = localStorage.getItem('device') || '';
-        const deviceItem = JSON.parse(deviceUnparsed);
+        const deviceUnparsed = localStorage.getItem('device');
+        const deviceItem = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
         setDevice(deviceItem);
         setPlanCard(response.data.plan);
       };
