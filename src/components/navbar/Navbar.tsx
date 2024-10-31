@@ -26,16 +26,18 @@ function Navbar() {
         <>
           {device ? (
             <span className='menu-item'>
-              <ShoppingCartOutlined
-                style={{ fontSize: 25 }}
-                onClick={() => navigate('/account')}
-              />
-              <Badge count={1}></Badge>
+              <Tooltip
+                placement='topLeft'
+                title={device.model}
+              >
+                <ShoppingCartOutlined style={{ fontSize: 25 }} />
+                <Badge count={1}></Badge>
+              </Tooltip>
             </span>
           ) : (
             <span className='menu-item'>
               <Tooltip
-                placement='bottomRight'
+                placement='topLeft'
                 title='No device picked'
               >
                 <ShoppingCartOutlined style={{ fontSize: 25 }} />

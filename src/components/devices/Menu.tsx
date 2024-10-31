@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, MobileOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 
@@ -20,7 +20,7 @@ function MenuComponent({ setSelectedFilterValue }: MenuComponentProp) {
   const items: MenuItem[] = [
     {
       key: '1',
-      icon: <MailOutlined />,
+      icon: <MobileOutlined />,
       label: 'Models',
       children: [
         { key: '11', label: 'Samsung' },
