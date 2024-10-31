@@ -1,6 +1,6 @@
 import './account.scss';
 import { Progress } from 'antd';
-import pngImage from '../../assets/account-page.png';
+import pngImage from '../../assets/account/account-page.png';
 import {
   EuroCircleOutlined,
   FieldTimeOutlined,

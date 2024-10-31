@@ -1,11 +1,11 @@
 import './home-page.scss';
 import axios from 'axios';
-import iphoneImage from '../../assets/iphone-image.jpg';
-import samsungImage from '../../assets/samsung-image.jpg';
-import huaweiImage from '../../assets/huawei-image.jpeg';
+import iphoneImage from '../../assets/home/iphone-image.jpg';
+import samsungImage from '../../assets/home/samsung-image.jpg';
+import huaweiImage from '../../assets/home/huawei-image.jpeg';
 import { Button, ConfigProvider } from 'antd';
 import { SERVER_URL } from '../../constants/ServerURL';
-import poster from '../../assets/charac-page-poster.png';
+import poster from '../../assets/home/transparent-img.png';
 import {
   CarOutlined,
   CreditCardOutlined,

@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
 import { ConfigProvider } from 'antd';
-import yellowImage from '../../assets/devices-page-yellow-image.png';
-import purpleImage from '../../assets/devices-page-image.png';
+import yellowImage from '../../assets/devices/yellow-image.png';
+import purpleImage from '../../assets/devices/purple-image.png';
 import MenuComponent from '../../components/devices/Menu';
 import DeviceCard from '../../components/devices/device-card/DeviceCard';
 

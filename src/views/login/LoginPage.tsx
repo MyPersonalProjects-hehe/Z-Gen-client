@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
 import { Button, ConfigProvider } from 'antd';
-import imagePoster from '../../assets/login-page-image.jpg';
+import imagePoster from '../../assets/login/login-img.jpg';
 
 function LoginPage() {
   const [user, setUser] = useState({
