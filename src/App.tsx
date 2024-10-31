@@ -7,15 +7,15 @@ import { DeviceContext } from './context/PickedDeviceContext.ts';
 import { User } from './interfaces/user.ts';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './views/home/HomePage.tsx';
-import UploadPage from './views/upload/UploadPage.tsx';
 import DevicesPage from './views/devices/DevicesPage.tsx';
 import PlansPage from './views/plans/PlansPage.tsx';
 import SingContractPage from './views/sing-contract/SignContractPage.tsx';
 import LoginPage from './views/login/LoginPage.tsx';
-import RegisterPage from './views/register/RegisterPage.tsx';
 import CharacteristicsPage from './views/characteristics/CharacteristicPage.tsx';
 import ScrollTop from './helpers/scroll/ScrollTop.tsx';
 import Account from './views/account/Account.tsx';
+import CreatePlanForm from './components/account/create-plan/CreatePlanForm.tsx';
+import UploadDeviceForm from './components/account/upload-device/UploadDeviceForm.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -55,10 +55,6 @@ function App() {
             <Navbar />
             <Routes>
               <Route
-                path='/register'
-                element={<RegisterPage />}
-              />
-              <Route
                 path='/'
                 element={<HomePage />}
               />
@@ -67,8 +63,12 @@ function App() {
                 element={<LoginPage />}
               />
               <Route
-                path='/upload'
-                element={<UploadPage />}
+                path='/createPlan'
+                element={<CreatePlanForm />}
+              />
+              <Route
+                path='/uploadDevice'
+                element={<UploadDeviceForm />}
               />
               <Route
                 path='/devices'
