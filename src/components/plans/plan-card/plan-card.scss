@@ -1,17 +1,17 @@
-.plan__card {
-  background: url('../../assets/colorful-background.jpg') no-repeat center;
+.plan-card {
+  background: url('../../../assets/colorful-background.jpg') no-repeat center;
   background-attachment: fixed;
   background-size: cover;
 }
 
-.plan__card__corporate {
-  background: url('../../assets/purple-dark.jpg') no-repeat center;
+.plan-card-corporate {
+  background: url('../../../assets/purple-dark.jpg') no-repeat center;
   background-attachment: fixed;
   background-size: cover;
 }
 
-.plan__card,
-.plan__card__corporate {
+.plan-card,
+.plan-card-corporate {
   .text-style-wrapper {
     font-size: 2rem;
   }

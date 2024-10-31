@@ -1,12 +1,12 @@
 import './plan-card.scss';
 import { Badge, Button, ConfigProvider } from 'antd';
-import { Plan } from '../../interfaces/plan';
 import { EuroCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { Device } from '../../interfaces/device';
-import { DeviceContext } from '../../context/PickedDeviceContext';
+import { Plan } from '../../../interfaces/plan';
+import { Device } from '../../../interfaces/device';
+import { UserContext } from '../../../context/UserContext';
+import { DeviceContext } from '../../../context/PickedDeviceContext';
 
 interface PlanCardProps {
   plan: Plan | null;
@@ -15,6 +15,7 @@ interface PlanCardProps {
   device?: Device | null;
   signContractPage?: boolean;
 }
+
 function PlanCard({
   plan,
   isCorporate,
@@ -23,13 +24,13 @@ function PlanCard({
   signContractPage,
 }: PlanCardProps) {
   const navigate = useNavigate();
-  const userObject = useContext(UserContext);
+  const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
 
   const navigateToSignContract = (planId: any) => {
-    if (!userObject?.user) {
+    if (!userContext?.user) {
       navigate('/login');
-    } else if (userObject?.user && isPickedFromChar) {
+    } else if (userContext?.user && isPickedFromChar) {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked((prev: boolean) => !prev);
       navigate(`/signContract/${planId}`);
@@ -49,8 +50,8 @@ function PlanCard({
       <div
         className={
           isCorporate
-            ? `plan__card__corporate style-wrapper`
-            : `plan__card style-wrapper`
+            ? `plan-card-corporate style-wrapper`
+            : `plan-card style-wrapper`
         }
       >
         <div
