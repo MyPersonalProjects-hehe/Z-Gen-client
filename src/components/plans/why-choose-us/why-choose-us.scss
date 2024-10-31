@@ -1,4 +1,4 @@
-.time-line {
+.why-choose-us-body {
   width: 80%;
   font-size: 1.3rem;
   text-align: end;
@@ -16,14 +16,20 @@
     }
   }
 
-  .second__node {
-    display: flex;
-  }
-
   .first__node {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+  }
+
+  .second__node {
+    display: flex;
+  }
+
+  .third__node {
+    .last-text {
+      text-align: center;
+    }
   }
 }
 
@@ -31,8 +37,4 @@
   background: var(--c-primary);
   background-clip: text;
   color: transparent;
-}
-
-.last-text {
-  text-align: center;
 }

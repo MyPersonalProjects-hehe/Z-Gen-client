@@ -21,10 +21,10 @@ function TermsOfContract() {
         >
           <CaretDownOutlined
             onClick={() => handleId(termObj.id)}
-            className='collapse-button'
+            className='collapse-btn'
           />
 
-          <div className='collapse-info'>
+          <div className='collapse__info'>
             <h1>{termObj.term}</h1>
             {currentId === termObj.id && toggleButton && (
               <h2>{TERMS_EXPLANATION[index].explanation}</h2>
