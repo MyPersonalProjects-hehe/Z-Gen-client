@@ -50,7 +50,7 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
               <h2>
                 You have not picked a device yet. If you wish to continue
                 anyway, during the contract length you will not be able to pick
-                a device with the discount provided.
+                a device.
               </h2>
               <PlusCircleOutlined
                 className='plus-icon'
