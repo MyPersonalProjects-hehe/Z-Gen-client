@@ -8,7 +8,6 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import poster from '../../assets/home/transparent-img.png';
 import {
   CarOutlined,
-  CreditCardOutlined,
   FilePdfOutlined,
   PercentageOutlined,
 } from '@ant-design/icons';
@@ -77,7 +76,7 @@ function HomePage() {
         <h1>GENERATION`S BEST DECISION</h1>
 
         <div className='services'>
-          <h2 className='text-style-wrapper'>
+          <h2>
             We believe we provide the best services <br /> We are people`s
             choice for better and smarter life by providing the best
             price-performance ratio
@@ -87,13 +86,10 @@ function HomePage() {
               <FilePdfOutlined /> E-signing
             </span>
             <span>
-              <CarOutlined className='span-icon' /> Fast device delivery
+              <CarOutlined className='span-icon' /> Fast delivery
             </span>
             <span>
               <PercentageOutlined /> Special discounts
-            </span>
-            <span>
-              <CreditCardOutlined /> Online payments
             </span>
           </div>
         </div>
