@@ -1,14 +1,12 @@
-import './login-page.scss';
+import './login.scss';
 import axios from 'axios';
 import { FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../constants/ServerURL';
-import { UserContext } from '../../context/UserContext';
+import { SERVER_URL } from '../../../constants/ServerURL';
+import { UserContext } from '../../../context/UserContext';
 import { Button, ConfigProvider } from 'antd';
-import imagePoster from '../../assets/login/login-img.jpg';
-import RegisterPage from '../register/RegisterPage';
 
-function LoginPage() {
+function Login() {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -54,14 +52,6 @@ function LoginPage() {
       }}
     >
       <div className='login-body'>
-        <div className='image__poster'>
-          <h1>Enjoy Generation`s best choice for telecom provider!</h1>
-
-          <img
-            src={imagePoster}
-            alt='image-poster'
-          />
-        </div>
         <div className='form__body'>
           <h1>Login</h1>
           <form>
@@ -83,10 +73,9 @@ function LoginPage() {
             </Button>
           </form>
         </div>
-        <RegisterPage></RegisterPage>
       </div>
     </ConfigProvider>
   );
 }
 
-export default LoginPage;
+export default Login;

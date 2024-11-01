@@ -134,7 +134,7 @@ function Navbar() {
           ) : (
             <NavLink
               className='nav__link '
-              to='/login'
+              to='/signUp'
             >
               Sign up
             </NavLink>

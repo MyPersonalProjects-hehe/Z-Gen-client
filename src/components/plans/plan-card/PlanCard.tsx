@@ -29,7 +29,7 @@ function PlanCard({
 
   const navigateToSignContract = (planId: any) => {
     if (!userContext?.user) {
-      navigate('/login');
+      navigate('/signUp');
     } else if (userContext?.user && isPickedFromChar) {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked((prev: boolean) => !prev);

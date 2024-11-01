@@ -5,17 +5,17 @@ import { UserContext } from './context/UserContext.ts';
 import { useEffect, useState } from 'react';
 import { DeviceContext } from './context/PickedDeviceContext.ts';
 import { User } from './interfaces/user.ts';
-import Navbar from './components/navbar/Navbar';
-import HomePage from './views/home/HomePage.tsx';
-import DevicesPage from './views/devices/DevicesPage.tsx';
-import PlansPage from './views/plans/PlansPage.tsx';
-import SingContractPage from './views/sing-contract/SignContractPage.tsx';
-import LoginPage from './views/login/LoginPage.tsx';
-import CharacteristicsPage from './views/characteristics/CharacteristicPage.tsx';
 import ScrollTop from './helpers/scroll/ScrollTop.tsx';
-import Account from './views/account/Account.tsx';
+import Navbar from './components/navbar/Navbar';
+import HomePage from './pages/home/HomePage.tsx';
+import DevicesPage from './pages/devices/DevicesPage.tsx';
+import PlansPage from './pages/plans/PlansPage.tsx';
+import SingContractPage from './pages/sing-contract/SignContractPage.tsx';
+import CharacteristicsPage from './pages/characteristics/CharacteristicPage.tsx';
+import AccountPage from './pages/account/AccountPage.tsx';
 import CreatePlanForm from './components/account/create-plan/CreatePlanForm.tsx';
 import UploadDeviceForm from './components/account/upload-device/UploadDeviceForm.tsx';
+import SignUpPage from './pages/sign-up/SignUpPage.tsx';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -29,8 +29,8 @@ function App() {
           withCredentials: true,
         });
         setUser(response.data.user);
-      } catch (error) {
-        console.error('Not authenticated');
+      } catch (error: any) {
+        console.log(error.response.data.message);
       }
     };
 
@@ -59,8 +59,8 @@ function App() {
                 element={<HomePage />}
               />
               <Route
-                path='/login'
-                element={<LoginPage />}
+                path='/signUp'
+                element={<SignUpPage />}
               />
               <Route
                 path='/createPlan'
@@ -88,7 +88,7 @@ function App() {
               />
               <Route
                 path='/account'
-                element={<Account />}
+                element={<AccountPage />}
               />
             </Routes>
           </ScrollTop>

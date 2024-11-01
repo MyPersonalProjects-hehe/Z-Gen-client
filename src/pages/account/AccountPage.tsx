@@ -1,4 +1,4 @@
-import './account.scss';
+import './account-page.scss';
 import { Progress, Result } from 'antd';
 import pngImage from '../../assets/account/account-page.png';
 import {
@@ -16,7 +16,7 @@ import { UserContext } from '../../context/UserContext';
 import Contract from '../../interfaces/contract';
 import Admin from '../../components/account/admin/Admin';
 
-function Account() {
+function AccountPage() {
   const userContext = useContext(UserContext);
   const [contract, setContract] = useState<Contract | null>(null);
 
@@ -161,4 +161,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default AccountPage;

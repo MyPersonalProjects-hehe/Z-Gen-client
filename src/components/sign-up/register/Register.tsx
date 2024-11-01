@@ -1,10 +1,10 @@
+import axios from 'axios';
 import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../constants/ServerURL';
-import { UserContext } from '../../context/UserContext';
-import axios from 'axios';
+import { UserContext } from '../../../context/UserContext';
+import { SERVER_URL } from '../../../constants/ServerURL';
 
-function RegisterPage() {
+function Register() {
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
     username: '',
@@ -74,4 +74,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;
