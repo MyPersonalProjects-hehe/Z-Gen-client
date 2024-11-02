@@ -1,8 +1,15 @@
 import axios from 'axios';
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../context/UserContext';
 import { SERVER_URL } from '../../../constants/ServerURL';
+import { Button, ConfigProvider, Form, Input } from 'antd';
+import {
+  LockOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 function Register() {
   const navigate = useNavigate();
@@ -14,16 +21,15 @@ function Register() {
   });
   const userContext = useContext(UserContext);
 
-  const updateForm = (e: ChangeEvent<HTMLInputElement>, prop: string) => {
+  const updateForm = (e: any, prop: string) => {
     setUserForm({
       ...userForm,
-      [prop]: e.target.value,
+      [e]: prop,
     });
   };
 
-  const registerUser = async (e: FormEvent) => {
+  const registerUser = async () => {
     try {
-      e.preventDefault();
       const result: any = await axios.post(
         SERVER_URL('registerUser'),
         {
@@ -43,34 +49,79 @@ function Register() {
   };
 
   return (
-    <div className='form__body'>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#0e2447',
+        },
+      }}
+    >
       <h1>Register</h1>
-      <form onSubmit={(e) => registerUser(e)}>
-        <div>
-          <input
-            type='username'
-            placeholder='username'
-            onChange={(e) => updateForm(e, 'username')}
+      <Form
+        name='register'
+        initialValues={{ remember: true }}
+        style={{ width: 400 }}
+        onFinish={registerUser}
+        onFieldsChange={(e) => updateForm(e[0].name[0], e[0].value)}
+      >
+        <Form.Item
+          name='username'
+          rules={[{ required: true, message: 'Please write your username!' }]}
+        >
+          <Input
+            className='login-input'
+            prefix={<UserOutlined />}
+            placeholder='Username'
           />
-          <input
-            type='email'
-            placeholder='email'
-            onChange={(e) => updateForm(e, 'email')}
+        </Form.Item>
+
+        <Form.Item
+          name='email'
+          rules={[{ required: true, message: 'Please write your email!' }]}
+        >
+          <Input
+            className='login-input'
+            prefix={<MailOutlined />}
+            placeholder='Email'
           />
-          <input
-            type='phoneNumber'
-            placeholder='phone number'
-            onChange={(e) => updateForm(e, 'phoneNumber')}
-          />
-          <input
+        </Form.Item>
+
+        <Form.Item
+          name='password'
+          rules={[{ required: true, message: 'Please write your password!' }]}
+        >
+          <Input
+            className='login-input'
+            prefix={<LockOutlined />}
             type='password'
-            placeholder='password'
-            onChange={(e) => updateForm(e, 'password')}
+            placeholder='Password'
           />
-        </div>
-        <button type='submit'>Click</button>
-      </form>
-    </div>
+        </Form.Item>
+
+        <Form.Item
+          name='phoneNumber'
+          rules={[
+            { required: true, message: 'Please write your phone number!' },
+          ]}
+        >
+          <Input
+            className='login-input'
+            prefix={<PhoneOutlined />}
+            placeholder='Phone number'
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            block
+            type='primary'
+            htmlType='submit'
+          >
+            Register
+          </Button>
+        </Form.Item>
+      </Form>
+    </ConfigProvider>
   );
 }
 

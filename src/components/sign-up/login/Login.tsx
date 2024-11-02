@@ -1,12 +1,17 @@
 import './login.scss';
 import axios from 'axios';
-import { FormEvent, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../../constants/ServerURL';
 import { UserContext } from '../../../context/UserContext';
-import { Button, ConfigProvider } from 'antd';
+import { Button, ConfigProvider, Form, Input } from 'antd';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 
-function Login() {
+interface LoginProps {
+  setToggleScroll: (value: boolean) => void;
+}
+
+function Login({ setToggleScroll }: LoginProps) {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -14,16 +19,15 @@ function Login() {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
-  const updateForm = (e: React.ChangeEvent<HTMLInputElement>, prop: string) => {
+  const updateForm = (e: any, prop: string) => {
     setUser({
       ...user,
-      [prop]: e.target.value,
+      [e]: prop,
     });
   };
 
-  const loginUser = async (e: FormEvent) => {
+  const loginUser = async () => {
     try {
-      e.preventDefault();
       const response = await axios.post(
         SERVER_URL('loginUser'),
         { user },
@@ -42,38 +46,51 @@ function Login() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: 'white',
-        },
-        components: {
-          Button: {
-            defaultHoverColor: 'black',
-          },
+          colorPrimary: '#0e2447',
         },
       }}
     >
-      <div className='login-body'>
-        <div className='form__body'>
-          <h1>Login</h1>
-          <form>
-            <input
-              type='email'
-              placeholder='email'
-              onChange={(e) => updateForm(e, 'email')}
-            />
-            <input
-              type='password'
-              placeholder='password'
-              onChange={(e) => updateForm(e, 'password')}
-            />
-            <Button
-              className='btn btn-login'
-              onClick={(e) => loginUser(e)}
-            >
-              click
-            </Button>
-          </form>
-        </div>
-      </div>
+      <h1>Login</h1>
+      <Form
+        name='login'
+        initialValues={{ remember: true }}
+        style={{ width: 400 }}
+        onFinish={loginUser}
+        onFieldsChange={(e) => updateForm(e[0].name[0], e[0].value)}
+      >
+        <Form.Item
+          name='email'
+          rules={[{ required: true, message: 'Please write your email!' }]}
+        >
+          <Input
+            className='login-input'
+            prefix={<MailOutlined />}
+            placeholder='Email'
+          />
+        </Form.Item>
+        <Form.Item
+          name='password'
+          rules={[{ required: true, message: 'Please write your password!' }]}
+        >
+          <Input
+            className='login-input'
+            prefix={<LockOutlined />}
+            type='password'
+            placeholder='Password'
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            block
+            type='primary'
+            htmlType='submit'
+          >
+            Log in
+          </Button>
+          or <a onClick={() => setToggleScroll(true)}>Register now!</a>
+        </Form.Item>
+      </Form>
     </ConfigProvider>
   );
 }
