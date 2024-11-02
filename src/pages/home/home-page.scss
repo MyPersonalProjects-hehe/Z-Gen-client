@@ -78,6 +78,7 @@
 
   h2 {
     color: white;
+    width: 60%;
   }
 
   .mini__blocks {
@@ -91,7 +92,6 @@
       transition: transform 0.2s ease-in;
       &:hover {
         transform: scale(1.03);
-        cursor: pointer;
       }
     }
   }
