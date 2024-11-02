@@ -1,20 +1,17 @@
-.image__poster {
-  position: relative;
-  width: 35%;
-
-  img {
-    filter: brightness(0.6);
-    width: 100%;
+.sign-up-body {
+  .poster {
+    img {
+      width: 30rem;
+      filter: brightness(0.7);
+    }
   }
 
-  h1 {
-    z-index: 1;
-    position: absolute;
-    background-color: var(--c-secondary);
-    top: -10px;
-    color: white;
-    text-align: center;
-    padding: 1.4rem;
-    box-shadow: 0px 4px 10px rgb(45, 44, 44);
+  .login__register {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
   }
 }
