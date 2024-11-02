@@ -13,14 +13,35 @@
 .menu__and__devices {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 5rem;
   padding-top: 5rem;
+  padding-left: 2rem;
 
-  .devices {
+  .results {
     display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+    flex-direction: column;
+    gap: 2rem;
     width: 70%;
+
+    .devices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .paginate-numbers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+
+      > * {
+        border: 2px solid var(--c-primary);
+        border-radius: 3px;
+        font-size: 1rem;
+        padding: 3px 10px;
+        cursor: pointer;
+      }
+    }
   }
 }

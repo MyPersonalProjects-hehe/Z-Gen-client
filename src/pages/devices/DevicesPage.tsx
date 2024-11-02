@@ -10,6 +10,10 @@ import MenuComponent from '../../components/devices/Menu';
 import DeviceCard from '../../components/devices/device-card/DeviceCard';
 
 function DevicesPage() {
+  const [pages, setPages] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLast = currentPage * 4;
+  const indexOfFirst = indexOfLast - 4;
   const [allDevices, setAllDevices] = useState([]);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
   const [filteredDevices, setFilteredDevices] = useState([]);
@@ -19,6 +23,10 @@ function DevicesPage() {
       const fetchAllDevices = async () => {
         const response = await axios.get(SERVER_URL('devices'));
         setAllDevices(response.data.devices);
+        const arr = Array.from({
+          length: Math.ceil(response.data.devices.length / 4),
+        });
+        setPages(arr);
       };
       fetchAllDevices();
     } catch (error) {
@@ -28,28 +36,41 @@ function DevicesPage() {
 
   /*Menu filtering */
   useEffect(() => {
-    if (selectedFilterValue === 'Clear filters') {
-      setFilteredDevices([...allDevices]);
-      setSelectedFilterValue('');
-    } else if (selectedFilterValue === 'Price') {
-      const devices = [...allDevices].sort(
-        (deviceA: Device, deviceB: Device) =>
-          Number(deviceA.price) - Number(deviceB.price)
-      );
-      setFilteredDevices(devices);
-    } else if (selectedFilterValue === 'RAM memory') {
-      const devices = [...allDevices].sort(
-        (deviceA: Device, deviceB: Device) =>
-          Number(deviceB.RAM.split('/')[0]) - Number(deviceA.RAM.split('/')[0])
-      );
-      setFilteredDevices(devices);
-    } else {
-      const devices = allDevices.filter((device: Device) =>
-        device.model.includes(selectedFilterValue)
-      );
-      setFilteredDevices(devices);
+    let devices = [...allDevices];
+    setCurrentPage(1);
+    switch (selectedFilterValue) {
+      case 'Clear filters':
+        setFilteredDevices(devices);
+        setSelectedFilterValue('');
+        break;
+      case 'Price':
+        devices = devices.sort(
+          (deviceA: Device, deviceB: Device) =>
+            Number(deviceA.price) - Number(deviceB.price)
+        );
+        setFilteredDevices(devices);
+        break;
+      case 'RAM memory':
+        devices = devices.sort(
+          (deviceA: Device, deviceB: Device) =>
+            Number(deviceB.RAM.split('/')[0]) -
+            Number(deviceA.RAM.split('/')[0])
+        );
+        setFilteredDevices(devices);
+        break;
+      default:
+        devices = devices.filter((device: Device) =>
+          device.model.includes(selectedFilterValue)
+        );
+        setFilteredDevices(devices);
+        break;
     }
+
+    const arr = Array.from({ length: Math.ceil(devices.length / 4) });
+    setPages(arr);
   }, [selectedFilterValue, allDevices]);
+
+  const handlePaginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <ConfigProvider
@@ -81,25 +102,55 @@ function DevicesPage() {
         </div>
 
         <div className='menu__and__devices'>
-          <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
+          <div className='menu'>
+            <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
+          </div>
 
           {selectedFilterValue ? (
-            <div className='devices'>
-              {filteredDevices.map((device: Device) => (
-                <DeviceCard
-                  device={device}
-                  key={device._id}
-                />
-              ))}
+            <div className='results'>
+              <div className='devices'>
+                {[...filteredDevices]
+                  .slice(indexOfFirst, indexOfLast)
+                  .map((device: Device) => (
+                    <DeviceCard
+                      device={device}
+                      key={device._id}
+                    />
+                  ))}
+              </div>
+              <div className='paginate-numbers'>
+                {pages.map((_, index) => (
+                  <span
+                    onClick={() => handlePaginate(index + 1)}
+                    key={index}
+                  >
+                    {index + 1}
+                  </span>
+                ))}
+              </div>
             </div>
           ) : (
-            <div className='devices'>
-              {allDevices?.map((device: Device) => (
-                <DeviceCard
-                  device={device}
-                  key={device._id}
-                />
-              ))}
+            <div className='results'>
+              <div className='devices'>
+                {[...allDevices]
+                  .slice(indexOfFirst, indexOfLast)
+                  ?.map((device: Device) => (
+                    <DeviceCard
+                      device={device}
+                      key={device._id}
+                    />
+                  ))}
+              </div>
+              <div className='paginate-numbers'>
+                {pages.map((_, index) => (
+                  <span
+                    onClick={() => handlePaginate(index + 1)}
+                    key={index}
+                  >
+                    {index + 1}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
         </div>
