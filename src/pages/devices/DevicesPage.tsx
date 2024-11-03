@@ -6,14 +6,17 @@ import { Device } from '../../interfaces/device';
 import { ConfigProvider } from 'antd';
 import yellowImage from '../../assets/devices/yellow-image.png';
 import purpleImage from '../../assets/devices/purple-image.png';
-import MenuComponent from '../../components/devices/Menu';
+import MenuComponent from '../../components/devices/menu/Menu';
 import DeviceCard from '../../components/devices/device-card/DeviceCard';
+import Pagination from '../../components/devices/pagination/Pagination';
 
 function DevicesPage() {
+  /**Pagination */
   const [pages, setPages] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLast = currentPage * 4;
   const indexOfFirst = indexOfLast - 4;
+  /**Device fetching/filtering */
   const [allDevices, setAllDevices] = useState([]);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
   const [filteredDevices, setFilteredDevices] = useState([]);
@@ -66,11 +69,10 @@ function DevicesPage() {
         break;
     }
 
+    /**Setting number of pages based on filter value */
     const arr = Array.from({ length: Math.ceil(devices.length / 4) });
     setPages(arr);
   }, [selectedFilterValue, allDevices]);
-
-  const handlePaginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <ConfigProvider
@@ -80,11 +82,12 @@ function DevicesPage() {
         },
         components: {
           Button: {
-            defaultHoverBg: '#2a4e86',
+            defaultHoverBg: 'var(--c-third)',
             defaultBg: '#2a4e86',
             defaultColor: 'white',
             defaultHoverColor: 'white',
             defaultActiveBg: '#2a4e86',
+            defaultActiveColor: 'white',
           },
         },
       }}
@@ -106,53 +109,24 @@ function DevicesPage() {
             <MenuComponent setSelectedFilterValue={setSelectedFilterValue} />
           </div>
 
-          {selectedFilterValue ? (
-            <div className='results'>
-              <div className='devices'>
-                {[...filteredDevices]
-                  .slice(indexOfFirst, indexOfLast)
-                  .map((device: Device) => (
-                    <DeviceCard
-                      device={device}
-                      key={device._id}
-                    />
-                  ))}
-              </div>
-              <div className='paginate-numbers'>
-                {pages.map((_, index) => (
-                  <span
-                    onClick={() => handlePaginate(index + 1)}
-                    key={index}
-                  >
-                    {index + 1}
-                  </span>
+          <div className='results'>
+            <div className='devices'>
+              {[...filteredDevices]
+                .slice(indexOfFirst, indexOfLast)
+                .map((device: Device) => (
+                  <DeviceCard
+                    device={device}
+                    key={device._id}
+                  />
                 ))}
-              </div>
             </div>
-          ) : (
-            <div className='results'>
-              <div className='devices'>
-                {[...allDevices]
-                  .slice(indexOfFirst, indexOfLast)
-                  ?.map((device: Device) => (
-                    <DeviceCard
-                      device={device}
-                      key={device._id}
-                    />
-                  ))}
-              </div>
-              <div className='paginate-numbers'>
-                {pages.map((_, index) => (
-                  <span
-                    onClick={() => handlePaginate(index + 1)}
-                    key={index}
-                  >
-                    {index + 1}
-                  </span>
-                ))}
-              </div>
+            <div className='paginate-numbers'>
+              <Pagination
+                pages={pages}
+                setCurrentPage={setCurrentPage}
+              />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </ConfigProvider>
