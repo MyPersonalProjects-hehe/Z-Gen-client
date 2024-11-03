@@ -10,6 +10,7 @@ import {
   WarningOutlined,
 } from '@ant-design/icons';
 import { UserContext } from '../../../context/UserContext';
+import skeletonImage from '../../../assets/skeleton.png';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
 interface DeviceProp {
@@ -55,7 +56,7 @@ function DeviceCard({ device }: DeviceProp) {
       <h2>{device.model}</h2>
       <img
         src={device.mainImage}
-        alt='device-image'
+        alt={skeletonImage}
       />
       <h2>{device.RAM}</h2>
       <h2 className='price'>
