@@ -2,6 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 40rem;
+  gap: 30px;
+
+  button {
+    color: black !important;
+  }
 }
 
 .carousel {

@@ -1,6 +1,7 @@
 import './carousel.scss';
 import { Device } from '../../interfaces/device';
 import { Carousel, ConfigProvider, Image } from 'antd';
+import skeletonImage from '../../assets/skeleton.png';
 
 interface DeviceProp {
   device: Device | null;
@@ -13,6 +14,7 @@ function CarouselComponent({ device }: DeviceProp) {
         components: {
           Carousel: {
             arrowSize: 50,
+            colorBgContainer: 'black',
           },
         },
       }}
@@ -25,32 +27,32 @@ function CarouselComponent({ device }: DeviceProp) {
           >
             <Image
               src={device?.mainImage}
-              alt='device-image'
+              alt={skeletonImage}
             />
 
             <Image
               src={device?.secondImage}
-              alt='device-image'
+              alt={skeletonImage}
             />
 
             <Image
               src={device?.thirdImage}
-              alt='device-image'
+              alt={skeletonImage}
             />
           </Carousel>
         </div>
         <div className='mini__images'>
           <img
             src={device?.mainImage}
-            alt='mini-image'
+            alt={skeletonImage}
           />
           <img
             src={device?.secondImage}
-            alt='mini-image'
+            alt={skeletonImage}
           />
           <img
             src={device?.thirdImage}
-            alt='mini-image'
+            alt={skeletonImage}
           />
         </div>
       </div>
