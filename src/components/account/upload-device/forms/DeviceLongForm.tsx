@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { SERVER_URL } from '../../../../constants/ServerURL';
 import axios from 'axios';
-import { Button, ConfigProvider, Form, Input, Select } from 'antd';
+import {
+  Button,
+  ConfigProvider,
+  Form,
+  Input,
+  notification,
+  Select,
+} from 'antd';
+import { openNotification } from '../../../../helpers/notifications-functions/openNotification';
+import { FrownOutlined, SmileOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
   labelCol: {
@@ -19,6 +28,7 @@ interface DeviceProps {
 }
 
 function DeviceLongForm({ models }: DeviceProps) {
+  const [api, contextHolder] = notification.useNotification();
   const [deviceFullInfo, setDeviceFullInfo] = useState({
     model: '',
     operationSystem: '',
@@ -41,23 +51,41 @@ function DeviceLongForm({ models }: DeviceProps) {
 
   const uploadFullInfo = async () => {
     try {
-      await axios.post(SERVER_URL('uploadFullInfo'), deviceFullInfo, {
-        withCredentials: true,
+      const result = await axios.post(
+        SERVER_URL('uploadFullInfo'),
+        deviceFullInfo,
+        {
+          withCredentials: true,
+        }
+      );
+      if (result.status === 200) {
+        setDeviceFullInfo({
+          model: '',
+          operationSystem: '',
+          processor: '',
+          batteryCapacity: '',
+          camera: '',
+          selfieCamera: '',
+          functions: '',
+          weight: '',
+          corpus: '',
+          waterProof: '',
+        });
+
+        openNotification({
+          api: api,
+          icon: <SmileOutlined />,
+          description: 'Success!',
+          message: 'Form uploaded!',
+        });
+      }
+    } catch (error: any) {
+      openNotification({
+        api: api,
+        icon: <FrownOutlined />,
+        description: 'Warning!',
+        message: `Error ${error.message}!`,
       });
-      setDeviceFullInfo({
-        model: '',
-        operationSystem: '',
-        processor: '',
-        batteryCapacity: '',
-        camera: '',
-        selfieCamera: '',
-        functions: '',
-        weight: '',
-        corpus: '',
-        waterProof: '',
-      });
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -75,6 +103,7 @@ function DeviceLongForm({ models }: DeviceProps) {
       }}
     >
       <div className='admin-forms'>
+        {contextHolder}
         <h1>Write the device`s full info</h1>
         <Form
           {...formItemLayout}
@@ -97,9 +126,6 @@ function DeviceLongForm({ models }: DeviceProps) {
           <Form.Item
             label='Operation system'
             name='operationSystem'
-            rules={[
-              { required: true, message: 'Please write operation system!' },
-            ]}
           >
             <Input className='input' />
           </Form.Item>
@@ -107,7 +133,6 @@ function DeviceLongForm({ models }: DeviceProps) {
           <Form.Item
             label='processor'
             name='processor'
-            rules={[{ required: true, message: 'Please write processor!' }]}
           >
             <Input className='input' />
           </Form.Item>
@@ -125,7 +150,6 @@ function DeviceLongForm({ models }: DeviceProps) {
           <Form.Item
             label='Camera'
             name='camera'
-            rules={[{ required: true, message: 'Please write pixels!' }]}
           >
             <Input className='input' />
           </Form.Item>
@@ -133,7 +157,6 @@ function DeviceLongForm({ models }: DeviceProps) {
           <Form.Item
             label='Selfie camera'
             name='selfieCamera'
-            rules={[{ required: true, message: 'Please write pixels!' }]}
           >
             <Input className='input' />
           </Form.Item>

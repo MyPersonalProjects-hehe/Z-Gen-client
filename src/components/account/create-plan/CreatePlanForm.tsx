@@ -1,8 +1,17 @@
 import './create-plan-form.scss';
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, ConfigProvider, Form, Input, Select } from 'antd';
+import {
+  Button,
+  ConfigProvider,
+  Form,
+  Input,
+  notification,
+  Select,
+} from 'antd';
 import { SERVER_URL } from '../../../constants/ServerURL';
+import { openNotification } from '../../../helpers/notifications-functions/openNotification';
+import { FrownOutlined, SmileOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
   labelCol: {
@@ -16,6 +25,7 @@ const formItemLayout = {
 };
 
 function CreatePlanForm() {
+  const [api, contextHolder] = notification.useNotification();
   const [plan, setPlan] = useState({
     nameOfPlan: '',
     typeOfClient: '',
@@ -38,7 +48,7 @@ function CreatePlanForm() {
   const submitPlan = async () => {
     try {
       const response = await axios.post(SERVER_URL('createPlan'), { plan });
-      if (response) {
+      if (response.status === 200) {
         setPlan({
           nameOfPlan: '',
           typeOfClient: '',
@@ -50,9 +60,20 @@ function CreatePlanForm() {
           discountForDevice: '',
           price: '',
         });
+        openNotification({
+          api: api,
+          icon: <SmileOutlined />,
+          message: 'Success',
+          description: 'Plan created!',
+        });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      openNotification({
+        api: api,
+        icon: <FrownOutlined />,
+        message: 'Warning!',
+        description: `Error: ${error.message}`,
+      });
     }
   };
 
@@ -70,6 +91,7 @@ function CreatePlanForm() {
       }}
     >
       <div className='admin-forms'>
+        {contextHolder}
         <h1>Create Plan</h1>
         <Form
           {...formItemLayout}
