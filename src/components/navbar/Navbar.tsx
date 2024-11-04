@@ -85,6 +85,7 @@ function Navbar() {
       userContext?.setSession(false);
       deviceContext?.setDevicePicked((prev) => !prev);
       localStorage.removeItem('device');
+      navigate('/');
     }
   }
 
