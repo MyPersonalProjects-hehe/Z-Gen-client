@@ -14,8 +14,8 @@ function DevicesPage() {
   /**Pagination */
   const [pages, setPages] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const indexOfLast = currentPage * 4;
-  const indexOfFirst = indexOfLast - 4;
+  const indexOfLast = currentPage * 6;
+  const indexOfFirst = indexOfLast - 6;
   /**Device fetching/filtering */
   const [allDevices, setAllDevices] = useState([]);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
@@ -27,7 +27,7 @@ function DevicesPage() {
         const response = await axios.get(SERVER_URL('devices'));
         setAllDevices(response.data.devices);
         const arr = Array.from({
-          length: Math.ceil(response.data.devices.length / 4),
+          length: Math.ceil(response.data.devices.length / 6),
         });
         setPages(arr);
       };
@@ -39,7 +39,7 @@ function DevicesPage() {
 
   /*Menu filtering */
   useEffect(() => {
-    let devices = [...allDevices];
+    let devices = [...allDevices].reverse();
     setCurrentPage(1);
     switch (selectedFilterValue) {
       case 'Clear filters':
@@ -70,7 +70,7 @@ function DevicesPage() {
     }
 
     /**Setting number of pages based on filter value */
-    const arr = Array.from({ length: Math.ceil(devices.length / 4) });
+    const arr = Array.from({ length: Math.ceil(devices.length / 6) });
     setPages(arr);
   }, [selectedFilterValue, allDevices]);
 
