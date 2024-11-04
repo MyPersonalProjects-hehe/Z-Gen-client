@@ -1,13 +1,16 @@
 .characteristics-body {
-  margin-top: 3rem;
+  margin-top: 10rem;
 
-  .poster {
-    img {
-      width: 40rem;
+  .offer-heading {
+    text-align: center;
+    font-size: 3rem;
+  }
 
-      padding-top: 5rem;
-      filter: brightness(0.7);
-    }
+  .headings-char-page {
+    text-align: center;
+    -webkit-text-stroke: 1.5px var(--c-secondary);
+    color: transparent;
+    font-size: 2.8rem;
   }
 
   .model__info {
@@ -15,7 +18,15 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    padding: 5rem 1rem;
+    gap: 20px;
+
+    .carousel-price {
+      h1 {
+        padding: 1rem;
+        text-align: center;
+        border-top: 2px solid grey;
+      }
+    }
 
     .info__block {
       display: flex;
@@ -24,7 +35,7 @@
       border-radius: 8px;
       width: 20rem;
       padding: 2rem 1rem;
-      margin-top: 10rem;
+      margin-top: 2rem;
       gap: 20px;
 
       p {
@@ -62,11 +73,9 @@
 .characteristics {
   width: 80%;
   margin: 0 auto;
-}
 
-.headings-char-page {
-  text-align: center;
-  -webkit-text-stroke: 1.5px var(--c-secondary);
-  color: transparent;
-  font-size: 2.8rem;
+  h2 {
+    text-align: center;
+    font-size: 2.8rem;
+  }
 }

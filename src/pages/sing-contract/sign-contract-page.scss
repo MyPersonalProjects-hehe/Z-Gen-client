@@ -6,11 +6,11 @@
   justify-content: center;
   align-items: center;
   gap: 3rem;
+  text-align: center;
 
   .picked__items {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 3rem;
   }
@@ -34,7 +34,6 @@
   width: 50%;
   border: 2px solid rgb(181, 178, 178);
   border-radius: 8px;
-  text-align: center;
 
   .smile-icon {
     font-size: 7rem;

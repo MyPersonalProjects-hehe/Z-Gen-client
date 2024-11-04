@@ -18,6 +18,7 @@ import {
 import {
   CarOutlined,
   ClockCircleOutlined,
+  EuroCircleOutlined,
   PercentageOutlined,
   SafetyCertificateOutlined,
 } from '@ant-design/icons';
@@ -111,6 +112,8 @@ function CharacteristicsPage() {
 
   return (
     <div className='characteristics-body'>
+      <h1 className='offer-heading'>Our offer</h1>
+
       <div className='model__info'>
         {!mainInfo ? (
           <Skeleton.Image
@@ -118,7 +121,22 @@ function CharacteristicsPage() {
             className='skeleton'
           />
         ) : (
-          <CarouselComponent device={mainInfo} />
+          <div className='carousel-price'>
+            <CarouselComponent device={mainInfo} />
+            {bestPlan?.discountForDevice && (
+              <h1>
+                {mainInfo.price - bestPlan.discountForDevice < 0 ? (
+                  'Free!'
+                ) : (
+                  <>
+                    After discount:{' '}
+                    {mainInfo.price - bestPlan.discountForDevice}{' '}
+                    <EuroCircleOutlined />
+                  </>
+                )}
+              </h1>
+            )}
+          </div>
         )}
         <div className='info__block'>
           <h1 className='headings-char-page'>{mainInfo?.model}</h1>
@@ -149,7 +167,6 @@ function CharacteristicsPage() {
         </div>
 
         <div className='best__plan'>
-          <h2 className='headings-char-page'>Our offer</h2>
           <PlanCard
             isCorporate={false}
             plan={bestPlan}
@@ -171,7 +188,7 @@ function CharacteristicsPage() {
         }}
       >
         <div className='characteristics'>
-          <h2 className='headings-char-page'>Characteristics</h2>
+          <h2>Characteristics</h2>
           <Descriptions
             layout='vertical'
             bordered
