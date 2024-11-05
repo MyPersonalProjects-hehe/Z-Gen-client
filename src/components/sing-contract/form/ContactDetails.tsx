@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
 import { Device } from '../../../interfaces/device';
 import { Plan } from '../../../interfaces/plan';
+import { UserContext } from '../../../context/UserContext';
 
 interface ContactDetailsProps {
   form: ContactInfo;
@@ -34,11 +35,13 @@ function ContactDetails({
   const [formComponent] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const isDevicePicked = useContext(DeviceContext);
+  const userContext = useContext(UserContext);
 
   const updateForm = (e: any, prop: any) => {
     setForm({
       ...form,
       [e]: prop,
+      email: userContext?.user?.email,
       device: device,
       plan: plan,
       date: new Date().toLocaleDateString(),
@@ -82,14 +85,6 @@ function ContactDetails({
           <Form.Item
             name='fullName'
             label='Full name'
-            rules={[{ required: true }]}
-          >
-            <Input className='input' />
-          </Form.Item>
-
-          <Form.Item
-            name='email'
-            label='Email'
             rules={[{ required: true }]}
           >
             <Input className='input' />
