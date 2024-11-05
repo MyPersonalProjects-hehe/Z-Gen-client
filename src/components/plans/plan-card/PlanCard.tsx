@@ -32,10 +32,12 @@ function PlanCard({
       navigate('/signUp');
     } else if (userContext?.user && isPickedFromChar) {
       localStorage.setItem('device', JSON.stringify(device));
+      localStorage.setItem('plan', JSON.stringify(plan?._id));
       deviceContext?.setDevicePicked((prev: boolean) => !prev);
       navigate(`/signContract/${planId}`);
     } else {
       navigate(`/signContract/${planId}`);
+      localStorage.setItem('plan', JSON.stringify(plan?._id));
     }
   };
 
@@ -50,16 +52,15 @@ function PlanCard({
       <div
         className={
           isCorporate
-            ? `plan-card-corporate style-wrapper`
-            : `plan-card style-wrapper`
+            ? `plan-card-corporate card-style-wrapper`
+            : `plan-card card-style-wrapper`
         }
       >
         <div
           className='glass glass-effect-wrapper'
           key={plan?._id}
         >
-          <h2 className='text-style-wrapper'>{plan?.nameOfPlan}</h2>
-          <h3>{plan?.cards}</h3>
+          <h2 className='text-card-style-wrapper'>{plan?.nameOfPlan}</h2>
           <div className='content'>
             <h3>
               {isNaN(plan?.minutesInBG)

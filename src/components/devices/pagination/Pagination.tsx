@@ -5,6 +5,7 @@ interface PaginationProps {
 
 function Pagination({ pages, setCurrentPage }: PaginationProps) {
   const handlePaginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <>
       {pages.map((_, index) => (

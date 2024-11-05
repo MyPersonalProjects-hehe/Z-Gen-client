@@ -18,8 +18,8 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
       <div
         className={
           planCard?.typeOfPlan === 'corporate'
-            ? 'device-corporate style-wrapper'
-            : 'device-regular style-wrapper'
+            ? 'device-corporate card-style-wrapper'
+            : 'device-regular card-style-wrapper'
         }
       >
         <div className='glass-effect-wrapper '>
@@ -49,8 +49,8 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
             <div className='no-device'>
               <h2>
                 You have not picked a device yet. If you wish to continue
-                anyway, during the contract length you will not be able to pick
-                a device.
+                anyway, during the contract you will not be able to pick a
+                device.
               </h2>
               <PlusCircleOutlined
                 className='plus-icon'
