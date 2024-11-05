@@ -60,53 +60,61 @@ function CharacteristicsPage() {
       key: '1',
       label: 'Product',
       children: mainInfo?.model,
+      span: 1,
     },
     {
       key: '2',
       label: 'RAM',
       children: mainInfo?.RAM,
+      span: 1,
     },
     {
       key: '3',
       label: 'Water proof',
       children: fullInfo?.waterProof,
+      span: 1,
     },
     {
       key: '4',
       label: 'Selfie camera',
       children: fullInfo?.selfieCamera,
+      span: 1,
     },
     {
       key: '5',
       label: 'Main camera',
-      span: 2,
       children: fullInfo?.camera,
+      span: 2,
     },
     {
       key: '6',
       label: 'Processor',
-      span: 3,
       children: fullInfo?.processor,
+      span: 3,
     },
     {
       key: '7',
       label: 'Battery',
       children: fullInfo?.batteryCapacity,
+      span: 1,
     },
     {
       key: '8',
       label: 'Operation system',
       children: fullInfo?.operationSystem,
+      span: 1,
     },
     {
       key: '9',
       label: 'Weight',
       children: fullInfo?.weight,
+      span: 1,
     },
     {
       key: '10',
       label: 'Functions',
       children: fullInfo?.functions,
+      span: 3,
     },
   ];
 
@@ -194,6 +202,7 @@ function CharacteristicsPage() {
             bordered
             items={items}
             className='table'
+            column={3}
           />
         </div>
       </ConfigProvider>

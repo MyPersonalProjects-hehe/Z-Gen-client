@@ -11,6 +11,11 @@ interface DeviceProps {
 
 function ChosenDevice({ planCard, device }: DeviceProps) {
   const navigate = useNavigate();
+  const discount =
+    planCard?.discountForDevice && device
+      ? device.price - planCard?.discountForDevice
+      : 0;
+  const checkedDiscount = discount < 0 ? 'Free' : discount;
 
   return (
     <>
@@ -38,10 +43,7 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
                 <EuroCircleOutlined className='euro-icon' /> <br />
               </h3>
               <h3>
-                After discount :{' '}
-                {planCard?.discountForDevice
-                  ? device.price - planCard?.discountForDevice
-                  : 0}{' '}
+                After discount : {checkedDiscount}{' '}
                 <EuroCircleOutlined className='euro-icon' /> <br />
               </h3>
             </div>

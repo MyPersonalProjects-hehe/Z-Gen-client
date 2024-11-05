@@ -4,7 +4,10 @@ interface PaginationProps {
 }
 
 function Pagination({ pages, setCurrentPage }: PaginationProps) {
-  const handlePaginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const handlePaginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <>
