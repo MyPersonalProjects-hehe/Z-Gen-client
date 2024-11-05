@@ -1,0 +1,44 @@
+.footer-body {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  background: url('../../assets/plan-cards/regular-card.jpg') no-repeat
+    center/100%;
+  width: 100%;
+  margin-top: 12rem;
+  padding: 5rem 8rem;
+  color: white;
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  img {
+    width: 10rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  p {
+    width: 20rem;
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .social__links {
+    span {
+      margin-bottom: 0.7rem;
+    }
+  }
+}
