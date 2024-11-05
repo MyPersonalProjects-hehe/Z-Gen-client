@@ -20,6 +20,27 @@ function Navbar() {
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
 
+  useEffect(() => {
+    /*Use local storage and context provider to display notification without refresh*/
+    const deviceUnparsed = localStorage.getItem('device');
+    const deviceParsed = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
+    setDevice(deviceParsed);
+  }, [deviceContext?.isDevicePicked]);
+
+  async function logout() {
+    const response = await axios.get(SERVER_URL('logout'), {
+      withCredentials: true,
+    });
+    if (response.status === 200) {
+      userContext?.setUser?.(null);
+      userContext?.setSession(false);
+      deviceContext?.setDevicePicked((prev) => !prev);
+      localStorage.removeItem('device');
+      localStorage.removeItem('plan');
+      navigate('/signUp');
+    }
+  }
+
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -69,27 +90,6 @@ function Navbar() {
       ),
     },
   ];
-
-  useEffect(() => {
-    /*Use local storage and context provider to display notification without refresh*/
-    const deviceUnparsed = localStorage.getItem('device');
-    const deviceParsed = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
-    setDevice(deviceParsed);
-  }, [deviceContext?.isDevicePicked]);
-
-  async function logout() {
-    const response = await axios.get(SERVER_URL('logout'), {
-      withCredentials: true,
-    });
-    if (response.status === 200) {
-      userContext?.setUser?.(null);
-      userContext?.setSession(false);
-      deviceContext?.setDevicePicked((prev) => !prev);
-      localStorage.removeItem('device');
-      localStorage.removeItem('plan');
-      navigate('/signUp');
-    }
-  }
 
   return (
     <div className='navbar poster'>

@@ -8,7 +8,10 @@ interface ModalProps {
   setOpen: (value: boolean) => void;
   modalText: string;
   contactInfo: ContactInfo;
-  setIsFinished: (value: boolean) => void;
+  navigate: any;
+  contractId: string | undefined;
+  setSession: (value: boolean) => void;
+  setDevicePicked: (value: any) => void;
 }
 
 export const showModal = (setOpen: any) => {
@@ -21,7 +24,10 @@ export const uploadContract = async ({
   setOpen,
   modalText,
   contactInfo,
-  setIsFinished,
+  navigate,
+  contractId,
+  setSession,
+  setDevicePicked,
 }: ModalProps) => {
   try {
     setModalText(modalText);
@@ -35,12 +41,12 @@ export const uploadContract = async ({
       setTimeout(() => {
         setOpen(false);
         setConfirmLoading(false);
-        setIsFinished(true);
+        setSession(true);
+        setDevicePicked((prev: boolean) => !prev);
         localStorage.removeItem('device');
         localStorage.removeItem('plan');
-      }, 3000);
-    } else {
-      setIsFinished(false);
+        navigate(`/result/${contractId}`);
+      }, 4000);
     }
   } catch (error) {
     console.log(error);

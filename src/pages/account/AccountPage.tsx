@@ -9,40 +9,23 @@ import {
   PhoneOutlined,
   WifiOutlined,
 } from '@ant-design/icons';
-import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { SERVER_URL } from '../../constants/ServerURL';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import Contract from '../../interfaces/contract';
 import Admin from '../../components/account/admin/Admin';
-import contractPDF from '../../assets/ZGen Telecom Providers.pdf';
+import contractPDF from '../../assets/Contract.pdf';
+import { EligibleUser } from '../../context/EligibleUser';
 
 function AccountPage() {
   const userContext = useContext(UserContext);
-  const [contract, setContract] = useState<Contract | null>(null);
-
-  useEffect(() => {
-    if (userContext?.user?.email) {
-      const fetchSignedContract = async () => {
-        const response = await axios.get(
-          SERVER_URL(`fetchContract/${userContext?.user?.email}`),
-          {
-            withCredentials: true,
-          }
-        );
-        setContract(response.data.contract[0]);
-      };
-      fetchSignedContract();
-    }
-  }, [userContext?.user]);
+  const eligibleUser = useContext(EligibleUser);
 
   return (
     <>
-      {userContext?.user?.email.includes('admin') ? (
+      {userContext?.user?.admin ? (
         <Admin />
       ) : (
         <div>
-          {contract ? (
+          {eligibleUser?.contract ? (
             <div className='account-body'>
               <img
                 src={pngImage}
@@ -82,7 +65,7 @@ function AccountPage() {
                 </div>
 
                 <h1 className='contract-name'>
-                  Contract {contract?.plan.nameOfPlan}
+                  Contract {eligibleUser?.contract?.plan.nameOfPlan}
                 </h1>
                 <div className='contract'>
                   <div className='contract__info'>
@@ -91,43 +74,51 @@ function AccountPage() {
                     </h2>
                     <h2 className='border'>
                       <FieldTimeOutlined /> Start/End date:{' '}
-                      {new Date(contract?.date).toLocaleDateString()} -{' '}
                       {new Date(
-                        new Date(contract?.date).setFullYear(
-                          new Date(contract?.date).getFullYear() + 2
+                        eligibleUser.contract?.date
+                      ).toLocaleDateString()}{' '}
+                      -{' '}
+                      {new Date(
+                        new Date(eligibleUser.contract?.date).setFullYear(
+                          new Date(eligibleUser.contract?.date).getFullYear() +
+                            2
                         )
                       ).toLocaleDateString()}
                     </h2>
                     <h2 className='border'>
-                      <PhoneOutlined /> Calls: {contract?.plan.minutesInBG} in
-                      BG
+                      <PhoneOutlined /> Calls:{' '}
+                      {eligibleUser.contract?.plan.minutesInBG} in BG
                     </h2>
                     <h2 className='border'>
-                      <PhoneOutlined /> Calls: {contract?.plan.minutesInEU} in
-                      EU
+                      <PhoneOutlined /> Calls:{' '}
+                      {eligibleUser.contract?.plan.minutesInEU} in EU
                     </h2>
                     <h2 className='border'>
-                      <WifiOutlined /> MB: {contract?.plan.MB} -{' '}
-                      {contract?.plan.MBps} MBps
+                      <WifiOutlined /> MB: {eligibleUser.contract?.plan.MB} -{' '}
+                      {eligibleUser.contract?.plan.MBps} MBps
                     </h2>
                     <h2 className='border'>
-                      Price: {contract?.plan.price} <EuroCircleOutlined />
+                      Price: {eligibleUser.contract?.plan.price}{' '}
+                      <EuroCircleOutlined />
                     </h2>
                   </div>
 
                   <br />
                   <div className='device-info'>
-                    {contract?.device && (
+                    {eligibleUser.contract?.device && (
                       <>
                         <h2>
-                          <MobileOutlined /> Device: {contract?.device.model}
+                          <MobileOutlined /> Device:{' '}
+                          {eligibleUser.contract?.device.model}
                         </h2>
-                        {contract.typeOfPayment.includes('Monthly') && (
+                        {eligibleUser.contract.typeOfPayment.includes(
+                          'Monthly'
+                        ) && (
                           <h2>
-                            {contract.typeOfPayment}:{' '}
+                            {eligibleUser.contract.typeOfPayment}:{' '}
                             {Math.ceil(
-                              (contract.device.price -
-                                contract.plan.discountForDevice) /
+                              (eligibleUser.contract.device.price -
+                                eligibleUser.contract.plan.discountForDevice) /
                                 24
                             )}{' '}
                             <EuroCircleOutlined />
