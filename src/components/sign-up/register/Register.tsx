@@ -3,15 +3,18 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../context/UserContext';
 import { SERVER_URL } from '../../../constants/ServerURL';
-import { Button, ConfigProvider, Form, Input } from 'antd';
+import { Button, ConfigProvider, Form, Input, notification } from 'antd';
 import {
+  FrownOutlined,
   LockOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
 function Register() {
+  const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
     username: '',
@@ -44,7 +47,12 @@ function Register() {
       }
     } catch (error: any) {
       const errorMessage = error.response.data.message[0].message;
-      alert(errorMessage);
+      openNotification({
+        api: api,
+        icon: <FrownOutlined />,
+        message: 'Warning!',
+        description: `Error: ${errorMessage}`,
+      });
     }
   };
 
@@ -54,13 +62,19 @@ function Register() {
         token: {
           colorPrimary: '#0e2447',
         },
+        components: {
+          Button: {
+            lineWidth: 30,
+          },
+        },
       }}
     >
+      {contextHolder}
       <h1>Register</h1>
       <Form
         name='register'
         initialValues={{ remember: true }}
-        style={{ width: 400 }}
+        style={{ width: 400, borderColor: '#0e2447' }}
         onFinish={registerUser}
         onFieldsChange={(e) => updateForm(e[0].name[0], e[0].value)}
       >

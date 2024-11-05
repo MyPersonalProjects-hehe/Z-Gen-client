@@ -48,13 +48,18 @@ function Login({ setToggleScroll }: LoginProps) {
         token: {
           colorPrimary: '#0e2447',
         },
+        components: {
+          Button: {
+            lineWidth: 30,
+          },
+        },
       }}
     >
       <h1>Login</h1>
       <Form
         name='login'
         initialValues={{ remember: true }}
-        style={{ width: 400 }}
+        style={{ width: 400, borderColor: '#0e2447' }}
         onFinish={loginUser}
         onFieldsChange={(e) => updateForm(e[0].name[0], e[0].value)}
       >
