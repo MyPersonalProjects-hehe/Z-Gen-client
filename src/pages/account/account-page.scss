@@ -5,8 +5,9 @@
   margin-top: 10rem;
 
   img {
-    width: 37rem;
-    margin-right: 4rem;
+    width: 30rem;
+    height: 30rem;
+    margin-right: 6rem;
   }
 }
 
@@ -30,27 +31,32 @@
       width: 100%;
     }
   }
+}
 
-  .contract {
+.contract {
+  display: flex;
+  flex-direction: column;
+
+  .contract__info {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
 
-    .contract__info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
+  .border {
+    padding: 10px 25px;
+    border: 3px solid var(--c-primary);
+    border-radius: 8px;
+  }
 
-    .border {
-      padding: 10px 25px;
-      border: 3px solid var(--c-primary);
-      border-radius: 8px;
-    }
+  .device-info {
+    border-top: 3px solid var(--c-primary);
+    text-align: center;
 
-    .device-info {
-      border-top: 3px solid var(--c-primary);
-      text-align: center;
+    a {
+      text-decoration: none;
+      color: black;
     }
   }
 }

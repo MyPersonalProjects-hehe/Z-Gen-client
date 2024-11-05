@@ -15,6 +15,7 @@ import { SERVER_URL } from '../../constants/ServerURL';
 import { UserContext } from '../../context/UserContext';
 import Contract from '../../interfaces/contract';
 import Admin from '../../components/account/admin/Admin';
+import contractPDF from '../../assets/ZGen Telecom Providers.pdf';
 
 function AccountPage() {
   const userContext = useContext(UserContext);
@@ -132,9 +133,15 @@ function AccountPage() {
                             <EuroCircleOutlined />
                           </h2>
                         )}
-                        <h2>
-                          Contract: <FilePdfOutlined />
-                        </h2>
+                        <a
+                          href={contractPDF}
+                          download='Contract'
+                          target='_blank'
+                        >
+                          <h2>
+                            Contract: <FilePdfOutlined />
+                          </h2>
+                        </a>
                       </>
                     )}
                   </div>
