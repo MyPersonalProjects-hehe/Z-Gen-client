@@ -27,7 +27,8 @@ function MenuComponent({ setSelectedFilterValue }: MenuComponentProp) {
         { key: '12', label: 'Motorola' },
         { key: '13', label: 'Iphone' },
         { key: '14', label: 'Huawei' },
-        { key: '15', label: 'Clear filters' },
+        { key: '15', label: 'Accessories' },
+        { key: '16', label: 'Clear filters' },
       ],
     },
     {

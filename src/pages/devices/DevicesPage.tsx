@@ -41,6 +41,7 @@ function DevicesPage() {
   useEffect(() => {
     let devices = [...allDevices].reverse();
     setCurrentPage(1);
+
     switch (selectedFilterValue) {
       case 'Clear filters':
         setFilteredDevices(devices);
@@ -60,6 +61,13 @@ function DevicesPage() {
             Number(deviceA.RAM.split('/')[0])
         );
         setFilteredDevices(devices);
+        break;
+      case 'Accessories':
+        devices = devices.filter((device: Device) =>
+          device.model.includes('watch')
+        );
+        setFilteredDevices(devices);
+
         break;
       default:
         devices = devices.filter((device: Device) =>
