@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
+import logo from '../../assets/logo.png';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -85,7 +86,8 @@ function Navbar() {
       userContext?.setSession(false);
       deviceContext?.setDevicePicked((prev) => !prev);
       localStorage.removeItem('device');
-      navigate('/');
+      localStorage.removeItem('plan');
+      navigate('/signUp');
     }
   }
 
@@ -97,7 +99,10 @@ function Navbar() {
             className='nav__link '
             to='/'
           >
-            ZGen
+            <img
+              src={logo}
+              alt=''
+            />
           </NavLink>
         </div>
 
