@@ -1,18 +1,18 @@
 .footer-body {
-  position: absolute;
   display: flex;
-  justify-content: space-evenly;
   background: url('../../assets/plan-cards/regular-card.jpg') no-repeat
     center/100%;
   width: 100%;
   margin-top: 12rem;
-  padding: 5rem 8rem;
+  padding: 5rem 2rem;
   color: white;
 
   .info {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    gap: 6rem;
+    justify-content: space-evenly;
+    width: 100%;
 
     a {
       text-decoration: none;
@@ -21,10 +21,8 @@
   }
 
   img {
-    width: 10rem;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    width: 8rem;
   }
 
   p {
