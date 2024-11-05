@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import DeviceLongForm from './forms/DeviceLongForm';
-import DeviceShortForm from './forms/DeviceShortForm';
-import { SERVER_URL } from '../../../constants/ServerURL';
+import { SERVER_URL } from '../../../../../constants/ServerURL';
+import DeviceShortForm from './DeviceShortForm';
+import DeviceLongForm from './DeviceLongForm';
 
 function UploadDeviceForm() {
   const [models, setModels] = useState([]);

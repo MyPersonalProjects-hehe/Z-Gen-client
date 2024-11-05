@@ -9,9 +9,9 @@ import {
   notification,
   Select,
 } from 'antd';
-import { SERVER_URL } from '../../../constants/ServerURL';
-import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 import { FrownOutlined, SmileOutlined } from '@ant-design/icons';
+import { SERVER_URL } from '../../../../constants/ServerURL';
+import { openNotification } from '../../../../helpers/notifications-functions/openNotification';
 
 const formItemLayout = {
   labelCol: {

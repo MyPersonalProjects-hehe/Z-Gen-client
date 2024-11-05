@@ -15,7 +15,7 @@ export const showModal = (setOpen: any) => {
   setOpen(true);
 };
 
-export const handleOk = async ({
+export const uploadContract = async ({
   setModalText,
   setConfirmLoading,
   setOpen,
@@ -37,6 +37,7 @@ export const handleOk = async ({
         setConfirmLoading(false);
         setIsFinished(true);
         localStorage.removeItem('device');
+        localStorage.removeItem('plan');
       }, 3000);
     } else {
       setIsFinished(false);
