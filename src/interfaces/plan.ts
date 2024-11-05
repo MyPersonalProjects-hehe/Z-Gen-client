@@ -11,7 +11,6 @@ export interface Plan {
   MB: any;
   MBps: number;
   price: string;
-  cards: string;
 }
 
 export interface AllPlans {
