@@ -96,3 +96,21 @@
     }
   }
 }
+
+.trusted__telecom {
+  position: relative;
+  img {
+    width: 100%;
+    height: 24rem;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+
+  h2 {
+    position: absolute;
+    font-size: 2rem;
+    top: 8rem;
+    left: 8rem;
+    color: white;
+  }
+}

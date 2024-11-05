@@ -5,13 +5,14 @@ import samsungImage from '../../assets/home/samsung-image.jpg';
 import huaweiImage from '../../assets/home/huawei-image.jpeg';
 import { Button, ConfigProvider } from 'antd';
 import { SERVER_URL } from '../../constants/ServerURL';
-import poster from '../../assets/home/transparent-img.png';
+import transparentImg from '../../assets/home/transparent-img.png';
 import {
   CarOutlined,
   FilePdfOutlined,
   PercentageOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import corporate from '../../assets/home/corporate.jpg';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function HomePage() {
             We make life more stylish every contract at a time
           </h1>
           <img
-            src={poster}
+            src={transparentImg}
             alt='poster'
           />
         </div>
@@ -92,6 +93,19 @@ function HomePage() {
               <PercentageOutlined /> Special discounts
             </span>
           </div>
+        </div>
+
+        <div className='trusted__telecom'>
+          <img
+            src={corporate}
+            alt=''
+          />
+          <h2>
+            At ZGen, we are proud to be a trusted telecom provider for leading
+            companies worldwide. <br />
+            Our commitment to innovation and reliability has made us the partner
+            of choice for enterprises seeking seamless, high-speed connectivity.
+          </h2>
         </div>
       </div>
     </ConfigProvider>
