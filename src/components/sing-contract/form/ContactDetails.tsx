@@ -10,15 +10,15 @@ import {
 } from 'antd';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 import { EuroCircleOutlined, SmileOutlined } from '@ant-design/icons';
-import { ContactInfo } from '../../../interfaces/contactInfo';
 import { useContext } from 'react';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
 import { Device } from '../../../interfaces/device';
 import { Plan } from '../../../interfaces/plan';
 import { UserContext } from '../../../context/UserContext';
+import { ContractInfo } from '../../../interfaces/contractInfo';
 
 interface ContactDetailsProps {
-  form: ContactInfo;
+  form: ContractInfo;
   setForm: any;
   device: Device | null;
   plan: Plan | null;
@@ -36,6 +36,9 @@ function ContactDetails({
   const [api, contextHolder] = notification.useNotification();
   const isDevicePicked = useContext(DeviceContext);
   const userContext = useContext(UserContext);
+  const monthlyDevicePrice = plan?.discountForDevice
+    ? Math.ceil((device?.price - plan.discountForDevice) / 24)
+    : '';
 
   const updateForm = (e: any, prop: any) => {
     setForm({
@@ -129,29 +132,34 @@ function ContactDetails({
           </Form.Item>
           {isDevicePicked && device && (
             <>
-              <Form.Item
-                label='Type of payment'
-                name='typeOfPayment'
-                rules={[{ required: true }]}
-              >
-                <Select
-                  className='input'
-                  options={[
-                    { label: 'Cash', value: 'cash' },
-                    { label: 'By card', value: 'byCard' },
-                    {
-                      label: (
-                        <>
-                          Monthly installment agreement -{' '}
-                          {Math.ceil(device.price / 24)}
-                          <EuroCircleOutlined />
-                        </>
-                      ),
-                      value: 'Monthly installment agreement',
-                    },
-                  ]}
-                />
-              </Form.Item>
+              {monthlyDevicePrice ? (
+                <Form.Item
+                  label='Type of payment'
+                  name='typeOfPayment'
+                  rules={[{ required: true }]}
+                >
+                  <Select
+                    className='input'
+                    options={[
+                      { label: 'Cash', value: 'cash' },
+                      { label: 'By card', value: 'byCard' },
+                      {
+                        label: (
+                          <>
+                            Monthly installment agreement -{' '}
+                            <EuroCircleOutlined />
+                          </>
+                        ),
+                        value: 'Monthly installment agreement',
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              ) : (
+                <>
+                  <p>Device is free!</p>
+                </>
+              )}
             </>
           )}
 
