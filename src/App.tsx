@@ -24,14 +24,14 @@ import Contract from './interfaces/contract.ts';
 import ResultPage from './pages/result/ResultPage.tsx';
 
 function App() {
+  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState(false);
-  const [device, setDevice] = useState<boolean>(false);
-  const [planId, setPlanId] = useState('');
-  const [isEligible, setIsEligible] = useState(false);
   const [contract, setContract] = useState<Contract | null>(null);
   const [dateOfEligibility, setDateOfEligibility] = useState<Date | string>('');
-  const navigate = useNavigate();
+  const [isDevicePicked, setDevicePicked] = useState(false);
+  const [isEligible, setIsEligible] = useState(false);
+  const [session, setSession] = useState(false);
+  const [planId, setPlanId] = useState('');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -46,7 +46,7 @@ function App() {
     };
 
     fetchUser();
-  }, [session, device, planId]);
+  }, [session]);
 
   useEffect(() => {
     if (user) {
@@ -73,25 +73,21 @@ function App() {
           dateOfEligibility.setMonth(dateOfContract.getMonth() + 2);
           setDateOfEligibility(dateOfEligibility.toLocaleDateString());
 
-          if (
-            user.email === response.data.contract[0].email &&
-            dateOfLogging.getTime() === dateOfEligibility.getTime()
-          ) {
-            setIsEligible(true);
-          } else {
-            /**If there is a signed contract but its not the eligibility date */
-            setIsEligible(false);
-          }
+          /**If there is a signed contract with eligibility date
+           * and without eligibility date
+           */
+          user.email === response.data.contract[0].email &&
+          dateOfLogging.getTime() === dateOfEligibility.getTime()
+            ? setIsEligible(true)
+            : setIsEligible(false);
         } else {
           /**If there is no signed contract */
           setIsEligible(true);
         }
       };
       setItems();
-    } else {
-      localStorage.removeItem('user');
     }
-  }, [user, session]);
+  }, [user, session, isDevicePicked]);
 
   return (
     <>
@@ -105,10 +101,13 @@ function App() {
       >
         <UserContext.Provider value={{ user, setUser, setSession }}>
           <DeviceContext.Provider
-            value={{ isDevicePicked: device, setDevicePicked: setDevice }}
+            value={{
+              isDevicePicked: isDevicePicked,
+              setDevicePicked: setDevicePicked,
+            }}
           >
             <ScrollTop>
-              {planId && user && (
+              {planId && user && isEligible && (
                 <Tooltip
                   placement='topLeft'
                   title='Signing contract in progress'
