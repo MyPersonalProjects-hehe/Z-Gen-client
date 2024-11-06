@@ -1,4 +1,4 @@
-export interface ContactInfo {
+export interface ContractInfo {
   fullName: string;
   address: string;
   typeOfPayment: string;

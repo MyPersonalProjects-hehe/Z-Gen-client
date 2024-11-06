@@ -23,14 +23,12 @@ import PlanCard from '../../components/plans/plan-card/PlanCard';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 import { EligibleUser } from '../../context/EligibleUser';
-import { UserContext } from '../../context/UserContext';
 
 function SingContractPage() {
   const navigate = useNavigate();
   const { contractId } = useParams();
   const deviceContext = useContext(DeviceContext);
   const eligibleUser = useContext(EligibleUser);
-  const userContext = useContext(UserContext);
   const [device, setDevice] = useState<Device | null>(null);
   const [planCard, setPlanCard] = useState<Plan | null>(null);
   /**State for checking when form is completed */
@@ -122,7 +120,7 @@ function SingContractPage() {
                 },
                 {
                   title: 'Waiting',
-                  description: 'e',
+                  description: 'Sign contract',
                   icon: <ExclamationCircleOutlined />,
                 },
               ]}
@@ -215,13 +213,12 @@ function SingContractPage() {
                     setModalText: setModalText,
                     setConfirmLoading: setConfirmLoading,
                     setOpen: setOpen,
-                    modalText: 'Signing contract',
-                    contactInfo: form,
                     navigate: navigate,
-                    contractId: contractId,
-                    setSession: userContext?.setSession || (() => {}),
                     setDevicePicked:
                       deviceContext?.setDevicePicked || (() => {}),
+                    modalText: 'Signing contract',
+                    contractInfo: form,
+                    contractId: contractId,
                   })
                 }
                 confirmLoading={confirmLoading}

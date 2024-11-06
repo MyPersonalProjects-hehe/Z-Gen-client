@@ -1,17 +1,16 @@
 import axios from 'axios';
-import { ContactInfo } from '../../interfaces/contactInfo';
 import { SERVER_URL } from '../../constants/ServerURL';
+import { ContractInfo } from '../../interfaces/contractInfo';
 
 interface ModalProps {
   setModalText: (value: string) => void;
   setConfirmLoading: (value: boolean) => void;
   setOpen: (value: boolean) => void;
+  setDevicePicked: (value: any) => void;
   modalText: string;
-  contactInfo: ContactInfo;
+  contractInfo: ContractInfo;
   navigate: any;
   contractId: string | undefined;
-  setSession: (value: boolean) => void;
-  setDevicePicked: (value: any) => void;
 }
 
 export const showModal = (setOpen: any) => {
@@ -22,26 +21,28 @@ export const uploadContract = async ({
   setModalText,
   setConfirmLoading,
   setOpen,
+  setDevicePicked,
   modalText,
-  contactInfo,
+  contractInfo,
   navigate,
   contractId,
-  setSession,
-  setDevicePicked,
 }: ModalProps) => {
   try {
     setModalText(modalText);
     setConfirmLoading(true);
 
-    const result = await axios.post(SERVER_URL('uploadContract'), contactInfo, {
-      withCredentials: true,
-    });
+    const result = await axios.post(
+      SERVER_URL('uploadContract'),
+      contractInfo,
+      {
+        withCredentials: true,
+      }
+    );
 
     if (result.status === 200) {
       setTimeout(() => {
         setOpen(false);
         setConfirmLoading(false);
-        setSession(true);
         setDevicePicked((prev: boolean) => !prev);
         localStorage.removeItem('device');
         localStorage.removeItem('plan');
