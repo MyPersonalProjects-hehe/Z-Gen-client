@@ -38,6 +38,7 @@ function PlanCard({
     } else {
       navigate(`/signContract/${planId}`);
       localStorage.setItem('plan', JSON.stringify(plan?._id));
+      deviceContext?.setDevicePicked((prev: boolean) => !prev);
     }
   };
 
