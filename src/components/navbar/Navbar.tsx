@@ -21,7 +21,8 @@ function Navbar() {
   const deviceContext = useContext(DeviceContext);
 
   useEffect(() => {
-    /*Use local storage and context provider to display notification without refresh*/
+    /*Use local storage and context provider
+     to display notification without refresh*/
     const deviceUnparsed = localStorage.getItem('device');
     const deviceParsed = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
     setDevice(deviceParsed);
@@ -40,6 +41,11 @@ function Navbar() {
       navigate('/signUp');
     }
   }
+
+  const removeDevice = () => {
+    localStorage.removeItem('device');
+    deviceContext?.setDevicePicked((prev: boolean) => !prev);
+  };
 
   const items: MenuProps['items'] = [
     {
@@ -68,9 +74,15 @@ function Navbar() {
           )}
         </>
       ),
+      children: [
+        {
+          key: '2',
+          label: <span onClick={removeDevice}>Remove stored device ?</span>,
+        },
+      ],
     },
     {
-      key: '2',
+      key: '3',
       label: (
         <>
           <span onClick={() => navigate('/account')}>
@@ -80,7 +92,7 @@ function Navbar() {
       ),
     },
     {
-      key: '3',
+      key: '4',
       label: (
         <>
           <span onClick={logout}>
