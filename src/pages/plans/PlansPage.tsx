@@ -11,10 +11,7 @@ import PlanCard from '../../components/plans/plan-card/PlanCard';
 
 function PlansPage() {
   const [allPlans, setAllPlans] = useState([]);
-  /**
-   false is for regular plans
-   true is for corporate plans
-   */
+  /*false is for regular plans true is for corporate plans*/
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -27,15 +24,15 @@ function PlansPage() {
         );
 
         if (toggle) {
-          const corporate = sortedPlans.filter(
+          const filteredPlans = sortedPlans.filter(
             (plan: Plan) => plan.typeOfPlan === 'corporate'
           );
-          setAllPlans(corporate || []);
+          setAllPlans(filteredPlans || []);
         } else {
-          const corporate = sortedPlans.filter(
+          const filteredPlans = sortedPlans.filter(
             (plan: Plan) => plan.typeOfPlan === 'regular'
           );
-          setAllPlans(corporate || []);
+          setAllPlans(filteredPlans || []);
         }
       } catch (error) {
         console.log(error);
