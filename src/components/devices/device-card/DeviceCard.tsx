@@ -12,19 +12,21 @@ import {
 import { UserContext } from '../../../context/UserContext';
 import skeletonImage from '../../../assets/skeleton.png';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
+import { EligibleUser } from '../../../context/EligibleUser';
 
 interface DeviceProp {
   device: Device;
 }
 
 function DeviceCard({ device }: DeviceProp) {
+  const navigate = useNavigate();
   const deviceContext = useContext(DeviceContext);
   const userContext = useContext(UserContext);
+  const eligibilityContext = useContext(EligibleUser);
   const [api, contextHolder] = notification.useNotification();
-  const navigate = useNavigate();
 
   const storeChosenDevice = (device: Device) => {
-    if (device && userContext?.user) {
+    if (device && userContext?.user && eligibilityContext?.isEligible) {
       localStorage.setItem('device', JSON.stringify(device));
       deviceContext?.setDevicePicked((prev) => !prev);
       openNotification({
@@ -32,6 +34,13 @@ function DeviceCard({ device }: DeviceProp) {
         icon: <SmileOutlined />,
         message: 'Success',
         description: 'Device stored!',
+      });
+    } else if (!eligibilityContext?.isEligible && userContext?.user) {
+      openNotification({
+        api: api,
+        icon: <WarningOutlined />,
+        message: 'Warning',
+        description: 'You are not eligible for device purchasing!',
       });
     } else {
       openNotification({
