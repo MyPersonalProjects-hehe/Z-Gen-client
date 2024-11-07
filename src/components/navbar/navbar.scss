@@ -11,7 +11,7 @@
 
   .links {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-end;
     z-index: 1;
     width: 100%;
@@ -44,4 +44,19 @@
 
 .avatar:hover {
   cursor: pointer;
+}
+
+.drawer {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .drawer {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .navbar .links {
+    display: none;
+  }
 }

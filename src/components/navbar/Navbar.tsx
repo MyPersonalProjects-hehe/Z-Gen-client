@@ -13,6 +13,7 @@ import {
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 import logo from '../../assets/logo.png';
+import DrawerComponent from '../drawer/Drawer';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -158,6 +159,13 @@ function Navbar() {
             </NavLink>
           )}
         </div>
+      </div>
+      <div className='drawer'>
+        <DrawerComponent
+          device={device}
+          logout={logout}
+          removeDevice={removeDevice}
+        />
       </div>
     </div>
   );

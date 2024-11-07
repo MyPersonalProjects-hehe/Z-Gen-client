@@ -1,0 +1,24 @@
+.drawer {
+  gap: 20rem;
+}
+
+.drawer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: x-large;
+
+  .link {
+    color: black;
+  }
+
+  .logout-btn {
+    cursor: pointer;
+  }
+}
+
+.drawer-logo {
+  img {
+    width: 6rem;
+  }
+}
