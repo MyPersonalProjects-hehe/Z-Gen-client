@@ -6,6 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Avatar, Badge, Dropdown, MenuProps, Tooltip } from 'antd';
 import {
+  CloseOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
   UserOutlined,
@@ -75,12 +76,23 @@ function Navbar() {
           )}
         </>
       ),
-      children: [
-        {
-          key: '2',
-          label: <span onClick={removeDevice}>Remove stored device ?</span>,
-        },
-      ],
+    },
+    {
+      key: '2',
+      label: (
+        <>
+          {device && (
+            <span onClick={removeDevice}>
+              <Tooltip
+                placement='topLeft'
+                title='Remove stored device?'
+              >
+                <CloseOutlined style={{ fontSize: 25 }} />
+              </Tooltip>
+            </span>
+          )}
+        </>
+      ),
     },
     {
       key: '3',
