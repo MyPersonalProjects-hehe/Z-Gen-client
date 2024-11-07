@@ -1,4 +1,4 @@
-<img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="20"><h1>Telecom Providers</h1>
+<img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers**
 An Application for telecom provider service, created with MERN stack.
 Because of my quriosity for backend functionallity, i decided to build this app using Express and MongoDB.
 
