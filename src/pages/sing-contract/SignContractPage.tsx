@@ -9,7 +9,6 @@ import { Button, Checkbox, ConfigProvider, Modal, Spin, Steps } from 'antd';
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
-  PlusCircleOutlined,
   SmileOutlined,
 } from '@ant-design/icons';
 import ContactDetails from '../../components/sing-contract/form/ContactDetails';
@@ -137,7 +136,6 @@ function SingContractPage() {
                   signContractPage={true}
                 />
               </div>
-              <PlusCircleOutlined className='plus-icon' />
               <div className='chosen-device'>
                 <ChosenDevice
                   planCard={planCard}

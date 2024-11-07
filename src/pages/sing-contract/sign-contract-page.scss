@@ -1,27 +1,22 @@
 .sign-contract-body {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  padding: 10rem 0rem;
   justify-content: center;
   align-items: center;
+  padding: 10rem 0rem;
   gap: 3rem;
+
+  .progress {
+    width: 34rem;
+  }
 
   .picked__items {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
+    text-align: center;
+    gap: 8rem;
   }
-}
-
-.progress {
-  width: 34rem;
-}
-
-.plus-icon {
-  font-size: 2.5rem;
-  color: var(--c-secondary);
 }
 
 .text-block {
