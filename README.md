@@ -1,10 +1,9 @@
-<img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers**
-An Application for telecom provider service, created with MERN stack.
-Because of my quriosity for backend functionallity, i decided to build this app using Express and MongoDB.
+<img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers** </br/>
+
+An Application for telecom providing, contract signing and buying devices.
+Because of my quriosity for backend functionallity, I decided to build this app using **MERN** stack. Both MongoDB and Express are entirely new to me, but as my previous project you may have noticed that I am open to new technologies, as my wish is to explore as much as I can.
 
 
-
-Since it is challenging to find up-to-date information about Angular's updates, I welcome any advice or suggestions, especially from those with Angular experience. 📚 <br/>
 
 
 <h1>Due to security measures content uploading/deleting is denied! Functionality can be granted at any time!</h1>
