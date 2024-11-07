@@ -15,7 +15,7 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 <img src="https://firebasestorage.googleapis.com/v0/b/dare2fit-f6eb4.appspot.com/o/assets%2FREADME-images%2Ffeatures.png?alt=media&token=e5fc5779-b3db-41c2-a576-947ca382ea5a&_gl=1*81oei1*_ga*MjExMzk5MTA5MC4xNjgzMjcwMjg1*_ga_CW55HF8NVT*MTY4NjU3Njg5Ni4xMDMuMS4xNjg2NTc3OTgzLjAuMC4w"  width="30" height="30">Stack: <br/>
 
 **Languages:** <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" height="20"> <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/TS-logo.png" height="20" > <br />
-**Frameworks/Libraries:** <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/angular-logo.png" height="30"> <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/primeng-icon.png" height="30"> <br/>
+**Frameworks/Libraries:** <img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/readme-images/React.png" height="30"> <img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/readme-images/Express.png" height="30" > <br/>
 **Styles:** <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/SCSS-icon.png" height="30">
 
 **Databases:** <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" height="20">
