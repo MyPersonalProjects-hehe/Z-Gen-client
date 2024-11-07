@@ -6,13 +6,13 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 
 
-<h1>Ready to dive in?</h1>
+<h2>Ready to dive in?</h2>
 
 <h1>Functionalities:</h1>
-<h2>Each user after registering can sign a contract with or without a device.</h2>
-<h2>Downloading a copy of the contract</h2>
-<h2>Each user can track their contract length or their eligibility for the next available date for new contract signing</h2>
-## <img src="https://firebasestorage.googleapis.com/v0/b/dare2fit-f6eb4.appspot.com/o/assets%2FREADME-images%2Ffeatures.png?alt=media&token=e5fc5779-b3db-41c2-a576-947ca382ea5a&_gl=1*81oei1*_ga*MjExMzk5MTA5MC4xNjgzMjcwMjg1*_ga_CW55HF8NVT*MTY4NjU3Njg5Ni4xMDMuMS4xNjg2NTc3OTgzLjAuMC4w"  width="30" height="30"> Stack
+<h3>Each user after registering can sign a contract with or without a device.</h3>
+<h3>Downloading a copy of the contract</h3>
+<h3>Each user can track their contract length or their eligibility for the next available date for new contract signing</h3>
+<img src="https://firebasestorage.googleapis.com/v0/b/dare2fit-f6eb4.appspot.com/o/assets%2FREADME-images%2Ffeatures.png?alt=media&token=e5fc5779-b3db-41c2-a576-947ca382ea5a&_gl=1*81oei1*_ga*MjExMzk5MTA5MC4xNjgzMjcwMjg1*_ga_CW55HF8NVT*MTY4NjU3Njg5Ni4xMDMuMS4xNjg2NTc3OTgzLjAuMC4w"  width="30" height="30"> Stack
 
 **Languages:** <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" height="20"> <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/TS-logo.png" height="20" > <br />
 **Frameworks/Libraries:** <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/angular-logo.png" height="30"> <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/primeng-icon.png" height="30"> <br/>
