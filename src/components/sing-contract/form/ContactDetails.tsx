@@ -38,7 +38,7 @@ function ContactDetails({
   const userContext = useContext(UserContext);
   const monthlyDevicePrice = plan?.discountForDevice
     ? Math.ceil((device?.price - plan.discountForDevice) / 24)
-    : '';
+    : 0;
 
   const updateForm = (e: any, prop: any) => {
     setForm({
@@ -132,7 +132,7 @@ function ContactDetails({
           </Form.Item>
           {isDevicePicked && device && (
             <>
-              {monthlyDevicePrice ? (
+              {monthlyDevicePrice > 0 ? (
                 <Form.Item
                   label='Type of payment'
                   name='typeOfPayment'
