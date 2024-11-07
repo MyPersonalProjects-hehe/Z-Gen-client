@@ -1,5 +1,5 @@
 import './account-page.scss';
-import { Progress, Result } from 'antd';
+import { Result } from 'antd';
 import pngImage from '../../assets/account/account-page.png';
 import {
   EuroCircleOutlined,
@@ -33,37 +33,6 @@ function AccountPage() {
               />
 
               <div className='details'>
-                <div className='progress'>
-                  <span>
-                    <h2>MB</h2>
-                    <Progress
-                      percent={100}
-                      type='line'
-                      strokeColor={'#7e31a1'}
-                      status='exception'
-                    />
-                  </span>
-                  <Progress
-                    percent={31}
-                    type='circle'
-                    strokeColor={'#7e31a1'}
-                  />
-
-                  <span>
-                    <h2>Minutes</h2>
-                    <Progress
-                      percent={20}
-                      type='line'
-                      strokeColor={'#7e31a1'}
-                    />
-                  </span>
-                  <Progress
-                    percent={20}
-                    type='circle'
-                    strokeColor={'#7e31a1'}
-                  />
-                </div>
-
                 <h1 className='contract-name'>
                   Contract {eligibleUser?.contract?.plan.nameOfPlan}
                 </h1>
