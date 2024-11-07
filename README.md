@@ -1,4 +1,4 @@
-# 
+<img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="20"> Telecom Providers
 
 This is a small testing application developed to explore the basics of Angular. The idea of creating a travel forum stemmed from my love for travel. ✈️ I decided to build this project using Angular and TypeScript, both of which are new to me. Through this project, I aimed to identify similarities between Angular and React, but I found them to be very different frameworks.
 
