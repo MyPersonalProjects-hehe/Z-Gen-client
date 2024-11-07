@@ -24,17 +24,16 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 To install and run the project, follow these steps:
 
-1. Clone the [
-   MyPersonalProjects-hehe Travel-Forum _GitHub repository_] https://github.com/MyPersonalProjects-hehe/Travel-Forum.git](https://github.com/MyPersonalProjects-hehe/Z-Gen.git) locally:
+1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen.git locally:
 
 ```bash
-git clone https://github.com/MyPersonalProjects-hehe/Travel-Forum.git
+git clone https://github.com/MyPersonalProjects-hehe/Z-Gen.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd Travel-Forum
+cd Z-Gen/client
 ```
 
 3. Install project dependencies:
@@ -46,12 +45,11 @@ npm install
 4. To run the project, use the following command:
 
 ```bash
-ng serve
+npm run dev
 ```
 
 5. Open localhost link in browser to view web-platform.
 
-http://localhost:4200/ <br />
+http://localhost:5173/ <br />
 
-I have many ideas that I want to fulfill, but they are still in progress. I hope you enjoy my small project, and of course, feel free to reach out to me with any improvements! 🌟 <br />
-
+Hope you enjoy!
