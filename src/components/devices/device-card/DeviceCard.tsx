@@ -67,7 +67,7 @@ function DeviceCard({ device }: DeviceProp) {
         src={device.mainImage}
         alt={skeletonImage}
       />
-      <h2>{device.RAM}</h2>
+      <h3>{device.RAM}</h3>
       <h2 className='price'>
         {device.price} <EuroCircleOutlined />{' '}
       </h2>
