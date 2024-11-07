@@ -1,6 +1,6 @@
 <img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers** <br/>
 
-An Application for telecom providing, contract signing and buying devices. <br/>
+An Application for telecom provider.<br/>
 Because of my quriosity for backend functionallity, I decided to build this app using **MERN** stack. Both MongoDB and Express are entirely new to me, but as my previous project you may have noticed that I am open to new technologies, as my wish is to explore as much as I can.
 
 
@@ -25,7 +25,7 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 To install and run the project, follow these steps:
 
 1. Clone the [
-   MyPersonalProjects-hehe Travel-Forum _GitHub repository_] https://github.com/MyPersonalProjects-hehe/Travel-Forum.git locally:
+   MyPersonalProjects-hehe Travel-Forum _GitHub repository_] https://github.com/MyPersonalProjects-hehe/Travel-Forum.git](https://github.com/MyPersonalProjects-hehe/Z-Gen.git) locally:
 
 ```bash
 git clone https://github.com/MyPersonalProjects-hehe/Travel-Forum.git
