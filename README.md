@@ -6,16 +6,12 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 
 
-<h1>Due to security measures content uploading/deleting is denied! Functionality can be granted at any time!</h1>
+<h1>Ready to dive in?</h1>
 
-
-<h2> Functionalities 🛠️</h2>
-
-<h4>User Registration: </h4> Users can register and access all posts. 📝 <br />
-<h4>Post Interaction: </h4> Each post can be liked 👍 or commented 💬.   <br />
-<h4>Personal Posts: </h4> Users can upload their own posts. For example, if you've recently been on a trip, you can share your experience with the rest of the community. (Due to issues with Firebase Storage, users must upload photos via URL.) 🖼️  <br />
-<h4>Account Management: </h4> Users can update their account information. 🔄 <br />
-
+<h1>Functionalities:</h1>
+<h2>Each user after registering can sign a contract with or without a device.</h2>
+<h2>Downloading a copy of the contract</h2>
+<h2>Each user can track their contract length or their eligibility for the next available date for new contract signing</h2>
 ## <img src="https://firebasestorage.googleapis.com/v0/b/dare2fit-f6eb4.appspot.com/o/assets%2FREADME-images%2Ffeatures.png?alt=media&token=e5fc5779-b3db-41c2-a576-947ca382ea5a&_gl=1*81oei1*_ga*MjExMzk5MTA5MC4xNjgzMjcwMjg1*_ga_CW55HF8NVT*MTY4NjU3Njg5Ni4xMDMuMS4xNjg2NTc3OTgzLjAuMC4w"  width="30" height="30"> Stack
 
 **Languages:** <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" height="20"> <img src="https://github.com/MyPersonalProjects-hehe/Travel-Forum/blob/main/images/TS-logo.png" height="20" > <br />
