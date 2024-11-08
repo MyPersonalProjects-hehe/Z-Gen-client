@@ -28,6 +28,8 @@ function Login({ setToggleScroll }: LoginProps) {
 
   const loginUser = async () => {
     try {
+      console.log(user);
+
       const response = await axios.post(
         SERVER_URL('loginUser'),
         { user },
