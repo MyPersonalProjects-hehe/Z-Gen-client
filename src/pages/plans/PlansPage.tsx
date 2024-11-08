@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Plan } from '../../interfaces/plan';
 import { SERVER_URL } from '../../constants/ServerURL';
-import { ConfigProvider, Segmented } from 'antd';
+import { ConfigProvider, Segmented, Spin } from 'antd';
 import TermsOfContract from '../../components/plans/terms/TermsOfContract';
 import StepsHeading from '../../components/plans/steps/Steps-heading';
 import WhyChooseUs from '../../components/plans/why-choose-us/WhyChooseUs';
@@ -13,6 +13,7 @@ function PlansPage() {
   const [allPlans, setAllPlans] = useState([]);
   /*false is for regular plans true is for corporate plans*/
   const [toggle, setToggle] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllPlans = async () => {
@@ -34,6 +35,7 @@ function PlansPage() {
           );
           setAllPlans(filteredPlans || []);
         }
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -68,16 +70,20 @@ function PlansPage() {
       </div>
 
       <h2>Plans for new customers: </h2>
-      <div className='plans'>
-        {allPlans?.map((plan: Plan) => (
-          <div key={plan._id}>
-            <PlanCard
-              plan={plan}
-              isCorporate={toggle}
-            />
-          </div>
-        ))}
-      </div>
+      {loading ? (
+        <Spin size='large'>Loading</Spin>
+      ) : (
+        <div className='plans'>
+          {allPlans?.map((plan: Plan) => (
+            <div key={plan._id}>
+              <PlanCard
+                plan={plan}
+                isCorporate={toggle}
+              />
+            </div>
+          ))}
+        </div>
+      )}
 
       <WhyChooseUs />
 
