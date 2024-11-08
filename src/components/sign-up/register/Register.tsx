@@ -46,12 +46,14 @@ function Register() {
         navigate('/');
       }
     } catch (error: any) {
-      const errorMessage = error.response.data.message[0].message;
+      console.log(error);
+
+      // const errorMessage = error.response.data.message[0].message;
       openNotification({
         api: api,
         icon: <FrownOutlined />,
         message: 'Warning!',
-        description: `Error: ${errorMessage}`,
+        description: `Error: ${error.message}`,
       });
     }
   };
