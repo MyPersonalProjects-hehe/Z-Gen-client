@@ -35,6 +35,8 @@ function Login({ setToggleScroll }: LoginProps) {
         { user },
         { withCredentials: true }
       );
+      console.log(response.status);
+
       if (response.status === 200) {
         userContext?.setSession(true);
         navigate('/');

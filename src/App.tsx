@@ -46,6 +46,8 @@ function App() {
     };
 
     fetchUser();
+    console.log(user);
+    console.log(session, 'session');
   }, [session]);
 
   useEffect(() => {
