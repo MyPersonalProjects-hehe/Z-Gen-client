@@ -1,9 +1,7 @@
-import axios from 'axios';
 import './navbar.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { SERVER_URL } from '../../constants/ServerURL';
 import { Avatar, Badge, Dropdown, MenuProps, Tooltip } from 'antd';
 import {
   CloseOutlined,
@@ -30,16 +28,16 @@ function Navbar() {
     setDevice(deviceParsed);
   }, [deviceContext?.isDevicePicked]);
 
-  async function logout() {
-    const response = await axios.get(SERVER_URL('logout'), {
-      withCredentials: true,
-    });
-    if (response.status === 200) {
+  function logout() {
+    const userUnparsed = localStorage.getItem('user');
+    const user = userUnparsed ? JSON.parse(userUnparsed) : '';
+    if (user) {
       userContext?.setUser?.(null);
       userContext?.setSession(false);
       deviceContext?.setDevicePicked((prev) => !prev);
       localStorage.removeItem('device');
       localStorage.removeItem('plan');
+      localStorage.removeItem('user');
       navigate('/signUp');
     }
   }

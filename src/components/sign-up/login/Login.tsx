@@ -4,14 +4,16 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../../constants/ServerURL';
 import { UserContext } from '../../../context/UserContext';
-import { Button, ConfigProvider, Form, Input } from 'antd';
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, ConfigProvider, Form, Input, notification } from 'antd';
+import { FrownOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
+import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
 interface LoginProps {
   setToggleScroll: (value: boolean) => void;
 }
 
 function Login({ setToggleScroll }: LoginProps) {
+  const [api, contextHolder] = notification.useNotification();
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -28,21 +30,24 @@ function Login({ setToggleScroll }: LoginProps) {
 
   const loginUser = async () => {
     try {
-      console.log(user);
-
       const response = await axios.post(
         SERVER_URL('loginUser'),
         { user },
         { withCredentials: true }
       );
-      console.log(response.status);
 
       if (response.status === 200) {
         userContext?.setSession(true);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         navigate('/');
       }
     } catch (error: any) {
-      alert(error);
+      openNotification({
+        api: api,
+        icon: <FrownOutlined />,
+        message: 'Warning!',
+        description: `${error.response.data.message || error.message}`,
+      });
     }
   };
 
@@ -59,6 +64,7 @@ function Login({ setToggleScroll }: LoginProps) {
         },
       }}
     >
+      {contextHolder}
       <h1>Login</h1>
       <Form
         name='login'

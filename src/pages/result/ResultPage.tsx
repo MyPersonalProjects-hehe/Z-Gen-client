@@ -1,4 +1,4 @@
-import { Button, Result } from 'antd';
+import { Button, ConfigProvider, Result } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function ResultPage() {
@@ -6,22 +6,30 @@ function ResultPage() {
   const contractId = useParams();
 
   return (
-    <Result
-      style={{ marginTop: '10rem' }}
-      status='success'
-      title='Successfully signed contract! You can view your contract update in Account menu.'
-      subTitle={`Contract ID: ${contractId.id}`}
-      extra={[
-        <Button
-          onClick={() => navigate('/account')}
-          type='primary'
-          key='console'
-          className='btn'
-        >
-          Account
-        </Button>,
-      ]}
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#7e31a1',
+        },
+      }}
+    >
+      <Result
+        style={{ marginTop: '10rem' }}
+        status='success'
+        title='Successfully signed contract! You can view your contract update in Account menu.'
+        subTitle={`Contract ID: ${contractId.id}`}
+        extra={[
+          <Button
+            onClick={() => navigate('/account')}
+            type='primary'
+            key='console'
+            className='btn'
+          >
+            Account
+          </Button>,
+        ]}
+      />
+    </ConfigProvider>
   );
 }
 

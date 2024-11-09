@@ -33,7 +33,7 @@ function Register() {
 
   const registerUser = async () => {
     try {
-      const result: any = await axios.post(
+      const response: any = await axios.post(
         SERVER_URL('registerUser'),
         {
           userForm,
@@ -41,19 +41,19 @@ function Register() {
         { withCredentials: true }
       );
 
-      if (result.status === 201) {
+      if (response.status === 201) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         userContext?.setSession(true);
+        userContext?.setUser(response.data.user);
         navigate('/');
       }
     } catch (error: any) {
-      console.log(error);
-
-      // const errorMessage = error.response.data.message[0].message;
+      const errorMessage = error.response.data.message;
       openNotification({
         api: api,
         icon: <FrownOutlined />,
         message: 'Warning!',
-        description: `Error: ${error.message}`,
+        description: `${errorMessage || error}`,
       });
     }
   };

@@ -34,23 +34,8 @@ function App() {
   const [planId, setPlanId] = useState('');
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(SERVER_URL('user'), {
-          withCredentials: true,
-        });
-        console.log(response, 'response in app.tsx');
-
-        setUser(response.data.user);
-      } catch (error: any) {
-        console.log(error.response.data.message);
-      }
-    };
-
-    fetchUser();
-  }, [session]);
-
-  useEffect(() => {
+    const userUnparsed = localStorage.getItem('user');
+    const user = userUnparsed ? JSON.parse(userUnparsed) : '';
     if (user) {
       const setItems = async () => {
         const response = await axios.get(
@@ -59,11 +44,11 @@ function App() {
             withCredentials: true,
           }
         );
-        localStorage.setItem('user', JSON.stringify(user));
         const planUnparsed = localStorage.getItem('plan');
         const planId = planUnparsed ? JSON.parse(planUnparsed) : '';
         setPlanId(planId);
         setContract(response.data.contract[0]);
+        setUser(user);
 
         /**Checking every logged user if he is eligible
          * for new contract signing
@@ -89,7 +74,7 @@ function App() {
       };
       setItems();
     }
-  }, [user, session, isDevicePicked]);
+  }, [session, isDevicePicked]);
 
   return (
     <>

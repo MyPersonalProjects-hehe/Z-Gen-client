@@ -146,7 +146,7 @@ function ContactDetails({
                       {
                         label: (
                           <>
-                            Monthly installment agreement -{' '}
+                            Monthly installment agreement - {monthlyDevicePrice}
                             <EuroCircleOutlined />
                           </>
                         ),
