@@ -39,7 +39,7 @@ function App() {
         const response = await axios.get(SERVER_URL('user'), {
           withCredentials: true,
         });
-        console.log(response);
+        console.log(response, 'response in app.tsx');
 
         setUser(response.data.user);
       } catch (error: any) {
