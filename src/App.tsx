@@ -39,6 +39,8 @@ function App() {
         const response = await axios.get(SERVER_URL('user'), {
           withCredentials: true,
         });
+        console.log(response);
+
         setUser(response.data.user);
       } catch (error: any) {
         console.log(error.response.data.message);
