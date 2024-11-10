@@ -27,12 +27,13 @@ function HomePage() {
 
   const fetchDeviceModel = async (model: string) => {
     try {
+      setLoading(true);
       const result = await axios.get(SERVER_URL(`device/${model}`));
       const modelId = result.data.device[0]._id;
       if (modelId) {
         setLoading(false);
-        navigate(`/characteristics/${modelId}`);
       }
+      navigate(`/characteristics/${modelId}`);
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +64,7 @@ function HomePage() {
         </div>
         {loading ? (
           <div className='loading'>
-            <Spin size='large'>Loading device models please wait!</Spin>
+            <Spin size='large'>Fetching model please wait!</Spin>
           </div>
         ) : (
           <>
