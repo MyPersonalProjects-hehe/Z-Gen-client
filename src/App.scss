@@ -50,15 +50,14 @@
   align-items: center;
   color: white;
   font-size: 1.5rem;
-  padding-top: 8rem;
+  padding: 8rem 2rem 0rem;
   box-shadow: 0px 5px 10px black;
-  background: url('assets/home/sky-background.jpg') no-repeat center/100%;
+  background: url('assets/home/sky-background.jpg') no-repeat center/cover;
   background-attachment: fixed;
 
   h1 {
     text-align: center;
-    padding-left: 3rem;
-    width: 45rem;
+    max-width: 45rem;
   }
 }
 

@@ -4,7 +4,7 @@ function WhyChooseUs() {
   return (
     <div className='why-choose-us-body'>
       <h1 className='heading colored-text'>Why choose us?</h1>
-      <div className='first__node'>
+      <div className='info-block'>
         <h2>
           Every <span className='colored-text'>Unlimited Plan</span> MB and
           calls can be used free for six months outside Europe.
@@ -15,7 +15,7 @@ function WhyChooseUs() {
           alt='image'
         />
       </div>
-      <div className='second__node'>
+      <div className='info-block reverse'>
         <h2>
           No more frequent calls for retention deals! <br /> Since we are{' '}
           <span className='colored-text'>Gen-Z`s best choice</span>, most of our
@@ -26,7 +26,7 @@ function WhyChooseUs() {
           alt='image'
         />
       </div>
-      <div className='third__node'>
+      <div className='info-block'>
         <h2 className='last-text'>
           Become our regular client and we will provide you with the best
           discount for Plans.

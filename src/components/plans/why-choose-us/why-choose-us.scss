@@ -1,4 +1,7 @@
 .why-choose-us-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 80%;
   font-size: 1.3rem;
   text-align: end;
@@ -12,23 +15,27 @@
   > * {
     padding: 1rem 0rem;
     img {
-      width: 40%;
+      width: 22rem;
     }
   }
 
-  .first__node {
+  .info-block {
     display: flex;
-    flex-direction: row-reverse;
+    flex-wrap: wrap;
     align-items: center;
-  }
 
-  .second__node {
-    display: flex;
-  }
+    &.reverse {
+      flex-direction: row-reverse;
+    }
 
-  .third__node {
+    h2 {
+      max-width: 800px;
+    }
+
     .last-text {
       text-align: center;
+      max-width: 100%;
+      margin-top: 5rem;
     }
   }
 }

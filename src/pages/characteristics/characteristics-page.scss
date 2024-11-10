@@ -1,4 +1,7 @@
 .characteristics-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 10rem;
 
   .offer-heading {
@@ -16,9 +19,9 @@
   .model__info {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-evenly;
-    gap: 20px;
+    gap: 30px;
+    padding-top: 3rem;
 
     .carousel-price {
       h1 {
@@ -35,7 +38,6 @@
       border-radius: 8px;
       width: 20rem;
       padding: 2rem 1rem;
-      margin-top: 2rem;
       gap: 20px;
 
       p {
@@ -71,9 +73,7 @@
 }
 
 .characteristics {
-  padding-top: 10rem;
-  width: 80%;
-  margin: 0 auto;
+  padding: 7rem 3rem;
 
   h2 {
     text-align: center;

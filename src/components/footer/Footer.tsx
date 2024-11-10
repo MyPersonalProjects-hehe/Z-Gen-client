@@ -24,7 +24,7 @@ function Footer() {
           <h2>Contacts:</h2>
           <br />
           <span>
-            <a href=''>jechevatanq@gmail.com</a>
+            <a href='mailto:jechevatanq@gmail.com'>jechevatanq@gmail.com</a>
           </span>
         </div>
         <div className='social__links'>

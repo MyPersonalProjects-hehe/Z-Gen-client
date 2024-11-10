@@ -2,7 +2,6 @@ import './contact-details.scss';
 import {
   Button,
   ConfigProvider,
-  Flex,
   Form,
   Input,
   notification,
@@ -66,7 +65,7 @@ function ContactDetails({
       theme={{
         components: {
           Form: {
-            labelFontSize: 22,
+            labelFontSize: 16,
           },
         },
       }}
@@ -169,21 +168,20 @@ function ContactDetails({
               wrapperCol={{ offset: 6 }}
               className='buttons'
             >
-              <Flex gap='small'>
-                <Button
-                  type='primary'
-                  className='btn'
-                  htmlType='submit'
-                >
-                  Submit
-                </Button>
-                <Button
-                  className='btn'
-                  onClick={() => formComponent.resetFields()}
-                >
-                  Reset
-                </Button>
-              </Flex>
+              <Button
+                type='primary'
+                className='btn'
+                htmlType='submit'
+                style={{ margin: '0px 10px' }}
+              >
+                Submit
+              </Button>
+              <Button
+                className='btn'
+                onClick={() => formComponent.resetFields()}
+              >
+                Reset
+              </Button>
             </Form.Item>
           </>
         </Form>
