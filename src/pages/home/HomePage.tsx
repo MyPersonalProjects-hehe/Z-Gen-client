@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
     'Iphone 15',
@@ -27,11 +27,12 @@ function HomePage() {
 
   const fetchDeviceModel = async (model: string) => {
     try {
-      setLoading(true);
       const result = await axios.get(SERVER_URL(`device/${model}`));
       const modelId = result.data.device[0]._id;
-      setLoading(false);
-      navigate(`/characteristics/${modelId}`);
+      if (modelId) {
+        setLoading(false);
+        navigate(`/characteristics/${modelId}`);
+      }
     } catch (error) {
       console.log(error);
     }
