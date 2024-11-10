@@ -60,7 +60,7 @@ function HomePage() {
             alt='poster'
           />
         </div>
-        {!loading ? (
+        {loading ? (
           <div className='loading'>
             <Spin size='large'>Loading device models please wait!</Spin>
           </div>
