@@ -1,22 +1,28 @@
 .admin-body {
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 10rem;
   text-align: center;
 
   img {
-    width: 37rem;
+    width: 33rem;
   }
 
   .functionalities {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 3rem;
 
+    h1 {
+      margin-bottom: 3rem;
+    }
     .navigate-btn {
-      padding: 10px 25px;
+      padding: 10px 50px;
       border: 3px solid var(--c-primary);
       border-radius: 8px;
+      margin-right: 1rem;
       cursor: pointer;
       transition: transform 0.25s ease-in-out;
 

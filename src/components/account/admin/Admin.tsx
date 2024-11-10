@@ -167,14 +167,15 @@ function Admin() {
     >
       <div className='admin-body'>
         {contextHolder}
+
+        <span>
+          <h1>How can we help you today?</h1>
+          <img
+            src={adminImage}
+            alt='image'
+          />
+        </span>
         <div className='functionalities'>
-          <span>
-            <h1>How can we help you today?</h1>
-            <img
-              src={adminImage}
-              alt='image'
-            />
-          </span>
           <div>
             <h1>
               <UploadOutlined /> Upload
@@ -192,15 +193,15 @@ function Admin() {
               Device
             </span>
           </div>
-        </div>
 
-        <div className='contracts'>
-          <h2>Contracts</h2>
-          <Table<DataType>
-            columns={columns}
-            dataSource={data}
-            pagination={false}
-          />
+          <div className='contracts'>
+            <h2>Contracts</h2>
+            <Table<DataType>
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+            />
+          </div>
         </div>
       </div>
     </ConfigProvider>

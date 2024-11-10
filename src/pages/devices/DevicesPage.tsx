@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Spin } from 'antd';
 import yellowImage from '../../assets/devices/yellow-image.png';
 import purpleImage from '../../assets/devices/purple-image.png';
 import MenuComponent from '../../components/devices/menu/Menu';
@@ -20,16 +20,22 @@ function DevicesPage() {
   const [allDevices, setAllDevices] = useState([]);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
   const [filteredDevices, setFilteredDevices] = useState([]);
+  /**Loading state */
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     try {
       const fetchAllDevices = async () => {
+        setLoading(true);
         const response = await axios.get(SERVER_URL('devices'));
-        setAllDevices(response.data.devices);
-        const arr = Array.from({
-          length: Math.ceil(response.data.devices.length / 6),
-        });
-        setPages(arr);
+        if (response.status === 200) {
+          setAllDevices(response.data.devices);
+          const arr = Array.from({
+            length: Math.ceil(response.data.devices.length / 6),
+          });
+          setPages(arr);
+          setLoading(false);
+        }
       };
       fetchAllDevices();
     } catch (error) {
@@ -41,6 +47,7 @@ function DevicesPage() {
   useEffect(() => {
     let devices = [...allDevices].reverse();
     setCurrentPage(1);
+    setLoading(true);
 
     switch (selectedFilterValue) {
       case 'Clear filters':
@@ -80,6 +87,7 @@ function DevicesPage() {
     /**Setting number of pages based on filter value */
     const arr = Array.from({ length: Math.ceil(devices.length / 6) });
     setPages(arr);
+    setLoading(false);
   }, [selectedFilterValue, allDevices]);
 
   return (
@@ -118,22 +126,31 @@ function DevicesPage() {
           </div>
 
           <div className='results'>
-            <div className='devices'>
-              {[...filteredDevices]
-                .slice(indexOfFirst, indexOfLast)
-                .map((device: Device) => (
-                  <DeviceCard
-                    device={device}
-                    key={device._id}
+            {!loading ? (
+              <>
+                <div className='devices'>
+                  {[...filteredDevices]
+                    .slice(indexOfFirst, indexOfLast)
+                    .map((device: Device) => (
+                      <DeviceCard
+                        device={device}
+                        key={device._id}
+                      />
+                    ))}
+                </div>
+                <div className='paginate-numbers'>
+                  <Pagination
+                    pages={pages}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
                   />
-                ))}
-            </div>
-            <div className='paginate-numbers'>
-              <Pagination
-                pages={pages}
-                setCurrentPage={setCurrentPage}
-              />
-            </div>
+                </div>
+              </>
+            ) : (
+              <div className='loading'>
+                <Spin size='large'>Fetching devices please wait!</Spin>
+              </div>
+            )}
           </div>
         </div>
       </div>

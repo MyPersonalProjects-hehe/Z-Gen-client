@@ -129,7 +129,7 @@ function CharacteristicsPage() {
             className='skeleton'
           />
         ) : (
-          <div className='carousel-price'>
+          <div className='carousel__component'>
             <CarouselComponent device={mainInfo} />
             {bestPlan?.discountForDevice && (
               <h1>
@@ -146,13 +146,13 @@ function CharacteristicsPage() {
             )}
           </div>
         )}
-        <div className='info__block'>
+        <div className='info__blocks'>
           <h1 className='headings-char-page'>{mainInfo?.model}</h1>
-          <span className='line'>
+          <span className='block'>
             <CarOutlined style={{ fontSize: 25 }} />
             <p>Free delivery!</p>
           </span>
-          <span className='line relative'>
+          <span className='block relative'>
             <Badge.Ribbon
               text='Fast delivery'
               color='var(--c-third)'
@@ -161,14 +161,14 @@ function CharacteristicsPage() {
             <ClockCircleOutlined style={{ fontSize: 25 }} />
             <p>Delivery time is between 5 to 15 work days</p>
           </span>
-          <span className='line'>
+          <span className='block'>
             <PercentageOutlined style={{ fontSize: 25 }} />
             <p>
               Every device has a 10% discount from its regular price. We are the
               first and only providers who offers two types of discount!
             </p>
           </span>
-          <span className='line'>
+          <span className='block'>
             <SafetyCertificateOutlined style={{ fontSize: 25 }} />
             <p>24 months warranty with the option for 1 year extension!</p>
           </span>
