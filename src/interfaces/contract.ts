@@ -2,6 +2,7 @@ import { Device } from './device';
 import { Plan } from './plan';
 
 export interface Contract {
+  _id: string;
   fullName: String;
   address: String;
   delivery: String;
