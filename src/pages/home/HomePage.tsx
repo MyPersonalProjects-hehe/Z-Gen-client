@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const phoneImages: string[] = [iphoneImage, huaweiImage, samsungImage];
   const phoneModels: string[] = [
     'Iphone 15',
