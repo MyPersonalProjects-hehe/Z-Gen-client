@@ -10,6 +10,7 @@ import { Plan } from '../../interfaces/plan';
 
 import {
   Badge,
+  Button,
   ConfigProvider,
   Descriptions,
   DescriptionsProps,
@@ -140,6 +141,18 @@ function CharacteristicsPage() {
                     After discount:{' '}
                     {mainInfo.price - bestPlan.discountForDevice}{' '}
                     <EuroCircleOutlined />
+                    <Button
+                      onClick={() =>
+                        localStorage.setItem(
+                          'device',
+                          JSON.stringify(mainInfo.model)
+                        )
+                      }
+                      type='primary'
+                      className='btn'
+                    >
+                      Pick device
+                    </Button>
                   </>
                 )}
               </h1>
