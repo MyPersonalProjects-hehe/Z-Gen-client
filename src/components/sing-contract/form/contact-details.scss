@@ -1,7 +1,12 @@
 .contact-details {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  width: 45rem;
+  @media (max-width: 500px) {
+    width: 100%;
+
+    .buttons {
+      width: 50%;
+    }
+  }
 
   h2,
   p {
@@ -13,6 +18,6 @@
   }
 
   .input {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 }

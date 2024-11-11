@@ -63,10 +63,7 @@ function PlanCard({
             : `plan-card card-style-wrapper`
         }
       >
-        <div
-          className='glass glass-effect-wrapper'
-          key={plan?._id}
-        >
+        <div className='glass glass-effect-wrapper'>
           <h2 className='text-card-style-wrapper'>{plan?.nameOfPlan}</h2>
           <div className='content'>
             <h3>
@@ -76,7 +73,10 @@ function PlanCard({
             </h3>{' '}
             <h3>{isNaN(plan?.MB) ? `Unlimited MB` : `MB: ${plan?.MB}`}</h3>
             <h3> MBps: {plan?.MBps}</h3>
-            <h3> {plan?.minutesInEU || ''}</h3>
+            <h3>
+              {' '}
+              {plan?.minutesInEU ? `Minutes in EU: ${plan.minutesInEU}` : ''}
+            </h3>
             <div className='ribbon'>
               <Badge.Ribbon
                 text='Special'

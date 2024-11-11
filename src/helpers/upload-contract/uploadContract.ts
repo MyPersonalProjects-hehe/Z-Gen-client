@@ -7,6 +7,7 @@ interface ModalProps {
   setConfirmLoading: (value: boolean) => void;
   setOpen: (value: boolean) => void;
   setDevicePicked: (value: any) => void;
+  setEligibility: (value: boolean) => void;
   modalText: string;
   contractInfo: ContractInfo;
   navigate: any;
@@ -22,6 +23,7 @@ export const uploadContract = async ({
   setConfirmLoading,
   setOpen,
   setDevicePicked,
+  setEligibility,
   modalText,
   contractInfo,
   navigate,
@@ -44,6 +46,7 @@ export const uploadContract = async ({
         setOpen(false);
         setConfirmLoading(false);
         setDevicePicked((prev: boolean) => !prev);
+        setEligibility(false);
         localStorage.removeItem('device');
         localStorage.removeItem('plan');
         navigate(`/result/${contractId}`);

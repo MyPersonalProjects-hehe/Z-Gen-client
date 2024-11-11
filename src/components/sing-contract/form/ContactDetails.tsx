@@ -84,6 +84,15 @@ function ContactDetails({
           onFinish={submit}
           onFieldsChange={(e) => updateForm(e[0].name[0], e[0].value)}
         >
+          {plan?.typeOfPlan === 'corporate' && (
+            <Form.Item
+              name='bulstat'
+              label='Bulstat'
+              rules={[{ required: true }]}
+            >
+              <Input className='input' />
+            </Form.Item>
+          )}
           <Form.Item
             name='fullName'
             label='Full name'

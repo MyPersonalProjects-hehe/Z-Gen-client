@@ -51,6 +51,7 @@ function SingContractPage() {
     device: '',
     plan: '',
     date: '',
+    bulstat: '',
   });
 
   useEffect(() => {
@@ -95,16 +96,17 @@ function SingContractPage() {
     >
       <div>
         <div className='sign-contract-body'>
-          {!eligibleUser?.isEligible || userContext?.user?.admin || (
-            <>
-              <h1>You are not eligible for signing contract!</h1>
-              <h2>
-                {userContext?.user?.admin
-                  ? `You are not eligible for contracts signing because of Admin rights`
-                  : `Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
-              </h2>
-            </>
-          )}
+          {!eligibleUser?.isEligible ||
+            (userContext?.user?.admin && (
+              <>
+                <h1>You are not eligible for signing contract!</h1>
+                <h2>
+                  {userContext?.user?.admin
+                    ? `You are not eligible for contracts signing because of Admin rights`
+                    : `Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
+                </h2>
+              </>
+            ))}
           <div className='progress'>
             <Steps
               current={1}
@@ -153,88 +155,86 @@ function SingContractPage() {
             <Spin size='large'>No items picked</Spin>
           )}
 
-          {eligibleUser?.isEligible ||
-            (userContext?.user?.admin && (
-              <>
-                <div className='user__contacts'>
-                  <ContactDetails
-                    setForm={setForm}
-                    form={form}
-                    device={device}
-                    plan={planCard}
-                    setIsFormComplete={setIsFormComplete}
-                  />
-                </div>
-                {isFormComplete && (
-                  <div className='text-block'>
-                    <h2>You are almost done!</h2>
-                    <SmileOutlined className='smile-icon' />
-                    <h2 className='heading'>
-                      For best experience, all contracts have trial period of 14
-                      days!
-                    </h2>
-                    <h2>
-                      If you are not delighted with our contract you can visit
-                      the nearest shop and declare a contract cancelation. The
-                      cancelation is considered for processing of how we can
-                      improve our services.
-                    </h2>
-                    <a
-                      href={contract}
-                      download='Contract'
-                      target='_blank'
-                    >
-                      <Button
-                        className='btn'
-                        type='primary'
-                        onClick={() => setToggleCheckBox(true)}
-                      >
-                        Download Contract
-                      </Button>
-                    </a>
-                  </div>
-                )}
-                {toggleCheckBox && (
-                  <>
-                    <Checkbox>
-                      I have read all the terms and conditions.
-                    </Checkbox>
-                    <Checkbox>
-                      I agree the Provider to collect personal information
-                      necessary for the execution of this contract
-                    </Checkbox>
+          {(eligibleUser?.isEligible || !userContext?.user?.admin) && (
+            <>
+              <div className='user__contacts'>
+                <ContactDetails
+                  setForm={setForm}
+                  form={form}
+                  device={device}
+                  plan={planCard}
+                  setIsFormComplete={setIsFormComplete}
+                />
+              </div>
+              {isFormComplete && (
+                <div className='text-block'>
+                  <h2>You are almost done!</h2>
+                  <SmileOutlined className='smile-icon' />
+                  <h2 className='heading'>
+                    For best experience, all contracts have trial period of 14
+                    days!
+                  </h2>
+                  <h2>
+                    If you are not delighted with our contract you can visit the
+                    nearest shop and declare a contract cancelation. The
+                    cancelation is considered for processing of how we can
+                    improve our services.
+                  </h2>
+                  <a
+                    href={contract}
+                    download='Contract'
+                    target='_blank'
+                  >
                     <Button
                       className='btn'
                       type='primary'
-                      onClick={() => showModal(setOpen)}
+                      onClick={() => setToggleCheckBox(true)}
                     >
-                      Sign contract
+                      Download Contract
                     </Button>
-                  </>
-                )}
+                  </a>
+                </div>
+              )}
+              {toggleCheckBox && (
+                <>
+                  <Checkbox>I have read all the terms and conditions.</Checkbox>
+                  <Checkbox>
+                    I agree the Provider to collect personal information
+                    necessary for the execution of this contract
+                  </Checkbox>
+                  <Button
+                    className='btn'
+                    type='primary'
+                    onClick={() => showModal(setOpen)}
+                  >
+                    Sign contract
+                  </Button>
+                </>
+              )}
 
-                <Modal
-                  open={open}
-                  onOk={() =>
-                    uploadContract({
-                      setModalText: setModalText,
-                      setConfirmLoading: setConfirmLoading,
-                      setOpen: setOpen,
-                      navigate: navigate,
-                      setDevicePicked:
-                        deviceContext?.setDevicePicked || (() => {}),
-                      modalText: 'Signing contract',
-                      contractInfo: form,
-                      contractId: contractId,
-                    })
-                  }
-                  confirmLoading={confirmLoading}
-                  onCancel={() => handleCancel(setOpen)}
-                >
-                  <p>{modalText}</p>
-                </Modal>
-              </>
-            ))}
+              <Modal
+                open={open}
+                onOk={() =>
+                  uploadContract({
+                    setModalText: setModalText,
+                    setConfirmLoading: setConfirmLoading,
+                    setOpen: setOpen,
+                    navigate: navigate,
+                    setDevicePicked:
+                      deviceContext?.setDevicePicked || (() => {}),
+                    setEligibility: eligibleUser?.setIsEligible || (() => {}),
+                    modalText: 'Signing contract',
+                    contractInfo: form,
+                    contractId: contractId,
+                  })
+                }
+                confirmLoading={confirmLoading}
+                onCancel={() => handleCancel(setOpen)}
+              >
+                <p>{modalText}</p>
+              </Modal>
+            </>
+          )}
         </div>
       </div>
     </ConfigProvider>

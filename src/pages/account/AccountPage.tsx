@@ -77,8 +77,8 @@ function AccountPage() {
                     {eligibleUser.contract?.device && (
                       <>
                         <h2>
-                          <MobileOutlined /> Device:{' '}
-                          {eligibleUser.contract?.device.model}
+                          Device: {eligibleUser.contract?.device.model}{' '}
+                          <MobileOutlined />
                         </h2>
                         {eligibleUser.contract.typeOfPayment.includes(
                           'Monthly'
