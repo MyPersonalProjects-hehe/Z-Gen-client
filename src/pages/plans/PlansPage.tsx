@@ -69,7 +69,6 @@ function PlansPage() {
         />
       </div>
 
-      <h2>Plans for new customers: </h2>
       {loading ? (
         <Spin size='large'>Loading</Spin>
       ) : (
