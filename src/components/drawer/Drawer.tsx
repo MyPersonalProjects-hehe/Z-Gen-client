@@ -11,7 +11,7 @@ import {
   TabletOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { Device } from '../../interfaces/device';
 import logo from '../../assets/logo.png';
@@ -29,6 +29,7 @@ function DrawerComponent({
 }: DrawerComponentProps) {
   const [open, setOpen] = useState(false);
   const userContext = useContext(UserContext);
+  const { pathname } = useLocation();
 
   const showDrawer = () => {
     setOpen(true);
@@ -44,7 +45,7 @@ function DrawerComponent({
         <NavLink to='/'>
           <img
             src={logo}
-            alt=''
+            alt='logo'
           />
         </NavLink>
       </span>
@@ -60,14 +61,14 @@ function DrawerComponent({
         <div className='drawer__links'>
           <NavLink
             to={'/devices'}
-            className='link'
+            className={pathname === '/devices' ? 'link active-link' : 'link'}
           >
             <TabletOutlined style={{ fontSize: 30 }} /> Devices
           </NavLink>
 
           <NavLink
             to={'/plans'}
-            className='link'
+            className={pathname === '/plans' ? 'link active-link' : 'link'}
           >
             <ReadOutlined style={{ fontSize: 30 }} /> Plans
           </NavLink>
@@ -76,7 +77,9 @@ function DrawerComponent({
             <>
               <NavLink
                 to={'/account'}
-                className='link'
+                className={
+                  pathname === '/account' ? 'link active-link' : 'link'
+                }
               >
                 <UserOutlined style={{ fontSize: 30 }} /> Account
               </NavLink>
