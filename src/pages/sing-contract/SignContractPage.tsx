@@ -95,17 +95,16 @@ function SingContractPage() {
     >
       <div>
         <div className='sign-contract-body'>
-          {!eligibleUser?.isEligible ||
-            (userContext?.user?.admin && (
-              <>
-                <h1>You are not eligible for signing contract!</h1>
-                <h2>
-                  {userContext.user.admin
-                    ? `You are not eligible for contracts signing because of Admin rights`
-                    : `Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
-                </h2>
-              </>
-            ))}
+          {!eligibleUser?.isEligible || userContext?.user?.admin || (
+            <>
+              <h1>You are not eligible for signing contract!</h1>
+              <h2>
+                {userContext?.user?.admin
+                  ? `You are not eligible for contracts signing because of Admin rights`
+                  : `Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
+              </h2>
+            </>
+          )}
           <div className='progress'>
             <Steps
               current={1}
