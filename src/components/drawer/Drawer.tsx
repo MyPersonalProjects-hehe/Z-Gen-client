@@ -1,6 +1,6 @@
 import './drawer.scss';
 import { useContext, useState } from 'react';
-import { Badge, Drawer, Tooltip } from 'antd';
+import { Badge, Drawer } from 'antd';
 import {
   CloseOutlined,
   LoginOutlined,
@@ -62,14 +62,14 @@ function DrawerComponent({
             to={'/devices'}
             className='link'
           >
-            <TabletOutlined style={{ fontSize: 30 }} />
+            <TabletOutlined style={{ fontSize: 30 }} /> Devices
           </NavLink>
 
           <NavLink
             to={'/plans'}
             className='link'
           >
-            <ReadOutlined style={{ fontSize: 30 }} />
+            <ReadOutlined style={{ fontSize: 30 }} /> Plans
           </NavLink>
 
           {userContext?.user ? (
@@ -78,46 +78,33 @@ function DrawerComponent({
                 to={'/account'}
                 className='link'
               >
-                <UserOutlined style={{ fontSize: 30 }} />
+                <UserOutlined style={{ fontSize: 30 }} /> Account
               </NavLink>
 
               {device ? (
                 <>
                   <span>
-                    <Tooltip
-                      placement='right'
-                      title={device.model}
-                    >
-                      <ShoppingCartOutlined style={{ fontSize: 30 }} />
-                      <Badge count={1} />
-                    </Tooltip>
+                    <ShoppingCartOutlined style={{ fontSize: 30 }} />{' '}
+                    {device.model}
+                    <Badge count={1} />
                   </span>
 
                   <span onClick={removeDevice}>
-                    <Tooltip
-                      placement='right'
-                      title='Remove device'
-                    >
-                      <CloseOutlined style={{ fontSize: 30 }} />
-                    </Tooltip>
+                    <CloseOutlined style={{ fontSize: 30 }} /> Remove device
                   </span>
                 </>
               ) : (
                 <>
                   <span>
-                    <Tooltip
-                      placement='topLeft'
-                      title='No device picked'
-                    >
-                      <ShoppingCartOutlined />
-                    </Tooltip>
+                    <ShoppingCartOutlined /> No picked devices
                   </span>
 
                   <span onClick={logout}>
                     <LogoutOutlined
                       className='logout-btn'
                       style={{ fontSize: 30 }}
-                    />
+                    />{' '}
+                    Logout
                   </span>
                 </>
               )}
@@ -127,7 +114,7 @@ function DrawerComponent({
               className='link '
               to='/signUp'
             >
-              <LoginOutlined style={{ fontSize: 30 }} />
+              <LoginOutlined style={{ fontSize: 30 }} /> Sign in
             </NavLink>
           )}
         </div>
