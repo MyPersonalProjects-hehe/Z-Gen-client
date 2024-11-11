@@ -11,8 +11,8 @@ import {
 } from '@ant-design/icons';
 import { UserContext } from '../../../context/UserContext';
 import skeletonImage from '../../../assets/skeleton.png';
-import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 import { EligibleUser } from '../../../context/EligibleUser';
+import { storeChosenDevice } from '../../../helpers/store-device/storeDevice';
 
 interface DeviceProp {
   device: Device;
@@ -24,33 +24,6 @@ function DeviceCard({ device }: DeviceProp) {
   const userContext = useContext(UserContext);
   const eligibilityContext = useContext(EligibleUser);
   const [api, contextHolder] = notification.useNotification();
-
-  const storeChosenDevice = (device: Device) => {
-    if (device && userContext?.user && eligibilityContext?.isEligible) {
-      localStorage.setItem('device', JSON.stringify(device));
-      deviceContext?.setDevicePicked((prev) => !prev);
-      openNotification({
-        api: api,
-        icon: <SmileOutlined />,
-        message: 'Success',
-        description: 'Device stored!',
-      });
-    } else if (!eligibilityContext?.isEligible && userContext?.user) {
-      openNotification({
-        api: api,
-        icon: <WarningOutlined />,
-        message: 'Warning',
-        description: 'You are not eligible for device purchasing!',
-      });
-    } else {
-      openNotification({
-        api: api,
-        icon: <WarningOutlined />,
-        message: 'Warning',
-        description: 'Please login to store device!',
-      });
-    }
-  };
 
   const navigateToCharacteristics = (deviceId: any) => {
     navigate(`/characteristics/${deviceId}`);
@@ -74,7 +47,17 @@ function DeviceCard({ device }: DeviceProp) {
       <div className='buttons'>
         <Button
           className='btn'
-          onClick={() => storeChosenDevice(device)}
+          onClick={() =>
+            storeChosenDevice({
+              api: api,
+              device: device,
+              deviceContext: deviceContext,
+              eligibilityContext: eligibilityContext,
+              iconError: <WarningOutlined />,
+              iconSuccess: <SmileOutlined />,
+              userContext: userContext,
+            })
+          }
         >
           Pick device
         </Button>

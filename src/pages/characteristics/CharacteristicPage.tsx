@@ -2,7 +2,7 @@ import './characteristics-page.scss';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import CarouselComponent from '../../components/characteristics/Carousel';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Device } from '../../interfaces/device';
 import { DeviceFullInfo } from '../../interfaces/deviceCharacteristics';
@@ -10,9 +10,11 @@ import { Plan } from '../../interfaces/plan';
 
 import {
   Badge,
+  Button,
   ConfigProvider,
   Descriptions,
   DescriptionsProps,
+  notification,
   Skeleton,
 } from 'antd';
 import {
@@ -21,8 +23,14 @@ import {
   EuroCircleOutlined,
   PercentageOutlined,
   SafetyCertificateOutlined,
+  SmileOutlined,
+  WarningOutlined,
 } from '@ant-design/icons';
 import PlanCard from '../../components/plans/plan-card/PlanCard';
+import { storeChosenDevice } from '../../helpers/store-device/storeDevice';
+import { DeviceContext } from '../../context/PickedDeviceContext';
+import { UserContext } from '../../context/UserContext';
+import { EligibleUser } from '../../context/EligibleUser';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -32,6 +40,23 @@ function CharacteristicsPage() {
   const [fullInfo, setFullInfo] = useState<DeviceFullInfo | null>(null);
   /*plan with the biggest discount for device */
   const [bestPlan, setBestPlan] = useState<Plan | null>(null);
+  const [api, contextHolder] = notification.useNotification();
+  const deviceContext = useContext(DeviceContext);
+  const userContext = useContext(UserContext);
+  const eligibilityContext = useContext(EligibleUser);
+  /**Discount for device */
+  const discount = bestPlan?.discountForDevice ? (
+    mainInfo?.price - bestPlan?.discountForDevice < 0 ? (
+      'Free!'
+    ) : (
+      <>
+        After discount: {mainInfo?.price - bestPlan?.discountForDevice}{' '}
+        <EuroCircleOutlined />
+      </>
+    )
+  ) : (
+    0
+  );
 
   useEffect(() => {
     try {
@@ -120,6 +145,7 @@ function CharacteristicsPage() {
 
   return (
     <div className='characteristics-body'>
+      {contextHolder}
       <h1 className='offer-heading'>Our offer</h1>
 
       <div className='model__info'>
@@ -131,19 +157,32 @@ function CharacteristicsPage() {
         ) : (
           <div className='carousel__component'>
             <CarouselComponent device={mainInfo} />
-            {bestPlan?.discountForDevice && (
-              <h1>
-                {mainInfo.price - bestPlan.discountForDevice < 0 ? (
-                  'Free!'
-                ) : (
-                  <>
-                    After discount:{' '}
-                    {mainInfo.price - bestPlan.discountForDevice}{' '}
-                    <EuroCircleOutlined />
-                  </>
-                )}
-              </h1>
-            )}
+            <h1>{discount}</h1>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: '#2a4e86',
+                },
+              }}
+            >
+              <Button
+                onClick={() =>
+                  storeChosenDevice({
+                    api: api,
+                    device: mainInfo,
+                    deviceContext: deviceContext,
+                    eligibilityContext: eligibilityContext,
+                    iconError: <WarningOutlined />,
+                    iconSuccess: <SmileOutlined />,
+                    userContext: userContext,
+                  })
+                }
+                type='primary'
+                className='btn pick-device-btn'
+              >
+                Pick device
+              </Button>
+            </ConfigProvider>
           </div>
         )}
         <div className='info__blocks'>
