@@ -96,17 +96,19 @@ function SingContractPage() {
     >
       <div>
         <div className='sign-contract-body'>
-          {!eligibleUser?.isEligible ||
-            (userContext?.user?.admin && (
-              <>
-                <h1>You are not eligible for signing contract!</h1>
-                <h2>
-                  {userContext?.user?.admin
-                    ? `You are not eligible for contracts signing because of Admin rights`
-                    : `Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
-                </h2>
-              </>
-            ))}
+          {!eligibleUser?.isEligible && (
+            <>
+              <h1>You are not eligible for signing contracts!</h1>
+              <h2>
+                {`Next eligibility date: ${eligibleUser?.dateOfEligibility}`}
+              </h2>
+            </>
+          )}
+          {userContext?.user?.admin && (
+            <h1>
+              You are not eligible for contract signing because of Admin rights
+            </h1>
+          )}
           <div className='progress'>
             <Steps
               current={1}
@@ -155,7 +157,7 @@ function SingContractPage() {
             <Spin size='large'>No items picked</Spin>
           )}
 
-          {(eligibleUser?.isEligible || !userContext?.user?.admin) && (
+          {eligibleUser?.isEligible && !userContext?.user?.admin && (
             <>
               <div className='user__contacts'>
                 <ContactDetails
