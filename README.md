@@ -1,6 +1,6 @@
 <img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers** <br/>
 
-An Application for telecom provider.<br/>
+A telecom provider application.<br/>
 Because of my quriosity for backend functionallity, I decided to build this app using **MERN** stack. Both MongoDB and Express are entirely new to me, but as my previous project you may have noticed that I am open to new technologies, as my wish is to explore as much as I can.
 
 
