@@ -1,6 +1,6 @@
 <img src="https://github.com/MyPersonalProjects-hehe/Z-Gen/blob/main/src/assets/logo.png" height="30">**Telecom Providers** <br/>
 
-An Application for telecom provider.<br/>
+A telecom provider application.<br/>
 Because of my quriosity for backend functionallity, I decided to build this app using **MERN** stack. Both MongoDB and Express are entirely new to me, but as my previous project you may have noticed that I am open to new technologies, as my wish is to explore as much as I can.
 
 
@@ -24,32 +24,35 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 To install and run the project, follow these steps:
 
-1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen.git locally:
+**Note**:
+When running locally, the back-end fucntionality wont load. For security measures, acess to the backend is not permitted. Access can be granted at any time, just contact me :)
+
+1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
 
 ```bash
-git clone https://github.com/MyPersonalProjects-hehe/Z-Gen.git
+git clone https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git
 ```
 
-2. Navigate to the project directory:
 
-```bash
-cd Z-Gen/client
-```
-
-3. Install project dependencies:
+2. Install project dependencies:
 
 ```bash
 npm install
 ```
 
-4. To run the project, use the following command:
+3. To run the project, use the following command:
 
 ```bash
 npm run dev
 ```
 
-5. Open localhost link in browser to view web-platform.
+4. Open localhost link in browser to view web-platform.
 
 http://localhost:5173/ <br />
 
+
+
 Hope you enjoy!
+
+credits:
+Some of the example images are provided from : https://www.behance.net/gioan1412
