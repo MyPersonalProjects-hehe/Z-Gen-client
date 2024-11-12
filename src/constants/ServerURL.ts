@@ -1,2 +1,6 @@
+import { config } from 'dotenv';
+
+config();
+
 export const SERVER_URL = (END_POINT: string) =>
-  `https://z-gen-backend.onrender.com/${END_POINT}`;
+  `${process.env.REACT_APP_BACKEND_URL}/${END_POINT}`;
