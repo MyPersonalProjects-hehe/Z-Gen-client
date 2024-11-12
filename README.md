@@ -24,31 +24,26 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 To install and run the project, follow these steps:
 
-1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen.git locally:
+1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
 
 ```bash
 git clone https://github.com/MyPersonalProjects-hehe/Z-Gen.git
 ```
 
-2. Navigate to the project directory:
 
-```bash
-cd Z-Gen/client
-```
-
-3. Install project dependencies:
+2. Install project dependencies:
 
 ```bash
 npm install
 ```
 
-4. To run the project, use the following command:
+3. To run the project, use the following command:
 
 ```bash
 npm run dev
 ```
 
-5. Open localhost link in browser to view web-platform.
+4. Open localhost link in browser to view web-platform.
 
 http://localhost:5173/ <br />
 
