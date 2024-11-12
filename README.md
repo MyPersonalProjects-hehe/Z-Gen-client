@@ -24,6 +24,9 @@ Because of my quriosity for backend functionallity, I decided to build this app 
 
 To install and run the project, follow these steps:
 
+**Note**:
+When running locally, the back-end fucntionality wont load. For security measures, acess to the backend is not permitted. Access can be granted at any time, just contact me :)
+
 1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
 
 ```bash
@@ -46,5 +49,7 @@ npm run dev
 4. Open localhost link in browser to view web-platform.
 
 http://localhost:5173/ <br />
+
+
 
 Hope you enjoy!
