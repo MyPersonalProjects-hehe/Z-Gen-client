@@ -19,6 +19,8 @@ function Navbar() {
   const [device, setDevice] = useState<Device | null>(null);
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
+  /**Menu state for opening/closing */
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     /*Use local storage and context provider
@@ -38,6 +40,7 @@ function Navbar() {
       localStorage.removeItem('device');
       localStorage.removeItem('plan');
       localStorage.removeItem('user');
+      setOpen(false);
       navigate('/signUp');
     }
   }
@@ -45,6 +48,7 @@ function Navbar() {
   const removeDevice = () => {
     localStorage.removeItem('device');
     deviceContext?.setDevicePicked((prev: boolean) => !prev);
+    setOpen(false);
   };
 
   const items: MenuProps['items'] = [
@@ -173,8 +177,10 @@ function Navbar() {
       <div className='drawer'>
         <DrawerComponent
           device={device}
+          open={open}
           logout={logout}
           removeDevice={removeDevice}
+          setOpen={setOpen}
         />
       </div>
     </div>

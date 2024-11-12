@@ -1,5 +1,5 @@
 import './drawer.scss';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Badge, Drawer } from 'antd';
 import {
   CloseOutlined,
@@ -17,17 +17,20 @@ import { Device } from '../../interfaces/device';
 import logo from '../../assets/logo.png';
 
 interface DrawerComponentProps {
+  device: Device | null;
+  open: boolean;
   logout: () => void;
   removeDevice: () => void;
-  device: Device | null;
+  setOpen: (value: boolean) => void;
 }
 
 function DrawerComponent({
-  logout,
   device,
+  open,
+  logout,
   removeDevice,
+  setOpen,
 }: DrawerComponentProps) {
-  const [open, setOpen] = useState(false);
   const userContext = useContext(UserContext);
   const { pathname } = useLocation();
 
@@ -62,6 +65,7 @@ function DrawerComponent({
           <NavLink
             to={'/devices'}
             className={pathname === '/devices' ? 'link active-link' : 'link'}
+            onClick={() => setOpen(false)}
           >
             <TabletOutlined style={{ fontSize: 30 }} /> Devices
           </NavLink>
@@ -69,6 +73,7 @@ function DrawerComponent({
           <NavLink
             to={'/plans'}
             className={pathname === '/plans' ? 'link active-link' : 'link'}
+            onClick={() => setOpen(false)}
           >
             <ReadOutlined style={{ fontSize: 30 }} /> Plans
           </NavLink>
@@ -80,6 +85,7 @@ function DrawerComponent({
                 className={
                   pathname === '/account' ? 'link active-link' : 'link'
                 }
+                onClick={() => setOpen(false)}
               >
                 <UserOutlined style={{ fontSize: 30 }} /> Account
               </NavLink>
@@ -116,6 +122,7 @@ function DrawerComponent({
             <NavLink
               className='link '
               to='/signUp'
+              onClick={() => setOpen(false)}
             >
               <LoginOutlined style={{ fontSize: 30 }} /> Sign in
             </NavLink>
