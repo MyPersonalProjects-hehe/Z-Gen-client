@@ -27,7 +27,7 @@ To install and run the project, follow these steps:
 1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
 
 ```bash
-git clone https://github.com/MyPersonalProjects-hehe/Z-Gen.git
+git clone https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git
 ```
 
 
