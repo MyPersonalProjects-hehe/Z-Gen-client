@@ -53,3 +53,6 @@ http://localhost:5173/ <br />
 
 
 Hope you enjoy!
+
+credits:
+Some of the example images are provided from : https://www.behance.net/gioan1412
