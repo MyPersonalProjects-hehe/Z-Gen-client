@@ -136,7 +136,7 @@ function Register({ setToggleForm }: RegisterProps) {
             Register
           </Button>
         </Form.Item>
-        or <a onClick={() => setToggleForm(true)}>Login!</a>
+        or <a onClick={() => setToggleForm(false)}>Login!</a>
       </Form>
     </ConfigProvider>
   );
