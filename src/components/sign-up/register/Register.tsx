@@ -13,7 +13,11 @@ import {
 } from '@ant-design/icons';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
-function Register() {
+interface RegisterProps {
+  setToggleForm: (value: boolean) => void;
+}
+
+function Register({ setToggleForm }: RegisterProps) {
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
@@ -90,7 +94,6 @@ function Register() {
             placeholder='Username'
           />
         </Form.Item>
-
         <Form.Item
           name='email'
           rules={[{ required: true, message: 'Please write your email!' }]}
@@ -101,7 +104,6 @@ function Register() {
             placeholder='Email'
           />
         </Form.Item>
-
         <Form.Item
           name='password'
           rules={[{ required: true, message: 'Please write your password!' }]}
@@ -113,7 +115,6 @@ function Register() {
             placeholder='Password'
           />
         </Form.Item>
-
         <Form.Item
           name='phoneNumber'
           rules={[
@@ -126,7 +127,6 @@ function Register() {
             placeholder='Phone number'
           />
         </Form.Item>
-
         <Form.Item>
           <Button
             block
@@ -136,6 +136,7 @@ function Register() {
             Register
           </Button>
         </Form.Item>
+        or <a onClick={() => setToggleForm(true)}>Login!</a>
       </Form>
     </ConfigProvider>
   );

@@ -9,10 +9,10 @@ import { FrownOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
 
 interface LoginProps {
-  setToggleScroll: (value: boolean) => void;
+  setToggleForm: (value: boolean) => void;
 }
 
-function Login({ setToggleScroll }: LoginProps) {
+function Login({ setToggleForm }: LoginProps) {
   const [api, contextHolder] = notification.useNotification();
   const [user, setUser] = useState({
     email: '',
@@ -103,7 +103,7 @@ function Login({ setToggleScroll }: LoginProps) {
           >
             Log in
           </Button>
-          or <a onClick={() => setToggleScroll(true)}>Register now!</a>
+          or <a onClick={() => setToggleForm(true)}>Register now!</a>
         </Form.Item>
       </Form>
     </ConfigProvider>

@@ -4,7 +4,7 @@ import Register from '../../components/sign-up/register/Register';
 import { useState } from 'react';
 
 function SignUpPage() {
-  const [toggleScroll, setToggleScroll] = useState(false);
+  const [toggleForm, setToggleForm] = useState(false);
 
   return (
     <div className='sign-up-body'>
@@ -14,10 +14,10 @@ function SignUpPage() {
         </h1>
       </div>
       <div className='login__register'>
-        {toggleScroll ? (
-          <Register />
+        {toggleForm ? (
+          <Register setToggleForm={setToggleForm} />
         ) : (
-          <Login setToggleScroll={setToggleScroll} />
+          <Login setToggleForm={setToggleForm} />
         )}
       </div>
     </div>
