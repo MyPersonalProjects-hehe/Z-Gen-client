@@ -64,8 +64,12 @@ function SingContractPage() {
         /**Get picked device every time global Device Context changes */
         const deviceUnparsed = localStorage.getItem('device');
         const deviceItem = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
-        setDevice(deviceItem);
-        setPlanCard(response.data.plan);
+        if (deviceItem) {
+          setDevice(deviceItem);
+          setPlanCard(response.data.plan);
+        } else {
+          form.device = '';
+        }
       };
 
       fetchPlan();
