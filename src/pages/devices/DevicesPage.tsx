@@ -21,12 +21,11 @@ function DevicesPage() {
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
   const [filteredDevices, setFilteredDevices] = useState([]);
   /**Loading state */
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
       const fetchAllDevices = async () => {
-        setLoading(true);
         const response = await axios.get(SERVER_URL('devices'));
         if (response.status === 200) {
           setAllDevices(response.data.devices);
