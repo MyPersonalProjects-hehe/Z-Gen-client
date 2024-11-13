@@ -33,10 +33,10 @@ function DevicesPage() {
             length: Math.ceil(response.data.devices.length / 6),
           });
           setPages(arr);
-          setLoading(false);
         }
       };
       fetchAllDevices();
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -125,7 +125,11 @@ function DevicesPage() {
           </div>
 
           <div className='results'>
-            {!loading ? (
+            {loading ? (
+              <div className='loading'>
+                <Spin size='large'>Fetching devices please wait!</Spin>
+              </div>
+            ) : (
               <>
                 <div className='devices'>
                   {[...filteredDevices]
@@ -145,10 +149,6 @@ function DevicesPage() {
                   />
                 </div>
               </>
-            ) : (
-              <div className='loading'>
-                <Spin size='large'>Fetching devices please wait!</Spin>
-              </div>
             )}
           </div>
         </div>
