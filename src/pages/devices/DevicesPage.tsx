@@ -46,7 +46,6 @@ function DevicesPage() {
   useEffect(() => {
     let devices = [...allDevices].reverse();
     setCurrentPage(1);
-    setLoading(true);
 
     switch (selectedFilterValue) {
       case 'Clear filters':
@@ -86,7 +85,6 @@ function DevicesPage() {
     /**Setting number of pages based on filter value */
     const arr = Array.from({ length: Math.ceil(devices.length / 6) });
     setPages(arr);
-    setLoading(false);
   }, [selectedFilterValue, allDevices]);
 
   return (
