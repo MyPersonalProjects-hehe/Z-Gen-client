@@ -33,10 +33,10 @@ function DevicesPage() {
             length: Math.ceil(response.data.devices.length / 6),
           });
           setPages(arr);
+          setLoading(false);
         }
       };
       fetchAllDevices();
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
