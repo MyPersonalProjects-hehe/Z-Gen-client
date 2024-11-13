@@ -26,7 +26,7 @@ To install and run the project, follow these steps:
 
 **Note**:
 When running locally, the back-end fucntionality wont load. For security measures, acess to the backend is not permitted. Access can be granted at any time, just contact me :)
-Because of my free trial for the dopleyment, some of the data needs a certain time to load!
+Because of my free trial for the deployment, some of the data needs a certain time to load!
 
 1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
 
