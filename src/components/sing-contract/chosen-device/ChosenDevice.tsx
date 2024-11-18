@@ -44,7 +44,9 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
               </h3>
               <h3>
                 After discount : {checkedDiscount}{' '}
-                <EuroCircleOutlined className='euro-icon' /> <br />
+                {checkedDiscount !== 'Free' && (
+                  <EuroCircleOutlined className='euro-icon' />
+                )}
               </h3>
             </div>
           ) : (
