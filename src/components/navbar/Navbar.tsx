@@ -1,5 +1,5 @@
 import './navbar.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { Avatar, Badge, Dropdown, MenuProps, Tooltip } from 'antd';
@@ -19,7 +19,8 @@ function Navbar() {
   const [device, setDevice] = useState<Device | null>(null);
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
-  /**Menu state for opening/closing */
+  const { pathname } = useLocation();
+  /**Menu state for opening/closing  drawer*/
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -122,10 +123,7 @@ function Navbar() {
     <div className='navbar poster'>
       <div className='links'>
         <div className='logo'>
-          <NavLink
-            className='nav__link '
-            to='/'
-          >
+          <NavLink to='/'>
             <img
               src={logo}
               alt=''
@@ -136,13 +134,17 @@ function Navbar() {
         <div>
           <NavLink
             to={'/devices'}
-            className='nav__link'
+            className={
+              pathname === '/devices' ? 'nav__link__active' : 'nav__link'
+            }
           >
             Devices
           </NavLink>
           <NavLink
             to={'/plans'}
-            className='nav__link'
+            className={
+              pathname === '/plans' ? 'nav__link__active' : 'nav__link'
+            }
           >
             Plans
           </NavLink>
@@ -166,7 +168,9 @@ function Navbar() {
             </Dropdown>
           ) : (
             <NavLink
-              className='nav__link '
+              className={
+                pathname === '/signUp' ? 'nav__link__active' : 'nav__link'
+              }
               to='/signUp'
             >
               Sign up

@@ -17,11 +17,36 @@
     width: 100%;
     max-width: 1000px;
 
-    .nav__link {
+    .nav__link,
+    .nav__link__active {
+      position: relative;
       margin-left: 2rem;
-      color: white;
+      color: #a0a0a0;
       text-decoration: none;
       font-size: x-large;
+
+      &:hover {
+        color: white;
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        background-color: white;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        transition: 0.3s;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+
+    .nav__link__active {
+      color: white;
     }
   }
 
