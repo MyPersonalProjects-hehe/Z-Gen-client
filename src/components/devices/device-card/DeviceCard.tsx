@@ -37,7 +37,7 @@ function DeviceCard({ device }: DeviceProp) {
       {contextHolder}
       <h2>{device.model}</h2>
       <img
-        src={device.mainImage}
+        src={device.mainImage || skeletonImage}
         alt={skeletonImage}
       />
       <h3>{device.RAM}</h3>

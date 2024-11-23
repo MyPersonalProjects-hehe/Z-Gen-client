@@ -10,7 +10,9 @@
 
   img {
     width: 15rem;
+    height: 15rem;
     border-bottom: 2px solid grey;
+    object-fit: cover;
   }
 
   .price {
