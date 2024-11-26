@@ -67,7 +67,7 @@ function AccountPage() {
                       {eligibleUser.contract?.plan.MBps} MBps
                     </h2>
                     <h2 className='border'>
-                      Price: {eligibleUser.contract?.plan.price}{' '}
+                      Price: {Number(eligibleUser.contract?.plan.price) - 4}{' '}
                       <EuroCircleOutlined />
                     </h2>
                   </div>
