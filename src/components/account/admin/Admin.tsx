@@ -87,7 +87,7 @@ function Admin() {
           api: api,
           icon: <SmileOutlined />,
           message: 'Success',
-          description: 'Contract ',
+          description: 'Contract send successfully',
         });
       }
     } catch (error: any) {
