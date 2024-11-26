@@ -53,7 +53,6 @@ function SingContractPage() {
     date: '',
     bulstat: '',
   });
-  console.log(planCard);
 
   useEffect(() => {
     try {
@@ -70,6 +69,7 @@ function SingContractPage() {
           setDevice(deviceItem);
         } else {
           form.device = '';
+          setDevice(null);
         }
       };
 
