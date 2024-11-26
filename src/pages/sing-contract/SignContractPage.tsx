@@ -53,6 +53,7 @@ function SingContractPage() {
     date: '',
     bulstat: '',
   });
+  console.log(planCard);
 
   useEffect(() => {
     try {
@@ -61,12 +62,12 @@ function SingContractPage() {
           `${SERVER_URL(`fetchPlan/${contractId}`)}`,
           { withCredentials: true }
         );
+        setPlanCard(response.data.plan);
         /**Get picked device every time global Device Context changes */
         const deviceUnparsed = localStorage.getItem('device');
         const deviceItem = deviceUnparsed ? JSON.parse(deviceUnparsed) : '';
         if (deviceItem) {
           setDevice(deviceItem);
-          setPlanCard(response.data.plan);
         } else {
           form.device = '';
         }
