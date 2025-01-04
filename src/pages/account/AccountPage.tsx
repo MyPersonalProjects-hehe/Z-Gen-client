@@ -55,19 +55,22 @@ function AccountPage() {
                       ).toLocaleDateString()}
                     </h2>
                     <h2 className='border'>
-                      <PhoneOutlined /> Calls:{' '}
-                      {eligibleUser.contract?.plan.minutesInBG} in BG
+                      <PhoneOutlined /> Calls in BG:{' '}
+                      {eligibleUser.contract?.plan.minutesInBG}
                     </h2>
                     <h2 className='border'>
-                      <PhoneOutlined /> Calls:{' '}
-                      {eligibleUser.contract?.plan.minutesInEU} in EU
+                      <PhoneOutlined /> Calls in EU:{' '}
+                      {eligibleUser.contract?.plan.minutesInEU}
                     </h2>
                     <h2 className='border'>
                       <WifiOutlined /> MB: {eligibleUser.contract?.plan.MB} -{' '}
                       {eligibleUser.contract?.plan.MBps} MBps
                     </h2>
                     <h2 className='border'>
-                      Price: {Number(eligibleUser.contract?.plan.price) - 4}{' '}
+                      Price:{' '}
+                      {(Number(eligibleUser.contract?.plan.price) - 4).toFixed(
+                        2
+                      )}{' '}
                       <EuroCircleOutlined />
                     </h2>
                   </div>
