@@ -64,7 +64,7 @@ function HomePage() {
         </div>
         {loading ? (
           <div className='loading'>
-            <Spin size='large'>Fetching model please wait!</Spin>
+            <Spin size='large'>Loading</Spin>
           </div>
         ) : (
           <>

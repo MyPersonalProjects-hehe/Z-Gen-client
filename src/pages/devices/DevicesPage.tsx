@@ -125,7 +125,7 @@ function DevicesPage() {
           <div className='results'>
             {loading ? (
               <div className='loading'>
-                <Spin size='large'>Fetching devices please wait!</Spin>
+                <Spin size='large'>Loading, please wait!</Spin>
               </div>
             ) : (
               <>
