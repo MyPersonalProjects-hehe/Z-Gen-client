@@ -22,6 +22,7 @@ import UploadDeviceForm from './components/account/admin/upload-device/forms/Upl
 import { SERVER_URL } from './constants/ServerURL.ts';
 import Contract from './interfaces/contract.ts';
 import ResultPage from './pages/result/ResultPage.tsx';
+import PlatformsPage from './pages/platforms/PlatformsPage.tsx';
 
 function App() {
   const navigate = useNavigate();
@@ -120,6 +121,10 @@ function App() {
                 <Route
                   path='/createPlan'
                   element={<CreatePlanForm />}
+                />
+                <Route
+                  path='/platforms'
+                  element={<PlatformsPage />}
                 />
                 <Route
                   path='/result/:id'
