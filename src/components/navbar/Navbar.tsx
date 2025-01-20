@@ -148,6 +148,14 @@ function Navbar() {
           >
             Plans
           </NavLink>
+          <NavLink
+            to={'/platforms'}
+            className={
+              pathname === '/platforms' ? 'nav__link__active' : 'nav__link'
+            }
+          >
+            Platforms
+          </NavLink>
           {userContext?.user ? (
             <Dropdown
               menu={{ items }}
