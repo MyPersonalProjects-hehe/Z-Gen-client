@@ -2,13 +2,29 @@ import './platforms-page.scss';
 import strangerThingsImg from '../../assets/movie-posters/stranger_things.jpg';
 import squidGamesImg from '../../assets/movie-posters/squid_games.jpg';
 import wednesdayImg from '../../assets/movie-posters/wednesday.png';
-import { Button } from 'antd';
-import { EuroCircleOutlined } from '@ant-design/icons';
 import netflixLogo from '../../assets/logos/netflix.png';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
+import { Button } from 'antd';
+import { EuroCircleOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function PlatformsPage() {
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleBuyBtn = (
+    platformName: string,
+    packageType: string,
+    price: number
+  ) => {
+    userContext?.user
+      ? navigate(`/platformSign/${platformName}/${packageType}/${price}`)
+      : navigate('/signUp');
+  };
+
   return (
     <div className='platforms-body'>
       <h1 className='poster-heading'>
@@ -37,7 +53,7 @@ function PlatformsPage() {
             alt='netflix'
           />
           <span className='package'>
-            <h3>Basic:</h3>
+            <h3>Basic</h3>
             <ul>
               <li>Unlimited ad-free movies, TV shows, and mobile games</li>
               <li>Watch on 1 supported device at a time</li>
@@ -50,12 +66,13 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
+              onClick={() => handleBuyBtn('netflix', 'Basic', 3.99)}
             >
               Buy
             </Button>
           </span>
           <span className='package'>
-            <h3>Standard:</h3>
+            <h3>Standard</h3>
             <ul>
               <li>Unlimited ad-free movies, TV shows, and mobile games</li>
               <li>Watch on 2 supported device at a time</li>
@@ -68,12 +85,13 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
+              onClick={() => handleBuyBtn('netflix', 'Standard', 5.99)}
             >
               Buy
             </Button>
           </span>
           <span className='package'>
-            <h3>Premium:</h3>
+            <h3>Premium</h3>
             <ul>
               <li>Unlimited ad-free movies, TV shows, and mobile games</li>
               <li>Watch on 4 supported device at a time</li>
@@ -86,6 +104,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
+              onClick={() => handleBuyBtn('netflix', 'Premium', 7.99)}
             >
               Buy
             </Button>
@@ -110,6 +129,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
+              onClick={() => handleBuyBtn('hbo-max', 'Basic', 5.99)}
             >
               Buy
             </Button>
@@ -128,6 +148,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
+              onClick={() => handleBuyBtn('hbo-max', 'Standard', 7.99)}
             >
               Buy
             </Button>
@@ -146,6 +167,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
+              onClick={() => handleBuyBtn('hbo-max', 'Premium', 7.99)}
             >
               Buy
             </Button>
@@ -171,6 +193,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
+              onClick={() => handleBuyBtn('disney-plus', 'Basic', 6.99)}
             >
               Buy
             </Button>
@@ -190,6 +213,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
+              onClick={() => handleBuyBtn('disney-plus', 'Standard', 9.99)}
             >
               Buy
             </Button>
@@ -214,6 +238,7 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
+              onClick={() => handleBuyBtn('disney-plus', 'Premium', 2.99)}
             >
               Buy
             </Button>
