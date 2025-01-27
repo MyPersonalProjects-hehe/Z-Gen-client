@@ -23,6 +23,7 @@ import { SERVER_URL } from './constants/ServerURL.ts';
 import Contract from './interfaces/contract.ts';
 import ResultPage from './pages/result/ResultPage.tsx';
 import PlatformsPage from './pages/platforms/PlatformsPage.tsx';
+import PlatformSignPage from './pages/PlatformSignPage.tsx/PlatformSignPage.tsx';
 
 function App() {
   const navigate = useNavigate();
@@ -153,6 +154,10 @@ function App() {
                 <Route
                   path='/account'
                   element={<AccountPage />}
+                />
+                <Route
+                  path='/platformSign/:platformName/:packageType/:price'
+                  element={<PlatformSignPage />}
                 />
               </Routes>
               <Footer />
