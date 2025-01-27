@@ -184,7 +184,7 @@ function SingContractPage() {
                   <h2>
                     If you are not delighted with our contract you can visit the
                     nearest shop and declare a contract cancelation. The
-                    cancelation is considered for processing of how we can
+                    cancellation is considered for processing of how we can
                     improve our services.
                   </h2>
                   <a
@@ -207,7 +207,7 @@ function SingContractPage() {
                   <Checkbox>I have read all the terms and conditions.</Checkbox>
                   <Checkbox>
                     I agree the Provider to collect personal information
-                    necessary for the execution of this contract
+                    necessary for the execution of this contract.
                   </Checkbox>
                   <Button
                     className='btn'
@@ -221,6 +221,7 @@ function SingContractPage() {
 
               <Modal
                 open={open}
+                destroyOnClose={true}
                 onOk={() =>
                   uploadContract({
                     setModalText: setModalText,
