@@ -14,10 +14,10 @@ import {
 import ContactDetails from '../../components/sing-contract/form/ContactDetails';
 import contract from '../../assets/Contract.pdf';
 import {
-  handleCancel,
+  closeModal,
   showModal,
   uploadContract,
-} from '../../helpers/upload-contract/uploadContract';
+} from '../../helpers/modal-functions/modal-functions';
 import PlanCard from '../../components/plans/plan-card/PlanCard';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
@@ -36,11 +36,9 @@ function SingContractPage() {
   const [isFormComplete, setIsFormComplete] = useState(false);
   /**State for opening the modal */
   const [open, setOpen] = useState(false);
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [checkboxClicked, setCheckboxClicked] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState(
-    'Are you sure you would like to continue?'
-  );
+  const [modalText, setModalText] = useState('Would you like to continue?');
   const [form, setForm] = useState({
     fullName: '',
     address: '',
@@ -183,7 +181,7 @@ function SingContractPage() {
                   </h2>
                   <h2>
                     If you are not delighted with our contract you can visit the
-                    nearest shop and declare a contract cancelation. The
+                    nearest shop and declare a contract cancellation. The
                     cancellation is considered for processing of how we can
                     improve our services.
                   </h2>
@@ -195,14 +193,14 @@ function SingContractPage() {
                     <Button
                       className='btn'
                       type='primary'
-                      onClick={() => setToggleCheckBox(true)}
+                      onClick={() => setCheckboxClicked(true)}
                     >
                       Download Contract
                     </Button>
                   </a>
                 </div>
               )}
-              {toggleCheckBox && (
+              {checkboxClicked && (
                 <>
                   <Checkbox>I have read all the terms and conditions.</Checkbox>
                   <Checkbox>
@@ -237,7 +235,7 @@ function SingContractPage() {
                   })
                 }
                 confirmLoading={confirmLoading}
-                onCancel={() => handleCancel(setOpen)}
+                onCancel={() => closeModal(setOpen)}
               >
                 <p>{modalText}</p>
               </Modal>
