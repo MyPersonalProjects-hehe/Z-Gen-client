@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { ContractInfo } from '../../interfaces/contractInfo';
 
-interface ModalProps {
+interface ModalPropsContract {
   setModalText: (value: string) => void;
   setConfirmLoading: (value: boolean) => void;
   setOpen: (value: boolean) => void;
@@ -14,10 +14,14 @@ interface ModalProps {
   contractId: string | undefined;
 }
 
-export const showModal = (setOpen: any) => {
-  setOpen(true);
-};
+interface ModalPropsPlatform {
+  setModalText: (value: string) => void;
+  setConfirmLoading: (value: boolean) => void;
+  setCloseIcon: (value: boolean) => void;
+  setOpen: (value: boolean) => void;
+}
 
+/**Function for signing contracts */
 export const uploadContract = async ({
   setModalText,
   setConfirmLoading,
@@ -28,7 +32,7 @@ export const uploadContract = async ({
   contractInfo,
   navigate,
   contractId,
-}: ModalProps) => {
+}: ModalPropsContract) => {
   try {
     setModalText(modalText);
     setConfirmLoading(true);
@@ -57,6 +61,22 @@ export const uploadContract = async ({
   }
 };
 
-export const handleCancel = (setOpen: any) => {
-  setOpen(false);
+/**Function for purchasing streaming platforms */
+export const buyStreamingPlatform = (props: ModalPropsPlatform) => {
+  props.setConfirmLoading(true);
+  props.setCloseIcon(false);
+  props.setModalText('Loading');
+  setTimeout(() => {
+    props.setConfirmLoading(false);
+    props.setOpen(false);
+  }, 3000);
+};
+
+export const showModal = (setOpen: any) => {
+  setOpen(true);
+};
+
+export const closeModal = (openModal: any) => {
+  console.log('Clicked cancel button');
+  openModal(false);
 };

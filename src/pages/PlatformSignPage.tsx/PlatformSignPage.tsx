@@ -5,6 +5,11 @@ import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
 import { Button, Checkbox, ConfigProvider, Modal } from 'antd';
 import { useState } from 'react';
+import {
+  buyStreamingPlatform,
+  closeModal,
+  showModal,
+} from '../../helpers/modal-functions/modal-functions';
 
 function PlatformSignPage() {
   const { platformName } = useParams();
@@ -15,6 +20,7 @@ function PlatformSignPage() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Would you like to continue?');
   const [closeIcon, setCloseIcon] = useState(true);
+  const [checkboxClicked, setCheckboxClicked] = useState(false);
 
   const toggleClassName = () => {
     if (packageType === 'Basic') {
@@ -26,26 +32,6 @@ function PlatformSignPage() {
     if (packageType === 'Standard') {
       return 'platform standard__platform';
     }
-  };
-
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleOk = () => {
-    setModalText('Loading');
-    setConfirmLoading(true);
-    setCloseIcon(false);
-    3;
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setOpen(false);
   };
 
   return (
@@ -141,24 +127,34 @@ function PlatformSignPage() {
           style={{
             marginBottom: 30,
           }}
+          onClick={() => setCheckboxClicked(true)}
         >
           I agree the Provider to collect personal information necessary for the
           execution of this contract.
         </Checkbox>
-        <Button
-          className='btn'
-          type='primary'
-          onClick={() => showModal()}
-        >
-          Sign contract
-        </Button>
+        {checkboxClicked && (
+          <Button
+            className='btn'
+            type='primary'
+            onClick={() => showModal(setOpen)}
+          >
+            Sign contract
+          </Button>
+        )}
         <Modal
           closeIcon={closeIcon}
           title='Purchasing platform'
           open={open}
-          onOk={handleOk}
+          onOk={() =>
+            buyStreamingPlatform({
+              setCloseIcon: setCloseIcon,
+              setConfirmLoading: setConfirmLoading,
+              setModalText: setModalText,
+              setOpen: setOpen,
+            })
+          }
           confirmLoading={confirmLoading}
-          onCancel={handleCancel}
+          onCancel={() => closeModal(setOpen)}
         >
           <p>{modalText}</p>
         </Modal>
