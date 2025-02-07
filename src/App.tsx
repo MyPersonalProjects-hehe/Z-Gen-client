@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { DeviceContext } from './context/PickedDeviceContext.ts';
 import { FloatButton, Tooltip } from 'antd';
 import { EligibleUser } from './context/EligibleUser.ts';
+import { purchasedPlatformContext } from './context/PurchasedPlatform.ts';
 import { User } from './interfaces/user.ts';
 import Footer from './components/footer/Footer.tsx';
 import ScrollTop from './helpers/scroll/ScrollTop.tsx';
@@ -23,7 +24,7 @@ import { SERVER_URL } from './constants/ServerURL.ts';
 import Contract from './interfaces/contract.ts';
 import ResultPage from './pages/result/ResultPage.tsx';
 import PlatformsPage from './pages/platforms/PlatformsPage.tsx';
-import PlatformSignPage from './pages/PlatformSignPage.tsx/PlatformSignPage.tsx';
+import PurchasePlatformPage from './pages/purchasePlatform/PurchasePlatformPage.tsx';
 
 function App() {
   const navigate = useNavigate();
@@ -34,6 +35,13 @@ function App() {
   const [isEligible, setIsEligible] = useState(false);
   const [session, setSession] = useState(false);
   const [planId, setPlanId] = useState('');
+  const [platform, setPlatform] = useState({
+    packageType: '',
+    platformName: '',
+    price: '',
+    userId: '',
+  });
+  const [isPlatformPurchased, setIsPlatformPurchased] = useState(false);
 
   useEffect(() => {
     const userUnparsed = localStorage.getItem('user');
@@ -78,93 +86,118 @@ function App() {
     }
   }, [session, isDevicePicked]);
 
+  useEffect(() => {
+    const getUserPlatforms = async () => {
+      if (user?.email) {
+        const response = await axios.get(
+          SERVER_URL(`getUserPlatforms/${user?.email}`),
+          {
+            withCredentials: true,
+          }
+        );
+
+        setPlatform(response.data);
+      }
+    };
+    getUserPlatforms();
+  }, [user, isPlatformPurchased]);
+  console.log(platform);
+
   return (
     <>
-      <EligibleUser.Provider
+      <purchasedPlatformContext.Provider
         value={{
-          isEligible: isEligible,
-          setIsEligible: setIsEligible,
-          contract: contract,
-          dateOfEligibility: dateOfEligibility,
+          isPlatformPurchased: isPlatformPurchased,
+          setIsPlatformPurchased: setIsPlatformPurchased,
+          streamingPlatform: platform,
         }}
       >
-        <UserContext.Provider value={{ user, setUser, setSession }}>
-          <DeviceContext.Provider
-            value={{
-              isDevicePicked: isDevicePicked,
-              setDevicePicked: setDevicePicked,
-            }}
-          >
-            <ScrollTop>
-              {planId && user && isEligible && (
-                <Tooltip
-                  placement='topLeft'
-                  title='Signing contract in progress'
-                >
-                  <FloatButton
-                    className='float-btn'
-                    onClick={() => navigate(`/signContract/${planId}`)}
-                    badge={{ count: 1 }}
-                  />
-                </Tooltip>
-              )}
-              <Navbar />
+        <EligibleUser.Provider
+          value={{
+            isEligible: isEligible,
+            setIsEligible: setIsEligible,
+            contract: contract,
+            dateOfEligibility: dateOfEligibility,
+          }}
+        >
+          <UserContext.Provider value={{ user, setUser, setSession }}>
+            <DeviceContext.Provider
+              value={{
+                isDevicePicked: isDevicePicked,
+                setDevicePicked: setDevicePicked,
+              }}
+            >
+              <ScrollTop>
+                {planId && user && isEligible && (
+                  <Tooltip
+                    placement='topLeft'
+                    title='Signing contract in progress'
+                  >
+                    <FloatButton
+                      className='float-btn'
+                      onClick={() => navigate(`/signContract/${planId}`)}
+                      badge={{ count: 1 }}
+                    />
+                  </Tooltip>
+                )}
+                <Navbar />
 
-              <Routes>
-                <Route
-                  path='/'
-                  element={<HomePage />}
-                />
-                <Route
-                  path='/signUp'
-                  element={<SignUpPage />}
-                />
-                <Route
-                  path='/createPlan'
-                  element={<CreatePlanForm />}
-                />
-                <Route
-                  path='/platforms'
-                  element={<PlatformsPage />}
-                />
-                <Route
-                  path='/result/:id'
-                  element={<ResultPage />}
-                />
-                <Route
-                  path='/uploadDevice'
-                  element={<UploadDeviceForm />}
-                />
-                <Route
-                  path='/devices'
-                  element={<DevicesPage />}
-                />
-                <Route
-                  path='/plans'
-                  element={<PlansPage />}
-                />
-                <Route
-                  path='/signContract/:contractId'
-                  element={<SingContractPage />}
-                />
-                <Route
-                  path='/characteristics/:deviceId'
-                  element={<CharacteristicsPage />}
-                />
-                <Route
-                  path='/account'
-                  element={<AccountPage />}
-                />
-                <Route
-                  path='/platformSign/:platformName/:packageType/:price'
-                  element={<PlatformSignPage />}
-                />
-              </Routes>
-              <Footer />
-            </ScrollTop>
-          </DeviceContext.Provider>
-        </UserContext.Provider>
-      </EligibleUser.Provider>
+                <Routes>
+                  <Route
+                    path='/'
+                    element={<HomePage />}
+                  />
+                  <Route
+                    path='/signUp'
+                    element={<SignUpPage />}
+                  />
+                  <Route
+                    path='/createPlan'
+                    element={<CreatePlanForm />}
+                  />
+                  <Route
+                    path='/platforms'
+                    element={<PlatformsPage />}
+                  />
+                  <Route
+                    path='/result/:text/:id'
+                    element={<ResultPage />}
+                  />
+                  <Route
+                    path='/uploadDevice'
+                    element={<UploadDeviceForm />}
+                  />
+                  <Route
+                    path='/devices'
+                    element={<DevicesPage />}
+                  />
+                  <Route
+                    path='/plans'
+                    element={<PlansPage />}
+                  />
+                  <Route
+                    path='/signContract/:contractId'
+                    element={<SingContractPage />}
+                  />
+                  <Route
+                    path='/characteristics/:deviceId'
+                    element={<CharacteristicsPage />}
+                  />
+                  <Route
+                    path='/account'
+                    element={<AccountPage />}
+                  />
+                  <Route
+                    path='/platformSign/:platformName/:packageType/:price'
+                    element={<PurchasePlatformPage />}
+                  />
+                </Routes>
+                <Footer />
+              </ScrollTop>
+            </DeviceContext.Provider>
+          </UserContext.Provider>
+        </EligibleUser.Provider>
+      </purchasedPlatformContext.Provider>
     </>
   );
 }
