@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function ResultPage() {
   const navigate = useNavigate();
-  const contractId = useParams();
+  const params = useParams();
 
   return (
     <ConfigProvider
@@ -16,8 +16,8 @@ function ResultPage() {
       <Result
         style={{ marginTop: '10rem' }}
         status='success'
-        title='Successfully signed contract! You can view your contract update in Account menu.'
-        subTitle={`Contract ID: ${contractId.id}`}
+        title={params.text}
+        subTitle={params.id}
         extra={[
           <Button
             onClick={() => navigate('/account')}
