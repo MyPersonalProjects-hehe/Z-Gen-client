@@ -1,20 +1,31 @@
-import { useParams } from 'react-router-dom';
-import './platform-sign-page.scss';
+import './purchase-platform-page.scss';
+import { useNavigate, useParams } from 'react-router-dom';
 import netflixLogo from '../../assets/logos/netflix.png';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
 import { Button, Checkbox, ConfigProvider, Modal } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   buyStreamingPlatform,
   closeModal,
   showModal,
 } from '../../helpers/modal-functions/modal-functions';
+import { UserContext } from '../../context/UserContext';
+import { purchasedPlatformContext } from '../../context/PurchasedPlatform';
 
-function PlatformSignPage() {
+function PurchasePlatformPage() {
   const { platformName } = useParams();
   const { packageType } = useParams();
   const { price } = useParams();
+  const userContext = useContext(UserContext);
+  const platformContext = useContext(purchasedPlatformContext);
+  const streamingPlatformInfo = {
+    platformName: platformName,
+    packageType: packageType,
+    price: price,
+    userId: userContext?.user?.id,
+  };
+  const navigate = useNavigate();
   /**Modal state */
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -151,6 +162,9 @@ function PlatformSignPage() {
               setConfirmLoading: setConfirmLoading,
               setModalText: setModalText,
               setOpen: setOpen,
+              navigate: navigate,
+              streamingPlatformInfo: streamingPlatformInfo,
+              platformContext: platformContext,
             })
           }
           confirmLoading={confirmLoading}
@@ -163,4 +177,4 @@ function PlatformSignPage() {
   );
 }
 
-export default PlatformSignPage;
+export default PurchasePlatformPage;
