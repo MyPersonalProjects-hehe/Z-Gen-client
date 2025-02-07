@@ -19,41 +19,40 @@ interface ModalPropsPlatform {
   setConfirmLoading: (value: boolean) => void;
   setCloseIcon: (value: boolean) => void;
   setOpen: (value: boolean) => void;
+  navigate: any;
+  streamingPlatformInfo: {
+    platformName: any;
+    packageType: any;
+    price: any;
+  };
+  platformContext: any;
 }
 
 /**Function for signing contracts */
-export const uploadContract = async ({
-  setModalText,
-  setConfirmLoading,
-  setOpen,
-  setDevicePicked,
-  setEligibility,
-  modalText,
-  contractInfo,
-  navigate,
-  contractId,
-}: ModalPropsContract) => {
+export const uploadContract = async (props: ModalPropsContract) => {
   try {
-    setModalText(modalText);
-    setConfirmLoading(true);
+    props.setModalText(props.modalText);
+    props.setConfirmLoading(true);
 
-    const result = await axios.post(
+    const uploadContractReq = await axios.post(
       SERVER_URL('uploadContract'),
-      contractInfo,
+      props.contractInfo,
       {
         withCredentials: true,
       }
     );
 
-    if (result.status === 200) {
+    if (uploadContractReq.status === 200) {
       setTimeout(() => {
-        setOpen(false);
-        setConfirmLoading(false);
-        setDevicePicked((prev: boolean) => !prev);
-        setEligibility(false);
+        props.setOpen(false);
+        props.setConfirmLoading(false);
+        props.setDevicePicked((prev: boolean) => !prev);
+        props.setEligibility(false);
         localStorage.removeItem('device');
         localStorage.removeItem('plan');
-        navigate(`/result/${contractId}`);
+        props.navigate(
+          `/result/Successfully signed contract! You can view your contract update in your account./Contract id: ${props.contractId}`
+        );
       }, 4000);
     }
   } catch (error) {
@@ -62,14 +61,34 @@ export const uploadContract = async ({
 };
 
 /**Function for purchasing streaming platforms */
-export const buyStreamingPlatform = (props: ModalPropsPlatform) => {
-  props.setConfirmLoading(true);
-  props.setCloseIcon(false);
-  props.setModalText('Loading');
-  setTimeout(() => {
-    props.setConfirmLoading(false);
-    props.setOpen(false);
-  }, 3000);
+export const buyStreamingPlatform = async (props: ModalPropsPlatform) => {
+  try {
+    props.setConfirmLoading(true);
+    props.setCloseIcon(false);
+    props.setModalText('Loading');
+    console.log(props.streamingPlatformInfo);
+
+    const buyStreamingPlatformReq = await axios.post(
+      SERVER_URL('buyStreamingPlatform'),
+      props.streamingPlatformInfo,
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (buyStreamingPlatformReq.status === 200) {
+      setTimeout(() => {
+        props.setConfirmLoading(false);
+        props.setOpen(false);
+        props.platformContext.setIsPlatformPurchased(true);
+        props.navigate(
+          `/result/Successfully purchased streaming platform! You can view your contract in your profile. Enjoy watching your favorite movies for free!/Streaming platform - ${props.streamingPlatformInfo.platformName}`
+        );
+      }, 3000);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const showModal = (setOpen: any) => {
