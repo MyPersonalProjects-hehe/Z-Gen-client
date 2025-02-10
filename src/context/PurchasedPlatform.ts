@@ -7,6 +7,7 @@ interface PurchasedPlatformState {
     packageType: string;
     platformName: string;
     price: string;
+    id: string;
     userId: string;
   };
 }

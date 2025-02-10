@@ -39,6 +39,7 @@ function App() {
     packageType: '',
     platformName: '',
     price: '',
+    id: '',
     userId: '',
   });
   const [isPlatformPurchased, setIsPlatformPurchased] = useState(false);
@@ -188,7 +189,7 @@ function App() {
                     element={<AccountPage />}
                   />
                   <Route
-                    path='/platformSign/:platformName/:packageType/:price'
+                    path='/platformSign/:platformName/:packageType/:price/:id'
                     element={<PurchasePlatformPage />}
                   />
                 </Routes>
