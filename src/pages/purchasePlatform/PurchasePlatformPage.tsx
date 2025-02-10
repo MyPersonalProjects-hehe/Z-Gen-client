@@ -10,19 +10,21 @@ import {
   closeModal,
   showModal,
 } from '../../helpers/modal-functions/modal-functions';
-import { UserContext } from '../../context/UserContext';
 import { purchasedPlatformContext } from '../../context/PurchasedPlatform';
+import { UserContext } from '../../context/UserContext';
 
 function PurchasePlatformPage() {
   const { platformName } = useParams();
   const { packageType } = useParams();
   const { price } = useParams();
-  const userContext = useContext(UserContext);
+  const { id } = useParams();
   const platformContext = useContext(purchasedPlatformContext);
+  const userContext = useContext(UserContext);
   const streamingPlatformInfo = {
     platformName: platformName,
     packageType: packageType,
     price: price,
+    id: id,
     userId: userContext?.user?.id,
   };
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ function PurchasePlatformPage() {
         },
       }}
     >
-      <div className='sign-page-body'>
+      <div className='purchase-platform-body'>
         <span className={toggleClassName()}>
           <h2>{packageType}</h2>
           {platformName === 'netflix' && (
