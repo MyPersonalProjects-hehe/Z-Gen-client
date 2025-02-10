@@ -10,18 +10,21 @@ import { EuroCircleOutlined } from '@ant-design/icons';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { purchasedPlatformContext } from '../../context/PurchasedPlatform';
 
 function PlatformsPage() {
+  const platformContext = useContext(purchasedPlatformContext);
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleBuyBtn = (
     platformName: string,
     packageType: string,
-    price: number
+    price: number,
+    id: string
   ) => {
     userContext?.user
-      ? navigate(`/platformSign/${platformName}/${packageType}/${price}`)
+      ? navigate(`/platformSign/${platformName}/${packageType}/${price}/${id}`)
       : navigate('/signUp');
   };
 
@@ -66,9 +69,15 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
-              onClick={() => handleBuyBtn('netflix', 'Basic', 3.99)}
+              style={{
+                color: 'black',
+              }}
+              disabled={platformContext?.streamingPlatform.id === 'n-b'}
+              onClick={() => handleBuyBtn('netflix', 'Basic', 3.99, 'n-b')}
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'n-b'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
           <span className='package'>
@@ -85,9 +94,12 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
-              onClick={() => handleBuyBtn('netflix', 'Standard', 5.99)}
+              disabled={platformContext?.streamingPlatform.id === 'n-s'}
+              onClick={() => handleBuyBtn('netflix', 'Standard', 5.99, 'n-s')}
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'n-s'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
           <span className='package'>
@@ -104,9 +116,12 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
-              onClick={() => handleBuyBtn('netflix', 'Premium', 7.99)}
+              disabled={platformContext?.streamingPlatform.id === 'n-p'}
+              onClick={() => handleBuyBtn('netflix', 'Premium', 7.99, 'n-p')}
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'n-p'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
         </div>
@@ -129,9 +144,12 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
-              onClick={() => handleBuyBtn('hbo-max', 'Basic', 5.99)}
+              disabled={platformContext?.streamingPlatform.id === 'hbo-b'}
+              onClick={() => handleBuyBtn('hbo-max', 'Basic', 5.99, 'hbo-b')}
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'hbo-b'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
           <span className='package'>
@@ -148,8 +166,12 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
-              onClick={() => handleBuyBtn('hbo-max', 'Standard', 7.99)}
+              disabled={platformContext?.streamingPlatform.id === 'hbo-s'}
+              onClick={() => handleBuyBtn('hbo-max', 'Standard', 7.99, 'hbo-s')}
             >
+              {platformContext?.streamingPlatform.id === 'hbo-s'
+                ? 'Purchased'
+                : 'Buy'}
               Buy
             </Button>
           </span>
@@ -167,9 +189,12 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
-              onClick={() => handleBuyBtn('hbo-max', 'Premium', 7.99)}
+              disabled={platformContext?.streamingPlatform.id === 'hbo-p'}
+              onClick={() => handleBuyBtn('hbo-max', 'Premium', 7.99, 'hbo-p')}
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'hbo-p'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
         </div>
@@ -193,9 +218,14 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn'
               type='primary'
-              onClick={() => handleBuyBtn('disney-plus', 'Basic', 6.99)}
+              disabled={platformContext?.streamingPlatform.id === 'disney-b'}
+              onClick={() =>
+                handleBuyBtn('disney-plus', 'Basic', 6.99, 'disney-b')
+              }
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'disney-b'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
           <span className='package'>
@@ -213,9 +243,14 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn standard'
               type='primary'
-              onClick={() => handleBuyBtn('disney-plus', 'Standard', 9.99)}
+              disabled={platformContext?.streamingPlatform.id === 'disney-s'}
+              onClick={() =>
+                handleBuyBtn('disney-plus', 'Standard', 9.99, 'disney-s')
+              }
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'disney-s'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
           <span className='package'>
@@ -238,9 +273,14 @@ function PlatformsPage() {
             <Button
               className='btn buy-btn premium'
               type='primary'
-              onClick={() => handleBuyBtn('disney-plus', 'Premium', 2.99)}
+              disabled={platformContext?.streamingPlatform.id === 'disney-p'}
+              onClick={() =>
+                handleBuyBtn('disney-plus', 'Premium', 2.99, 'disney-p')
+              }
             >
-              Buy
+              {platformContext?.streamingPlatform.id === 'disney-p'
+                ? 'Purchased'
+                : 'Buy'}
             </Button>
           </span>
         </div>
