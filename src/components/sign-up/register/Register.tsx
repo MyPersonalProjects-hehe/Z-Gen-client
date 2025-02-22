@@ -25,7 +25,7 @@ function Register({ setToggleForm }: RegisterProps) {
     email: '',
     password: '',
     phoneNumber: '',
-    streamingPlatform: false,
+    streamingPlatform: [],
   });
   const userContext = useContext(UserContext);
 
