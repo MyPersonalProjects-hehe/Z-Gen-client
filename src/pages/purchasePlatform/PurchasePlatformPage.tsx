@@ -10,7 +10,7 @@ import {
   closeModal,
   showModal,
 } from '../../helpers/modal-functions/modal-functions';
-import { purchasedPlatformContext } from '../../context/PurchasedPlatform';
+import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 import { UserContext } from '../../context/UserContext';
 
 function PurchasePlatformPage() {
@@ -18,7 +18,7 @@ function PurchasePlatformPage() {
   const { packageType } = useParams();
   const { price } = useParams();
   const { id } = useParams();
-  const platformContext = useContext(purchasedPlatformContext);
+  const platformContext = useContext(PurchasedPlatformContext);
   const userContext = useContext(UserContext);
   const streamingPlatformInfo = {
     platformName: platformName,
@@ -36,15 +36,15 @@ function PurchasePlatformPage() {
   const [checkboxClicked, setCheckboxClicked] = useState(false);
 
   const toggleClassName = () => {
-    if (packageType === 'Basic') {
-      return 'platform basic__platform';
-    }
-    if (packageType === 'Premium') {
-      return 'platform premium__platform';
-    }
-    if (packageType === 'Standard') {
-      return 'platform standard__platform';
-    }
+    if (packageType === 'Basic') return 'platform basic__platform';
+    if (packageType === 'Premium') return 'platform premium__platform';
+    if (packageType === 'Standard') return 'platform standard__platform';
+  };
+
+  const toggleImg = () => {
+    if (platformName === 'Netflix') return netflixLogo;
+    if (platformName === 'HBO') return hboLogo;
+    if (platformName === 'Disney') return disneyLogo;
   };
 
   return (
@@ -59,26 +59,12 @@ function PurchasePlatformPage() {
       <div className='purchase-platform-body'>
         <span className={toggleClassName()}>
           <h2>{packageType}</h2>
-          {platformName === 'netflix' && (
-            <img
-              src={netflixLogo}
-              alt='logo'
-            />
-          )}
-          {platformName === 'hbo-max' && (
-            <img
-              src={hboLogo}
-              alt='logo'
-            />
-          )}
-          {platformName === 'disney-plus' && (
-            <img
-              src={disneyLogo}
-              alt='logo'
-            />
-          )}
+          <img
+            src={toggleImg()}
+            alt='logo'
+          />
 
-          <p className='price-package'>Price: {price}</p>
+          <p className='price-package'>{price}</p>
         </span>
         <ul className='platform__terms'>
           <h1>Terms of use:</h1>
