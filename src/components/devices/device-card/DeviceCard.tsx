@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { UserContext } from '../../../context/UserContext';
 import skeletonImage from '../../../assets/skeleton.png';
-import { EligibleUser } from '../../../context/EligibleUser';
+import { EligibleUserContext } from '../../../context/EligibleUserContext';
 import { storeChosenDevice } from '../../../helpers/store-device/storeDevice';
 
 interface DeviceProp {
@@ -22,7 +22,7 @@ function DeviceCard({ device }: DeviceProp) {
   const navigate = useNavigate();
   const deviceContext = useContext(DeviceContext);
   const userContext = useContext(UserContext);
-  const eligibilityContext = useContext(EligibleUser);
+  const eligibilityContext = useContext(EligibleUserContext);
   const [api, contextHolder] = notification.useNotification();
 
   const navigateToCharacteristics = (deviceId: any) => {

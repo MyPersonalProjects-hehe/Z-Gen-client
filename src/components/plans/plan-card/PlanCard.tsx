@@ -7,7 +7,7 @@ import { Plan } from '../../../interfaces/plan';
 import { Device } from '../../../interfaces/device';
 import { UserContext } from '../../../context/UserContext';
 import { DeviceContext } from '../../../context/PickedDeviceContext';
-import { EligibleUser } from '../../../context/EligibleUser';
+import { EligibleUserContext } from '../../../context/EligibleUserContext';
 
 interface PlanCardProps {
   plan: Plan | null;
@@ -27,7 +27,7 @@ function PlanCard({
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
-  const eligibilityContext = useContext(EligibleUser);
+  const eligibilityContext = useContext(EligibleUserContext);
 
   const navigateToSignContract = (planId: any) => {
     if (!userContext?.user) {

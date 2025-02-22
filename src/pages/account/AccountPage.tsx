@@ -12,28 +12,27 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import Admin from '../../components/account/admin/Admin';
 import contractPDF from '../../assets/Contract.pdf';
-import { EligibleUser } from '../../context/EligibleUser';
-import { purchasedPlatformContext } from '../../context/PurchasedPlatform';
+import { EligibleUserContext } from '../../context/EligibleUserContext';
+
 import netflixImg from '../../assets/logos/netflix.png';
 import disneyImg from '../../assets/logos/disney.png';
 import hboImg from '../../assets/logos/hbo.png';
+import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 
 function AccountPage() {
   const userContext = useContext(UserContext);
-  const eligibleUser = useContext(EligibleUser);
-  const platformContext = useContext(purchasedPlatformContext);
+  const eligibleUser = useContext(EligibleUserContext);
+  const platformContext = useContext(PurchasedPlatformContext);
 
   const toggleImg = () => {
-    if (platformContext?.streamingPlatform.platformName === 'hbo-max') {
+    if (platformContext?.streamingPlatform.platformName === 'HBO')
       return hboImg;
-    }
-    if (platformContext?.streamingPlatform.platformName === 'netflix') {
+    if (platformContext?.streamingPlatform.platformName === 'Netflix')
       return netflixImg;
-    }
-    if (platformContext?.streamingPlatform.platformName === 'disney') {
+    if (platformContext?.streamingPlatform.platformName === 'Disney')
       return disneyImg;
-    }
   };
+  console.log(platformContext);
 
   return (
     <>
@@ -120,7 +119,7 @@ function AccountPage() {
                 </div>
               </div>
 
-              {platformContext?.streamingPlatform.packageType && (
+              {platformContext?.streamingPlatform && (
                 <div className='streaming__platform'>
                   <h2 className='text-decoration'>Streaming platform</h2>
                   <span className='platform'>

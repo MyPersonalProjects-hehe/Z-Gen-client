@@ -5,8 +5,8 @@ import { UserContext } from './context/UserContext.ts';
 import { useEffect, useState } from 'react';
 import { DeviceContext } from './context/PickedDeviceContext.ts';
 import { FloatButton, Tooltip } from 'antd';
-import { EligibleUser } from './context/EligibleUser.ts';
-import { purchasedPlatformContext } from './context/PurchasedPlatform.ts';
+import { EligibleUserContext } from './context/EligibleUserContext.ts';
+import { PurchasedPlatformContext } from './context/PurchasedPlatformContext.ts';
 import { User } from './interfaces/user.ts';
 import Footer from './components/footer/Footer.tsx';
 import ScrollTop from './helpers/scroll/ScrollTop.tsx';
@@ -88,6 +88,7 @@ function App() {
   }, [session, isDevicePicked]);
 
   useEffect(() => {
+    /**Get purchased platform for every user */
     const getUserPlatforms = async () => {
       if (user?.email) {
         const response = await axios.get(
@@ -102,18 +103,17 @@ function App() {
     };
     getUserPlatforms();
   }, [user, isPlatformPurchased]);
-  console.log(platform);
 
   return (
     <>
-      <purchasedPlatformContext.Provider
+      <PurchasedPlatformContext.Provider
         value={{
           isPlatformPurchased: isPlatformPurchased,
           setIsPlatformPurchased: setIsPlatformPurchased,
           streamingPlatform: platform,
         }}
       >
-        <EligibleUser.Provider
+        <EligibleUserContext.Provider
           value={{
             isEligible: isEligible,
             setIsEligible: setIsEligible,
@@ -197,8 +197,8 @@ function App() {
               </ScrollTop>
             </DeviceContext.Provider>
           </UserContext.Provider>
-        </EligibleUser.Provider>
-      </purchasedPlatformContext.Provider>
+        </EligibleUserContext.Provider>
+      </PurchasedPlatformContext.Provider>
     </>
   );
 }

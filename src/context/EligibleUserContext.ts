@@ -8,4 +8,6 @@ interface EligibleUserProps {
   dateOfEligibility: any;
 }
 
-export const EligibleUser = createContext<EligibleUserProps | null>(null);
+export const EligibleUserContext = createContext<EligibleUserProps | null>(
+  null
+);

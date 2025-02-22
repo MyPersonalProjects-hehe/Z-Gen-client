@@ -21,14 +21,14 @@ import {
 import PlanCard from '../../components/plans/plan-card/PlanCard';
 import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
-import { EligibleUser } from '../../context/EligibleUser';
+import { EligibleUserContext } from '../../context/EligibleUserContext';
 import { UserContext } from '../../context/UserContext';
 
 function SingContractPage() {
   const navigate = useNavigate();
   const { contractId } = useParams();
   const deviceContext = useContext(DeviceContext);
-  const eligibleUser = useContext(EligibleUser);
+  const eligibleUser = useContext(EligibleUserContext);
   const userContext = useContext(UserContext);
   const [device, setDevice] = useState<Device | null>(null);
   const [planCard, setPlanCard] = useState<Plan | null>(null);

@@ -30,7 +30,7 @@ import PlanCard from '../../components/plans/plan-card/PlanCard';
 import { storeChosenDevice } from '../../helpers/store-device/storeDevice';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 import { UserContext } from '../../context/UserContext';
-import { EligibleUser } from '../../context/EligibleUser';
+import { EligibleUserContext } from '../../context/EligibleUserContext';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
@@ -43,7 +43,7 @@ function CharacteristicsPage() {
   const [api, contextHolder] = notification.useNotification();
   const deviceContext = useContext(DeviceContext);
   const userContext = useContext(UserContext);
-  const eligibilityContext = useContext(EligibleUser);
+  const eligibilityContext = useContext(EligibleUserContext);
   /**Discount for device */
   const discount = bestPlan?.discountForDevice ? (
     mainInfo?.price - bestPlan?.discountForDevice < 0 ? (
@@ -180,7 +180,7 @@ function CharacteristicsPage() {
                 type='primary'
                 className='btn pick-device-btn'
               >
-                Pick device
+                Get offer
               </Button>
             </ConfigProvider>
           </div>

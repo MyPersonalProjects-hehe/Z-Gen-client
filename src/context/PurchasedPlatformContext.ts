@@ -12,5 +12,5 @@ interface PurchasedPlatformState {
   };
 }
 
-export const purchasedPlatformContext =
+export const PurchasedPlatformContext =
   createContext<PurchasedPlatformState | null>(null);
