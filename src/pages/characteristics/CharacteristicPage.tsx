@@ -1,6 +1,6 @@
 import './characteristics-page.scss';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import CarouselComponent from '../../components/characteristics/Carousel';
 import { useContext, useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
@@ -34,6 +34,7 @@ import { EligibleUserContext } from '../../context/EligibleUserContext';
 
 function CharacteristicsPage() {
   const { deviceId } = useParams();
+  const navigate = useNavigate();
   /*main device info */
   const [mainInfo, setMainInfo] = useState<Device | null>(null);
   /*full characteristics device info */
@@ -175,6 +176,8 @@ function CharacteristicsPage() {
                     iconError: <WarningOutlined />,
                     iconSuccess: <SmileOutlined />,
                     userContext: userContext,
+                    bestPlanId: bestPlan?._id,
+                    navigate: navigate,
                   })
                 }
                 type='primary'
