@@ -72,10 +72,10 @@ function PlanCard({
                 : `Minutes: ${plan?.minutesInBG}`}
             </h3>{' '}
             <h3>{isNaN(plan?.MB) ? `Unlimited MB` : `MB: ${plan?.MB}`}</h3>
-            <h3> MBps: {plan?.MBps}</h3>
+            <h3> MBps : {plan?.MBps}</h3>
             <h3>
               {' '}
-              {plan?.minutesInEU ? `Minutes in EU: ${plan.minutesInEU}` : ''}
+              {plan?.minutesInEU ? `Minutes in EU : ${plan.minutesInEU}` : ''}
             </h3>
             <div className='ribbon'>
               <Badge.Ribbon
@@ -84,12 +84,12 @@ function PlanCard({
               ></Badge.Ribbon>
             </div>
             <h3>
-              Discount for device: {plan?.discountForDevice}
+              Discount for device : {plan?.discountForDevice}
               <EuroCircleOutlined className='euro-icon' />
             </h3>
           </div>
           <h3 className='price'>
-            Price: {plan?.price}
+            Price : {plan?.price}
             <EuroCircleOutlined className='euro-icon' /> -{' '}
             {(Number(plan?.price) - 4).toFixed(2)}
             <EuroCircleOutlined className='euro-icon' />

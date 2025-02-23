@@ -56,10 +56,12 @@ function DeviceCard({ device }: DeviceProp) {
               iconError: <WarningOutlined />,
               iconSuccess: <SmileOutlined />,
               userContext: userContext,
+              bestPlanId: '',
+              navigate: navigate,
             })
           }
         >
-          Pick device
+          Store device
         </Button>
         <Button
           className='btn'

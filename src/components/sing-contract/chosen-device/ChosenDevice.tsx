@@ -19,7 +19,7 @@ function ChosenDevice({ planCard, device }: DeviceProps) {
 
   return (
     <>
-      <h2>Device:</h2>
+      <h2>Device</h2>
       <div
         className={
           planCard?.typeOfPlan === 'corporate'
