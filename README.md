@@ -26,7 +26,7 @@ To install and run the project, follow these steps:
 
 **Note**:
 <h1>Due to my free trial content`s first loading could take upto 50 seconds!</h1>
-When running locally, the back-end fucntionality wont load. For security measures, acess to the backend is not permitted. Access can be granted at any time, just contact me :)
+When running locally, the back-end fucntionality wont load. For security measures, acess to the backend is not permitted. Access can be granted at any time.
 
 
 1. Clone the https://github.com/MyPersonalProjects-hehe/Z-Gen-client.git locally:
