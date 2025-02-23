@@ -6,23 +6,23 @@ import wednesdayImg from '../../assets/movie-posters/wednesday.png';
 import netflixLogo from '../../assets/logos/netflix.png';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
-import { Button } from 'antd';
+import skeletonImage from '../../assets/skeleton.png';
+import { Button, Spin } from 'antd';
 import { EuroCircleOutlined } from '@ant-design/icons';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { StreamingPlatform } from '../../interfaces/streamingPlatform';
 
 function PlatformsPage() {
-  const platformContext = useContext(PurchasedPlatformContext);
   const userContext = useContext(UserContext);
   const [streamingPlatforms, setStreamingPlatforms] = useState<
     StreamingPlatform[] | []
   >([]);
   const navigate = useNavigate();
-  console.log(platformContext);
+  /**Loading state */
+  const [loading, setLoading] = useState(true);
 
   const handleBuyBtn = (
     platformName: string,
@@ -49,6 +49,7 @@ function PlatformsPage() {
         });
         if (response.status === 200) {
           setStreamingPlatforms(response.data.platforms);
+          setLoading(false);
         }
       };
 
@@ -78,9 +79,13 @@ function PlatformsPage() {
         />
       </div>
 
-      <div className='streaming-platforms'>
+      <div className='streaming__platforms'>
         <h2>Streaming Platforms</h2>
-        {streamingPlatforms &&
+        {loading ? (
+          <div className='loading__state'>
+            <Spin size='large'>Loading, please wait!</Spin>
+          </div>
+        ) : (
           streamingPlatforms.map(
             (platform: StreamingPlatform, index: number) => (
               <div
@@ -89,7 +94,7 @@ function PlatformsPage() {
               >
                 <img
                   src={toggleImg(platform.logo)}
-                  alt='logo'
+                  alt={skeletonImage}
                 />
                 <span className='package'>
                   <h3>Basic</h3>
@@ -131,8 +136,8 @@ function PlatformsPage() {
                   >
                     Buy
                     {/* {platformContext?.streamingPlatform.id === 'n-b'
-                ? 'Purchased'
-                : 'Buy'} */}
+                  ? 'Purchased'
+                  : 'Buy'} */}
                   </Button>
                 </span>
 
@@ -175,8 +180,8 @@ function PlatformsPage() {
                   >
                     Buy
                     {/* {platformContext?.streamingPlatform.id === 'n-b'
-                ? 'Purchased'
-                : 'Buy'} */}
+                  ? 'Purchased'
+                  : 'Buy'} */}
                   </Button>
                 </span>
 
@@ -219,13 +224,14 @@ function PlatformsPage() {
                   >
                     Buy
                     {/* {platformContext?.streamingPlatform.id === 'n-b'
-                ? 'Purchased'
-                : 'Buy'} */}
+                  ? 'Purchased'
+                  : 'Buy'} */}
                   </Button>
                 </span>
               </div>
             )
-          )}
+          )
+        )}
       </div>
     </div>
   );

@@ -124,7 +124,7 @@ function DevicesPage() {
 
           <div className='results'>
             {loading ? (
-              <div className='loading'>
+              <div className='loading__state'>
                 <Spin size='large'>Loading, please wait!</Spin>
               </div>
             ) : (

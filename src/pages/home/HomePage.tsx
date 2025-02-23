@@ -63,7 +63,7 @@ function HomePage() {
           />
         </div>
         {loading ? (
-          <div className='loading'>
+          <div className='loading__state'>
             <Spin size='large'>Loading</Spin>
           </div>
         ) : (

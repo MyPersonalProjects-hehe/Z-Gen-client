@@ -12,6 +12,7 @@ import {
 } from '../../helpers/modal-functions/modal-functions';
 import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 import { UserContext } from '../../context/UserContext';
+import skeletonImage from '../../assets/skeleton.png';
 
 function PurchasePlatformPage() {
   const { platformName } = useParams();
@@ -61,7 +62,7 @@ function PurchasePlatformPage() {
           <h2>{packageType}</h2>
           <img
             src={toggleImg()}
-            alt='logo'
+            alt={skeletonImage}
           />
 
           <p className='price-package'>{price}</p>

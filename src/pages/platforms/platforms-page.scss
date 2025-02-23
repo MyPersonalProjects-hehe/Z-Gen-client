@@ -25,7 +25,7 @@
   }
 }
 
-.streaming-platforms {
+.streaming__platforms {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +65,8 @@
   }
 }
 
-.package {
+.package,
+.purchased-package {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -77,18 +78,12 @@
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 0px 5px 5px grey;
-    border: none;
-  }
-
   p {
     position: absolute;
     font-weight: 700;
-    font-size: 18px;
-    text-decoration: underline;
+    font-size: 22px;
     bottom: 30px;
+    left: 80px;
   }
 
   .buy-btn {
@@ -96,6 +91,18 @@
     bottom: -20px;
     z-index: 1;
   }
+}
+
+.package {
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 5px 5px grey;
+    border: none;
+  }
+}
+
+.purchased-package {
+  animation: none;
 }
 
 .premium {

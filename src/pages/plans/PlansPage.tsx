@@ -70,7 +70,9 @@ function PlansPage() {
       </div>
 
       {loading ? (
-        <Spin size='large'>Loading</Spin>
+        <div className='loading__state'>
+          <Spin size='large'>Loading</Spin>
+        </div>
       ) : (
         <div className='plans'>
           {allPlans?.map((plan: Plan) => (

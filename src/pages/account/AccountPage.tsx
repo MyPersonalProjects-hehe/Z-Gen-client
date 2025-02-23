@@ -13,7 +13,7 @@ import { UserContext } from '../../context/UserContext';
 import Admin from '../../components/account/admin/Admin';
 import contractPDF from '../../assets/Contract.pdf';
 import { EligibleUserContext } from '../../context/EligibleUserContext';
-
+import skeletonImage from '../../assets/skeleton.png';
 import netflixImg from '../../assets/logos/netflix.png';
 import disneyImg from '../../assets/logos/disney.png';
 import hboImg from '../../assets/logos/hbo.png';
@@ -44,7 +44,7 @@ function AccountPage() {
             <div className='account-body'>
               <img
                 src={pngImage}
-                alt='image'
+                alt={skeletonImage}
               />
 
               <div className='details'>
@@ -118,29 +118,6 @@ function AccountPage() {
                   )}
                 </div>
               </div>
-
-              {platformContext?.streamingPlatform && (
-                <div className='streaming__platform'>
-                  <h2 className='text-decoration'>Streaming platform</h2>
-                  <span className='platform'>
-                    <img
-                      src={toggleImg()}
-                      alt='logo'
-                    />
-
-                    <h2
-                      className={platformContext?.streamingPlatform.packageType}
-                    >
-                      {platformContext?.streamingPlatform.packageType}
-                      <br />
-                    </h2>
-                    <h2 className='package-price'>
-                      {platformContext?.streamingPlatform.price}
-                      <EuroCircleOutlined className='euro-icon' />
-                    </h2>
-                  </span>
-                </div>
-              )}
             </div>
           ) : (
             <div className='no-contract'>
@@ -154,6 +131,26 @@ function AccountPage() {
               />
               <h2>Mobile number: {userContext?.user?.phoneNumber}</h2>
               <h2>Email: {userContext?.user?.email}</h2>
+            </div>
+          )}
+          {platformContext?.streamingPlatform && (
+            <div className='streaming__platform'>
+              <h2 className='text-decoration'>Streaming platform</h2>
+              <span className='platform'>
+                <img
+                  src={toggleImg()}
+                  alt='logo'
+                />
+
+                <h2 className={platformContext?.streamingPlatform.packageType}>
+                  {platformContext?.streamingPlatform.packageType}
+                  <br />
+                </h2>
+                <h2 className='package-price'>
+                  {platformContext?.streamingPlatform.price}
+                  <EuroCircleOutlined className='euro-icon' />
+                </h2>
+              </span>
             </div>
           )}
         </div>
