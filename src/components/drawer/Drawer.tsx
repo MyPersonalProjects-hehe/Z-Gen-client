@@ -10,6 +10,7 @@ import {
   ShoppingCartOutlined,
   TabletOutlined,
   UserOutlined,
+  YoutubeOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
@@ -78,6 +79,14 @@ function DrawerComponent({
             <ReadOutlined style={{ fontSize: 30 }} /> Plans
           </NavLink>
 
+          <NavLink
+            to={'/platforms'}
+            className={pathname === '/platforms' ? 'link active-link' : 'link'}
+            onClick={() => setOpen(false)}
+          >
+            <YoutubeOutlined style={{ fontSize: 30 }} /> Streaming Platforms
+          </NavLink>
+
           {userContext?.user ? (
             <>
               <NavLink
@@ -108,9 +117,12 @@ function DrawerComponent({
                     <ShoppingCartOutlined /> No picked devices
                   </span>
 
-                  <span onClick={logout}>
+                  <span
+                    onClick={logout}
+                    className='logout-btn'
+                  >
                     <LogoutOutlined
-                      className='logout-btn'
+                      className='logout-icon'
                       style={{ fontSize: 30 }}
                     />{' '}
                     Logout
@@ -120,7 +132,7 @@ function DrawerComponent({
             </>
           ) : (
             <NavLink
-              className='link '
+              className='link'
               to='/signUp'
               onClick={() => setOpen(false)}
             >

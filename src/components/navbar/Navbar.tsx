@@ -154,7 +154,7 @@ function Navbar() {
               pathname === '/platforms' ? 'nav__link__active' : 'nav__link'
             }
           >
-            Platforms
+            Streaming Platforms
           </NavLink>
           {userContext?.user ? (
             <Dropdown

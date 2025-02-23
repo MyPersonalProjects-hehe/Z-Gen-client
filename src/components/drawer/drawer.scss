@@ -10,16 +10,23 @@
   gap: 2rem;
   font-size: x-large;
 
-  .link {
-    color: black;
-  }
-
   .active-link {
     color: var(--c-primary);
   }
+}
 
-  .logout-btn {
-    cursor: pointer;
+.link,
+.logout-btn {
+  color: black;
+  cursor: pointer;
+  &:hover {
+    color: var(--c-primary);
+  }
+
+  .logout-btn:hover {
+    .logout-icon {
+      color: var(--c-primary);
+    }
   }
 }
 
