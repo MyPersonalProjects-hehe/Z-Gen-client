@@ -32,7 +32,6 @@ function AccountPage() {
     if (platformContext?.streamingPlatform.platformName === 'Disney')
       return disneyImg;
   };
-  console.log(platformContext);
 
   return (
     <>
@@ -133,25 +132,31 @@ function AccountPage() {
               <h2>Email: {userContext?.user?.email}</h2>
             </div>
           )}
-          {platformContext?.streamingPlatform && (
-            <div className='streaming__platform'>
+          {platformContext?.streamingPlatform.id && (
+            <>
               <h2 className='text-decoration'>Streaming platform</h2>
-              <span className='platform'>
-                <img
-                  src={toggleImg()}
-                  alt='logo'
-                />
-
-                <h2 className={platformContext?.streamingPlatform.packageType}>
+              <div className='purchased-platform-body'>
+                <span
+                  className={`package-type ${platformContext.streamingPlatform.packageType}`}
+                >
                   {platformContext?.streamingPlatform.packageType}
-                  <br />
-                </h2>
-                <h2 className='package-price'>
-                  {platformContext?.streamingPlatform.price}
-                  <EuroCircleOutlined className='euro-icon' />
-                </h2>
-              </span>
-            </div>
+                </span>
+
+                <div className='purchased__platform'>
+                  <img
+                    src={toggleImg()}
+                    alt='logo'
+                  />
+                </div>
+                <div className='preferences'>
+                  {platformContext?.streamingPlatform?.platformPreferences
+                    .split(',')
+                    .map((preference: string, index: number) => (
+                      <li key={index}>{preference}</li>
+                    ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
       )}
