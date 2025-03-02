@@ -19,6 +19,8 @@ function PurchasePlatformPage() {
   const { packageType } = useParams();
   const { price } = useParams();
   const { id } = useParams();
+  const { platformPreferences } = useParams();
+
   const platformContext = useContext(PurchasedPlatformContext);
   const userContext = useContext(UserContext);
   const streamingPlatformInfo = {
@@ -27,6 +29,7 @@ function PurchasePlatformPage() {
     price: price,
     id: id,
     userId: userContext?.user?.id,
+    platformPreferences: platformPreferences,
   };
   const navigate = useNavigate();
   /**Modal state */
@@ -82,11 +85,14 @@ function PurchasePlatformPage() {
             - The first year of access to the streaming platform will be free of
             charge.
             <br />- During the second year, you will be charged the preferential
-            price (€3 less than the original price of the streaming platform).
+            price.
             <br />
             1.2. For users who have not signed yet a contract:
             <br />- The user can purchase the streaming platform again with
             preferential price till the end of contract.
+            <br />
+            1.3. If the user has purchased a platform, he is not eligible for a
+            second purchase till the end of the contract.
           </p>
           <li>Post-Contract Pricing</li>
           <p>
@@ -106,8 +112,7 @@ function PurchasePlatformPage() {
           <li>Cancellation and Termination</li>
           <p className='cancellation-paragraph'>
             You may cancel your contract at any time after the two-year minimum
-            term by providing notice through your account or by visiting one of
-            our shops.
+            term by visiting one of our shops.
           </p>
           <h3>
             If the user ends the contract before its initial length, the user

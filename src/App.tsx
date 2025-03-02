@@ -189,7 +189,7 @@ function App() {
                     element={<AccountPage />}
                   />
                   <Route
-                    path='/platformSign/:platformName/:packageType/:price/:id'
+                    path='/platformSign/:platformName/:packageType/:price/:id/:platformPreferences'
                     element={<PurchasePlatformPage />}
                   />
                 </Routes>
