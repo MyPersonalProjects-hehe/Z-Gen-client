@@ -11,6 +11,12 @@
   }
 }
 
+.not-eligible {
+  text-align: center;
+  margin-top: 10rem;
+  font-size: 20px;
+}
+
 .poster-heading {
   margin-top: 12rem;
   margin-bottom: 0;
@@ -58,15 +64,14 @@
   }
 
   h2 {
-    font-size: 50px;
+    font-size: 40px;
     margin-top: 10rem;
     margin-bottom: 3rem;
     text-align: center;
   }
 }
 
-.package,
-.purchased-package {
+.package {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -77,6 +82,12 @@
   border: 1px solid grey;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 5px 5px grey;
+    border: none;
+  }
 
   p {
     position: absolute;
@@ -91,31 +102,32 @@
     bottom: -20px;
     z-index: 1;
   }
-}
 
-.package {
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 0px 5px 5px grey;
-    border: none;
+  .premium {
+    background: rgb(216, 201, 115);
+    &:hover {
+      background: rgb(236, 222, 142) !important;
+    }
+  }
+
+  .standard {
+    background: rgb(114, 197, 114);
+
+    &:hover {
+      background: rgb(135, 215, 135) !important;
+    }
   }
 }
 
-.purchased-package {
-  animation: none;
-}
+.purchased__package {
+  background-color: var(--c-primary);
+  width: 100%;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
 
-.premium {
-  background: rgb(216, 201, 115) !important;
-  &:hover {
-    background: rgb(236, 222, 142) !important;
-  }
-}
-
-.standard {
-  background: rgb(114, 197, 114) !important;
-
-  &:hover {
-    background: rgb(135, 215, 135) !important;
+  .badge {
+    font-size: 20px;
+    font-weight: 200;
   }
 }
