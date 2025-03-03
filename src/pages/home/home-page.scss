@@ -5,6 +5,9 @@
     img {
       width: 40%;
       filter: brightness(0.9);
+      @media (max-width: 800px) {
+        width: 100%;
+      }
     }
   }
 }

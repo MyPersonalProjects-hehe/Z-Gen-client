@@ -201,7 +201,7 @@ function CharacteristicsPage() {
               className='ribbon'
             />
             <ClockCircleOutlined style={{ fontSize: 25 }} />
-            <p>Delivery time is between 5 to 15 work days</p>
+            <p>Delivery time is between 5 to 15 work days.</p>
           </span>
           <span className='block'>
             <PercentageOutlined style={{ fontSize: 25 }} />

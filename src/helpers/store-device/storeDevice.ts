@@ -53,7 +53,7 @@ export const storeChosenDevice = (param: storeChosenDeviceProps) => {
       api: param.api,
       icon: param.iconError,
       message: 'Warning',
-      description: 'Please login to store device!',
+      description: 'Please login!',
     });
   }
 };
