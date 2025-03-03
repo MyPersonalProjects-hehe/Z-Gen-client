@@ -14,7 +14,7 @@ import Admin from '../../components/account/admin/Admin';
 import contractPDF from '../../assets/Contract.pdf';
 import { EligibleUserContext } from '../../context/EligibleUserContext';
 import skeletonImage from '../../assets/skeleton.png';
-import netflixImg from '../../assets/logos/netflix.png';
+import netflixImg from '../../assets/logos/netflix.jpg';
 import disneyImg from '../../assets/logos/disney.png';
 import hboImg from '../../assets/logos/hbo.png';
 import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
@@ -133,30 +133,30 @@ function AccountPage() {
             </div>
           )}
           {platformContext?.streamingPlatform.id && (
-            <>
+            <div className='purchased-platform-body'>
               <h2 className='text-decoration'>Streaming platform</h2>
-              <div className='purchased-platform-body'>
+
+              <div className='purchased__platform'>
                 <span
                   className={`package-type ${platformContext.streamingPlatform.packageType}`}
                 >
                   {platformContext?.streamingPlatform.packageType}
                 </span>
-
-                <div className='purchased__platform'>
+                <span className='preferences'>
                   <img
                     src={toggleImg()}
                     alt='logo'
                   />
-                </div>
-                <div className='preferences'>
-                  {platformContext?.streamingPlatform?.platformPreferences
-                    .split(',')
-                    .map((preference: string, index: number) => (
-                      <li key={index}>{preference}</li>
-                    ))}
-                </div>
+                  <ul>
+                    {platformContext?.streamingPlatform?.platformPreferences
+                      .split(',')
+                      .map((preference: string, index: number) => (
+                        <li key={index}>{preference}</li>
+                      ))}
+                  </ul>
+                </span>
               </div>
-            </>
+            </div>
           )}
         </div>
       )}

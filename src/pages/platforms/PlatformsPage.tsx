@@ -3,7 +3,7 @@ import axios from 'axios';
 import strangerThingsImg from '../../assets/movie-posters/stranger_things.jpg';
 import squidGamesImg from '../../assets/movie-posters/squid_games.jpg';
 import wednesdayImg from '../../assets/movie-posters/wednesday.png';
-import netflixLogo from '../../assets/logos/netflix.png';
+import netflixLogo from '../../assets/logos/netflix.jpg';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
 import skeletonImage from '../../assets/skeleton.png';
@@ -79,7 +79,7 @@ function PlatformsPage() {
       <h1 className='poster-heading'>
         You are not ready for <span className='colored-year'>2025</span>{' '}
       </h1>
-      <div className='movie-posters'>
+      <div className='movie__posters'>
         <img
           src={strangerThingsImg}
           alt='img'
@@ -104,7 +104,7 @@ function PlatformsPage() {
         </div>
       )}
 
-      <div className='streaming__platforms'>
+      <div className='streaming-platforms'>
         <h2>Streaming Platforms</h2>
         {loading ? (
           <div className='loading__state'>

@@ -1,4 +1,4 @@
-.movie-posters {
+.movie__posters {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -31,7 +31,7 @@
   }
 }
 
-.streaming__platforms {
+.streaming-platforms {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,21 +102,6 @@
     bottom: -20px;
     z-index: 1;
   }
-
-  .premium {
-    background: rgb(216, 201, 115);
-    &:hover {
-      background: rgb(236, 222, 142) !important;
-    }
-  }
-
-  .standard {
-    background: rgb(114, 197, 114);
-
-    &:hover {
-      background: rgb(135, 215, 135) !important;
-    }
-  }
 }
 
 .purchased__package {
@@ -129,5 +114,20 @@
   .badge {
     font-size: 20px;
     font-weight: 200;
+  }
+}
+
+.premium {
+  background: rgb(216, 201, 115);
+  &:hover {
+    background: rgb(236, 222, 142) !important;
+  }
+}
+
+.standard {
+  background: rgb(114, 197, 114);
+
+  &:hover {
+    background: rgb(135, 215, 135) !important;
   }
 }
