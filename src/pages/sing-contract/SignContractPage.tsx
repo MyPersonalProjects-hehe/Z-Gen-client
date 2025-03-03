@@ -1,7 +1,7 @@
 import './sign-contract-page.scss';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { SERVER_URL } from '../../constants/ServerURL';
 import { Plan } from '../../interfaces/plan';
 import ChosenDevice from '../../components/sing-contract/chosen-device/ChosenDevice';
@@ -34,6 +34,8 @@ function SingContractPage() {
   const [planCard, setPlanCard] = useState<Plan | null>(null);
   /**State for checking when form is completed */
   const [isFormComplete, setIsFormComplete] = useState(false);
+  /**Ref for set timeout */
+  const timerIdRef = useRef(null);
   /**State for opening the modal */
   const [open, setOpen] = useState(false);
   const [checkboxClicked, setCheckboxClicked] = useState(false);
@@ -232,10 +234,13 @@ function SingContractPage() {
                     modalText: 'Signing contract',
                     contractInfo: form,
                     contractId: contractId,
+                    timerIdRef: timerIdRef,
                   })
                 }
                 confirmLoading={confirmLoading}
-                onCancel={() => closeModal(setOpen)}
+                onCancel={() =>
+                  closeModal(setOpen, setConfirmLoading, timerIdRef)
+                }
               >
                 <p>{modalText}</p>
               </Modal>

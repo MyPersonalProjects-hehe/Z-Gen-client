@@ -1,10 +1,10 @@
 import './purchase-platform-page.scss';
 import { useNavigate, useParams } from 'react-router-dom';
-import netflixLogo from '../../assets/logos/netflix.png';
+import netflixLogo from '../../assets/logos/netflix.jpg';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
 import { Button, Checkbox, ConfigProvider, Modal } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import {
   buyStreamingPlatform,
   closeModal,
@@ -20,7 +20,7 @@ function PurchasePlatformPage() {
   const { price } = useParams();
   const { id } = useParams();
   const { platformPreferences } = useParams();
-
+  const timerIdRef = useRef(null);
   const platformContext = useContext(PurchasedPlatformContext);
   const userContext = useContext(UserContext);
   const streamingPlatformInfo = {
@@ -32,18 +32,13 @@ function PurchasePlatformPage() {
     platformPreferences: platformPreferences,
   };
   const navigate = useNavigate();
+
   /**Modal state */
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Would you like to continue?');
   const [closeIcon, setCloseIcon] = useState(true);
   const [checkboxClicked, setCheckboxClicked] = useState(false);
-
-  const toggleClassName = () => {
-    if (packageType === 'Basic') return 'platform basic__platform';
-    if (packageType === 'Premium') return 'platform premium__platform';
-    if (packageType === 'Standard') return 'platform standard__platform';
-  };
 
   const toggleImg = () => {
     if (platformName === 'Netflix') return netflixLogo;
@@ -61,15 +56,10 @@ function PurchasePlatformPage() {
       }}
     >
       <div className='purchase-platform-body'>
-        <span className={toggleClassName()}>
-          <h2>{packageType}</h2>
-          <img
-            src={toggleImg()}
-            alt={skeletonImage}
-          />
-
-          <p className='price-package'>{price}</p>
-        </span>
+        <img
+          src={toggleImg()}
+          alt={skeletonImage}
+        />
         <ul className='platform__terms'>
           <h1>Terms of use:</h1>
           <li>Streaming platform offers</li>
@@ -159,10 +149,11 @@ function PurchasePlatformPage() {
               navigate: navigate,
               streamingPlatformInfo: streamingPlatformInfo,
               platformContext: platformContext,
+              timerIdRef: timerIdRef,
             })
           }
           confirmLoading={confirmLoading}
-          onCancel={() => closeModal(setOpen)}
+          onCancel={() => closeModal(setOpen, setConfirmLoading, timerIdRef)}
         >
           <p>{modalText}</p>
         </Modal>

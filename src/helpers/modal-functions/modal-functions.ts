@@ -12,6 +12,7 @@ interface ContractProps {
   contractInfo: ContractInfo;
   navigate: any;
   contractId: string | undefined;
+  timerIdRef: any;
 }
 
 interface PlatformProps {
@@ -26,21 +27,16 @@ interface PlatformProps {
     price: any;
   };
   platformContext: any;
+  timerIdRef: any;
 }
 
-/**Function for signing contracts */
-
-/**Creating a variable instead of passing it as a parameter
- * to showModal func (antDesign func takes only 1 parameter)
- */
-let timerId: any | null = null;
-
+/**Function for signing contract */
 export const uploadContract = async (props: ContractProps) => {
   try {
     props.setModalText(props.modalText);
     props.setConfirmLoading(true);
 
-    timerId = setTimeout(async () => {
+    props.timerIdRef.current = setTimeout(async () => {
       await axios.post(SERVER_URL('uploadContract'), props.contractInfo, {
         withCredentials: true,
       });
@@ -53,7 +49,7 @@ export const uploadContract = async (props: ContractProps) => {
       props.navigate(
         `/result/Successfully signed contract! You can view your contract update in your account./Contract id: ${props.contractId}`
       );
-    }, 4000);
+    }, 5000);
   } catch (error) {
     console.log(error);
   }
@@ -65,9 +61,8 @@ export const buyStreamingPlatform = async (props: PlatformProps) => {
     props.setConfirmLoading(true);
     props.setCloseIcon(false);
     props.setModalText('Loading');
-    console.log(props.streamingPlatformInfo);
 
-    timerId = setTimeout(async () => {
+    props.timerIdRef.current = setTimeout(async () => {
       await axios.post(
         SERVER_URL('buyStreamingPlatform'),
         props.streamingPlatformInfo,
@@ -81,21 +76,27 @@ export const buyStreamingPlatform = async (props: PlatformProps) => {
       props.navigate(
         `/result/Successfully purchased streaming platform! You can view your contract in your profile. Enjoy watching your favorite movies for free!/Streaming platform - ${props.streamingPlatformInfo.platformName}`
       );
-    }, 4000);
+    }, 5000);
   } catch (error) {
     console.log(error);
   }
 };
 
+/**Function for opening modal */
 export const showModal = (setOpen: any) => {
   setOpen(true);
 };
 
-export const closeModal = (openModal: any) => {
-  console.log('Clicked cancel button');
-  if (timerId) {
-    clearTimeout(timerId);
-    timerId = null;
+/**Function for handling cases if user cancels signing contract */
+export const closeModal = (
+  openModal: any,
+  setConfirmLoading: any,
+  timerIdRef: any
+) => {
+  if (timerIdRef.current) {
+    clearTimeout(timerIdRef.current);
+    setConfirmLoading(false);
+    timerIdRef.current = null;
   }
   openModal(false);
 };
