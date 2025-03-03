@@ -54,6 +54,11 @@ function PlanCard({
         token: {
           colorPrimary: 'white',
         },
+        components: {
+          Badge: {
+            fontSize: 15,
+          },
+        },
       }}
     >
       <div

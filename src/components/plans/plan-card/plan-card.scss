@@ -47,6 +47,10 @@
     position: absolute;
     right: -4.3px;
     bottom: 4.4rem;
+
+    @media (max-width: 700px) {
+      bottom: 6.2rem;
+    }
   }
 
   .euro-icon {
