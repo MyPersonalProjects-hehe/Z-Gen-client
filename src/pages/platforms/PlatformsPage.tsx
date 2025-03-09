@@ -105,7 +105,6 @@ function PlatformsPage() {
       )}
 
       <div className='streaming-platforms'>
-        <h2>Streaming Platforms</h2>
         {loading ? (
           <div className='loading__state'>
             <Spin size='large'>Loading, please wait!</Spin>

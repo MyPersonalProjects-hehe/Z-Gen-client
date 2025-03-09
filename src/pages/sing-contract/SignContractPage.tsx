@@ -204,11 +204,15 @@ function SingContractPage() {
               )}
               {checkboxClicked && (
                 <>
-                  <Checkbox>I have read all the terms and conditions.</Checkbox>
-                  <Checkbox>
-                    I agree the Provider to collect personal information
-                    necessary for the execution of this contract.
-                  </Checkbox>
+                  <span className='checkbox'>
+                    <Checkbox>
+                      I have read all the terms and conditions.
+                    </Checkbox>
+                    <Checkbox>
+                      I agree the Provider to collect personal information
+                      necessary for the execution of this contract.
+                    </Checkbox>
+                  </span>
                   <Button
                     className='btn'
                     type='primary'
