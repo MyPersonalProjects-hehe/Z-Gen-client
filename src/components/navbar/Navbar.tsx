@@ -13,12 +13,14 @@ import { Device } from '../../interfaces/device';
 import { DeviceContext } from '../../context/PickedDeviceContext';
 import logo from '../../assets/logo.png';
 import DrawerComponent from '../drawer/Drawer';
+import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 
 function Navbar() {
   const navigate = useNavigate();
   const [device, setDevice] = useState<Device | null>(null);
   const userContext = useContext(UserContext);
   const deviceContext = useContext(DeviceContext);
+  const platformContext = useContext(PurchasedPlatformContext);
   const { pathname } = useLocation();
   /**Menu state for opening/closing  drawer*/
   const [open, setOpen] = useState(false);
@@ -38,6 +40,7 @@ function Navbar() {
       userContext?.setUser?.(null);
       userContext?.setSession(false);
       deviceContext?.setDevicePicked((prev) => !prev);
+      platformContext?.setPurchasedPlatform(null);
       localStorage.removeItem('device');
       localStorage.removeItem('plan');
       localStorage.removeItem('user');

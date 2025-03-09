@@ -8,6 +8,7 @@ import { FloatButton, Tooltip } from 'antd';
 import { EligibleUserContext } from './context/EligibleUserContext.ts';
 import { PurchasedPlatformContext } from './context/PurchasedPlatformContext.ts';
 import { User } from './interfaces/user.ts';
+import { SERVER_URL } from './constants/ServerURL.ts';
 import Footer from './components/footer/Footer.tsx';
 import ScrollTop from './helpers/scroll/ScrollTop.tsx';
 import Navbar from './components/navbar/Navbar';
@@ -20,7 +21,6 @@ import AccountPage from './pages/account/AccountPage.tsx';
 import SignUpPage from './pages/sign-up/SignUpPage.tsx';
 import CreatePlanForm from './components/account/admin/create-plan/CreatePlanForm.tsx';
 import UploadDeviceForm from './components/account/admin/upload-device/forms/UploadDeviceForm.tsx';
-import { SERVER_URL } from './constants/ServerURL.ts';
 import Contract from './interfaces/contract.ts';
 import ResultPage from './pages/result/ResultPage.tsx';
 import PlatformsPage from './pages/platforms/PlatformsPage.tsx';
@@ -41,8 +41,10 @@ function App() {
     price: '',
     id: '',
     userId: '',
+    platformPreferences: '',
   });
   const [isPlatformPurchased, setIsPlatformPurchased] = useState(false);
+  const [_, setPurchasedPlatform] = useState(null);
 
   useEffect(() => {
     const userUnparsed = localStorage.getItem('user');
@@ -111,6 +113,7 @@ function App() {
           isPlatformPurchased: isPlatformPurchased,
           setIsPlatformPurchased: setIsPlatformPurchased,
           streamingPlatform: platform,
+          setPurchasedPlatform: setPurchasedPlatform,
         }}
       >
         <EligibleUserContext.Provider

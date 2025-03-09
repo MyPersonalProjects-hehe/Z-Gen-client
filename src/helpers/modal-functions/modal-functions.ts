@@ -72,7 +72,7 @@ export const buyStreamingPlatform = async (props: PlatformProps) => {
       );
       props.setConfirmLoading(false);
       props.setOpen(false);
-      props.platformContext.setIsPlatformPurchased(true);
+      props.platformContext.setIsPlatformPurchased((prev: boolean) => !prev);
       props.navigate(
         `/result/Successfully purchased streaming platform! You can view your contract in your profile. Enjoy watching your favorite movies for free!/Streaming platform - ${props.streamingPlatformInfo.platformName}`
       );

@@ -3,6 +3,7 @@ import { createContext } from 'react';
 interface PurchasedPlatformState {
   isPlatformPurchased: boolean;
   setIsPlatformPurchased: (state: boolean) => void;
+  setPurchasedPlatform: (platform: any) => void;
   streamingPlatform: {
     packageType: string;
     platformName: string;
