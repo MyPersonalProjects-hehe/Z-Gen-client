@@ -22,11 +22,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-
-    a {
-      text-decoration: none;
-      color: black;
-    }
   }
 
   .border {
@@ -52,12 +47,10 @@
 
 .purchased-platform-body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .text-decoration {
-    border-top: 2px solid red;
-  }
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 40px;
+  margin: 0 auto;
 
   .purchased__platform {
     display: flex;
@@ -65,17 +58,32 @@
     box-shadow: 2px 2px 2px 2px grey;
 
     img {
-      width: 20rem;
+      width: 23rem;
     }
   }
 
   .preferences {
     display: flex;
+    flex-wrap: wrap;
     font-size: 20px;
     padding: 20px 30px;
 
     ul {
       padding-top: 10px;
+    }
+  }
+
+  .side-info {
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+    line-height: 50px;
+
+    > * {
+      background-color: rgba(42, 78, 134, 0.25);
+      border-radius: 8px;
+      padding: 10px;
     }
   }
 }
@@ -106,4 +114,13 @@
   -webkit-text-stroke: 1px var(--c-primary);
   color: transparent;
   font-size: 3.3rem;
+}
+
+.platform-heading {
+  margin-top: 5rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

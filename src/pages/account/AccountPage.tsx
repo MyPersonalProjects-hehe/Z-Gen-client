@@ -5,6 +5,7 @@ import {
   EuroCircleOutlined,
   FieldTimeOutlined,
   FilePdfOutlined,
+  PercentageOutlined,
   PhoneOutlined,
   WifiOutlined,
 } from '@ant-design/icons';
@@ -13,11 +14,12 @@ import { UserContext } from '../../context/UserContext';
 import Admin from '../../components/account/admin/Admin';
 import contractPDF from '../../assets/Contract.pdf';
 import { EligibleUserContext } from '../../context/EligibleUserContext';
+import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
 import skeletonImage from '../../assets/skeleton.png';
 import netflixImg from '../../assets/logos/netflix.jpg';
 import disneyImg from '../../assets/logos/disney.png';
 import hboImg from '../../assets/logos/hbo.png';
-import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
+import contract from '../../assets/Streaming-Platform-Contract.pdf';
 
 function AccountPage() {
   const userContext = useContext(UserContext);
@@ -84,7 +86,7 @@ function AccountPage() {
                   </h2>
                   <a
                     href={contractPDF}
-                    download='Contract'
+                    download={true}
                     target='_blank'
                   >
                     <h2 className='border'>
@@ -132,31 +134,51 @@ function AccountPage() {
               <h2>Email: {userContext?.user?.email}</h2>
             </div>
           )}
-          {platformContext?.streamingPlatform.id && (
-            <div className='purchased-platform-body'>
-              <h2 className='text-decoration'>Streaming platform</h2>
 
-              <div className='purchased__platform'>
-                <span
-                  className={`package-type ${platformContext.streamingPlatform.packageType}`}
-                >
-                  {platformContext?.streamingPlatform.packageType}
-                </span>
-                <span className='preferences'>
-                  <img
-                    src={toggleImg()}
-                    alt='logo'
-                  />
-                  <ul>
-                    {platformContext?.streamingPlatform?.platformPreferences
-                      .split(',')
-                      .map((preference: string, index: number) => (
-                        <li key={index}>{preference}</li>
-                      ))}
-                  </ul>
-                </span>
+          {platformContext?.streamingPlatform.id && (
+            <>
+              <h2 className='text-decoration platform-heading'>
+                Purchased platform
+              </h2>
+              <div className='purchased-platform-body'>
+                <div className='purchased__platform'>
+                  <span
+                    className={`package-type ${platformContext.streamingPlatform.packageType}`}
+                  >
+                    {platformContext?.streamingPlatform.packageType}
+                  </span>
+                  <span className='preferences'>
+                    <img
+                      src={toggleImg()}
+                      alt='logo'
+                    />
+                    <ul>
+                      {platformContext?.streamingPlatform?.platformPreferences
+                        .split(',')
+                        .map((preference: string, index: number) => (
+                          <li key={index}>{preference}</li>
+                        ))}
+                    </ul>
+                  </span>
+                </div>
+
+                <div className='side-info'>
+                  {eligibleUser?.contract && (
+                    <p>
+                      First year is free of charge <PercentageOutlined />
+                    </p>
+                  )}
+                  <p>Contract duration : 24 months</p>
+                  <a
+                    href={contract}
+                    target='_blank'
+                    download={true}
+                  >
+                    Contract: <FilePdfOutlined />
+                  </a>
+                </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       )}
