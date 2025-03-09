@@ -23,12 +23,13 @@ function PurchasePlatformPage() {
   const timerIdRef = useRef(null);
   const platformContext = useContext(PurchasedPlatformContext);
   const userContext = useContext(UserContext);
+
   const streamingPlatformInfo = {
     platformName: platformName,
     packageType: packageType,
     price: price,
     id: id,
-    userId: userContext?.user?.id,
+    userId: userContext?.user?._id,
     platformPreferences: platformPreferences,
   };
   const navigate = useNavigate();
@@ -116,17 +117,20 @@ function PurchasePlatformPage() {
             acceptance of the updated Terms.
           </p>
         </ul>
-
-        <Checkbox>I have read all the terms and conditions.</Checkbox>
-        <Checkbox
-          style={{
-            marginBottom: 30,
-          }}
-          onClick={() => setCheckboxClicked(true)}
-        >
-          I agree the Provider to collect personal information necessary for the
-          execution of this contract.
-        </Checkbox>
+        {!platformContext?.streamingPlatform.id && (
+          <span className='checkbox'>
+            <Checkbox>I have read all the terms and conditions.</Checkbox>
+            <Checkbox
+              style={{
+                marginBottom: 30,
+              }}
+              onClick={() => setCheckboxClicked(true)}
+            >
+              I agree the Provider to collect personal information necessary for
+              the execution of this contract.
+            </Checkbox>
+          </span>
+        )}
         {checkboxClicked && (
           <Button
             className='btn'
