@@ -97,9 +97,9 @@ function HomePage() {
 
         <div className='services'>
           <h2>
-            We believe we provide the best services <br /> We are people`s
+            We believe we provide the best services. <br /> We are people`s
             choice for better and smarter life by providing the best
-            price-performance ratio
+            price-performance ratio.
           </h2>
           <div className='mini__blocks'>
             <span>

@@ -10,7 +10,7 @@ function SignUpPage() {
     <div className='sign-up-body'>
       <div className='poster'>
         <h1 className='text-style-wrapper'>
-          Enjoy Generation`s best choice for telecom provider!
+          Enjoy Generation`s best choice for telecom provider
         </h1>
       </div>
       <div className='login__register'>
