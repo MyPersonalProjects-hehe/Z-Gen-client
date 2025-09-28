@@ -3,6 +3,8 @@ import axios from 'axios';
 import strangerThingsImg from '../../assets/movie-posters/stranger_things.jpg';
 import squidGamesImg from '../../assets/movie-posters/squid_games.jpg';
 import wednesdayImg from '../../assets/movie-posters/wednesday.png';
+import witcherImg from '../../assets/movie-posters/theWitcher.png'
+import aliceInBorderlandImg from '../../assets/movie-posters/aliceInBorderland.png';
 import netflixLogo from '../../assets/logos/netflix.jpg';
 import hboLogo from '../../assets/logos/hbo.png';
 import disneyLogo from '../../assets/logos/disney.png';
@@ -28,6 +30,7 @@ function PlatformsPage() {
 
   useEffect(() => {
     try {
+
       const fetchPlatforms = async () => {
         const response = await axios.get(SERVER_URL('getPlatforms'), {
           withCredentials: true,
@@ -76,10 +79,11 @@ function PlatformsPage() {
 
   return (
     <div className='platforms-body'>
-      <h1 className='poster-heading'>
-        You are not ready for <span className='colored-year'>2025</span>{' '}
-      </h1>
+
       <div className='movie__posters'>
+        <h1 className='poster-heading'>
+          You are not ready for <span className='colored-year'>2025</span>{' '}
+        </h1>
         <img
           src={strangerThingsImg}
           alt='img'
@@ -92,6 +96,16 @@ function PlatformsPage() {
           src={squidGamesImg}
           alt='img'
         />
+        <img
+          src={aliceInBorderlandImg}
+          alt='img'
+        />
+        <img
+          src={witcherImg}
+          alt='img'
+        />
+
+
       </div>
 
       {platformContext?.streamingPlatform.id && (
