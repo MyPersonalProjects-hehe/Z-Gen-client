@@ -1,126 +1,464 @@
-.account-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10rem;
-
-  img {
-    width: 30rem;
-    height: 30rem;
-    margin-right: 6rem;
-    margin-top: 4rem;
-  }
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-
-  .contract__info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .border {
-    padding: 10px 25px;
-    border: 3px solid var(--c-primary);
-    border-radius: 8px;
-    box-shadow: 3px 3px 1px 0px grey;
-  }
-
-  .device-info {
-    border-top: 3px solid var(--c-primary);
-    text-align: center;
-  }
-}
-
-.no-contract {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10rem;
-  text-align: center;
-}
-
-.purchased-platform-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 40px;
+.modern-account-container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  margin-top: 150px;
+  border-radius: 16px;
 
-  .purchased__platform {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 2px 2px 2px grey;
+  .hero-section {
+    margin-bottom: 40px;
 
-    img {
-      width: 23rem;
+    .hero-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      width: 60%;
+      margin: 0 auto;
+
+
+      .ant-card-body {
+        padding: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hero-info {
+        text-align: center;
+        .hero-icon {
+          font-size: 48px;
+          color: #ffd700;
+          margin-bottom: 16px;
+          display: block;
+        }
+
+        .hero-title {
+          font-size: 30px;
+          font-weight: 700;
+          margin: 0 0 8px 0;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+          opacity: 0.9;
+          margin: 0;
+        }
+      }
+
+      .hero-image {
+   
+        .hero-img {
+          height: 250px;
+        }
+      }
     }
   }
 
-  .preferences {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 20px;
-    padding: 20px 30px;
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
 
-    ul {
-      padding-top: 10px;
+
+    .detail-card {
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: none;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: white;
+
+       .device-image{
+          width: 200px;
+          height: 200px;
+          object-fit: contain;
+        }
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .ant-card-head {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border: none;
+        color: white;
+        
+        .ant-card-head-title {
+          color: white;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+
+      &.plan-card .ant-card-head {
+        background: var(--c-secondary)
+      }
+
+      &.communication-card .ant-card-head {
+        background: var(--c-secondary)
+      }
+
+      &.device-card .ant-card-head {
+        background: var(--c-secondary)
+       
+      }
+
+      &.contract-download-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+
+        .ant-card-body {
+          padding: 30px;
+        }
+      }
+
+      .ant-card-body {
+        padding: 24px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid #f0f0f0;
+
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.02);
+        }
+
+        .info-icon {
+          font-size: 20px;
+          margin-right: 16px;
+          color: #1890ff;
+          min-width: 24px;
+
+          &.price-icon {
+            color: var(--c-secondary);
+          }
+        }
+
+        .info-content {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .info-label {
+            font-weight: 500;
+            font-size: 18px;
+            color: #666;
+          }
+
+          .info-value {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+          }
+
+          &.price-value {
+            font-size: 20px;
+            color: var(--c-secondary);
+          }
+        }
+
+        &.price-highlight {
+          background: linear-gradient(135deg, #f6f9fc 0%, #e9f5ff 100%);
+          border-radius: 12px;
+          padding: 15px 13px;
+          margin: 8px 0;
+          border: 2px solid #e6f7ff;
+          margin-top: 30px;
+
+          .info-content .info-value {
+            font-size: 20px;
+            color: var(--c-secondary);
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .contract-download-card {
+      .download-section {
+        text-align: center;
+        
+        .pdf-icon {
+          font-size: 48px;
+          color: #ff4d4f;
+          margin-bottom: 16px;
+          display: block;
+        }
+
+        .download-content {
+          h3 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+          }
+
+          p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+          }
+
+          .download-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            font-weight: 600;
+            height: 44px;
+            padding: 0 24px;
+            border-radius: 22px;
+            backdrop-filter: blur(10px);
+
+            &:hover {
+              background: white;
+              color: #667eea;
+            }
+          }
+        }
+      }
     }
   }
 
-  .side-info {
-    border: 2px solid grey;
-    border-radius: 8px;
-    padding: 20px;
-    font-size: 20px;
-    line-height: 50px;
+  .no-contract-section {
+    .no-contract-card {
+      border-radius: 20px;
+      border: none;
+      overflow: hidden;
 
-    > * {
-      background-color: rgba(42, 78, 134, 0.25);
-      border-radius: 8px;
-      padding: 10px;
+      .ant-card-body {
+        padding: 60px 40px;
+        text-align: center;
+      }
+
+      .no-contract-content {
+        .ant-result-title {
+          color: #333;
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        .ant-result-subtitle {
+          font-size: 1.2rem;
+          color: #666;
+        }
+
+        .user-info {
+          margin-top: 30px;
+          
+          .contact-info {
+            font-size: 1.1rem;
+            color: #555;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .cta-section {
+          margin-top: 40px;
+          
+          h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+          }
+
+          p {
+            color: #666;
+            font-size: 1.1rem;
+          }
+        }
+      }
     }
   }
+
+  .streaming-section {
+    .section-divider {
+      margin: 40px 0;
+      
+      .section-title {
+        color: #333;
+        font-size: 1.8rem;
+        font-weight: 600;
+        padding: 0 20px;
+      }
+    }
+
+    .streaming-card {
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border: none;
+      overflow: hidden;
+
+      .ant-card-body {
+        padding: 40px;
+      }
+
+      .streaming-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+        align-items: start;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      .platform-info {
+        .platform-header {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 30px;
+          
+            .package-tag {
+              font-size: 15px;
+              padding: 4px 12px;
+              border-radius: 16px;
+              font-weight: 600;
+              width: 120px;
+            }
+
+          .platform-logo {
+            width: 300px;
+            height: 150px;
+            padding: 30px;
+            border-radius: 16px;
+            margin-right: 20px;
+            object-fit: contain;
+          }
+
+          .platform-details {
+            .platform-name {
+              font-size: 25px;
+              font-weight: 700;
+              color: #333;
+              margin-bottom: 10px;
+            }
+
+          
+          }
+        }
+
+        .platform-preferences {
+          h4 {
+            color: #333;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+          }
+
+          .preferences-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .preference-tag {
+              background: hsl(292, 44%, 93%,0.2);
+              color: #666;
+              padding: 6px 14px;
+              border-radius: 20px;
+              font-weight: 500;
+              font-size: 18px;
+
+
+            }
+          }
+        }
+      }
+
+      .platform-benefits {
+        .benefit-card {
+          background: linear-gradient(135deg, #f8f9ff 0%, #f0f8ff 100%);
+          border: 2px solid #e6f4ff;
+          border-radius: 16px;
+          font-size: 18px;
+          color: #666;
+
+          .ant-card-body {
+            padding: 20px;
+          }
+
+          .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+            &.free-year {
+              background: linear-gradient(135deg, #fff7e6 0%, #fff2e6 100%);
+              border: 1px solid #ffd591;
+              color: #d4380d;
+              font-weight: 600;
+            }
+
+            .benefit-icon {
+              margin-right: 10px;
+              font-size: 16px;
+            }
+          }
+
+          .contract-link {
+            color: #1890ff;
+            font-weight: 500;
+            padding: 0;
+            height: auto;
+            
+            &:hover {
+              color: #40a9ff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    .hero-section .hero-card .ant-card-body {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px 20px;
+
+      .hero-image {
+        margin-top: 20px;
+        
+        .hero-img {
+          max-width: 150px;
+        }
+      }
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .streaming-section .streaming-card .streaming-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+
 }
 
-.Basic,
-.Standard,
-.Premium {
-  padding: 20px;
-  color: white;
-  text-align: center;
-  font-size: 30px;
-}
-
-.package-type.Basic {
-  background-color: #1677ff;
-}
-
-.package-type.Standard {
-  background-color: rgb(114, 197, 114);
-}
-
-.package-type.Premium {
-  background-color: rgb(216, 201, 115);
-}
-
-.text-decoration {
-  text-align: center;
-  -webkit-text-stroke: 1px var(--c-primary);
-  color: transparent;
-  font-size: 3.3rem;
-}
-
-.platform-heading {
-  margin-top: 5rem;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
