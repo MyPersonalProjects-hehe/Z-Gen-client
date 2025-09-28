@@ -95,25 +95,6 @@ function HomePage() {
 
         <h1>GENERATION`S BEST DECISION</h1>
 
-        <div className='services'>
-          <h2>
-            We believe we provide the best services. <br /> We are people`s
-            choice for better and smarter life by providing the best
-            price-performance ratio.
-          </h2>
-          <div className='mini__blocks'>
-            <span>
-              <FilePdfOutlined /> E-signing
-            </span>
-            <span>
-              <CarOutlined className='span-icon' /> Fast delivery
-            </span>
-            <span>
-              <PercentageOutlined /> Special discounts
-            </span>
-          </div>
-        </div>
-
         <div className='trusted__telecom'>
           <img
             src={corporate}
@@ -125,6 +106,30 @@ function HomePage() {
             Our commitment to innovation and reliability has made us the partner
             of choice for enterprises seeking seamless, high-speed connectivity.
           </h2>
+        </div>
+
+        <div className='services'>
+          <img src='https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXJlejFpMmR2eHg2NHg3Z2dydjV1NmY3MWt0dm94MW9uNWlkdmw0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/irSg1eFKZVIfkh958u/giphy.gif' />
+
+          <div className='mini__blocks'>
+
+            <h2>
+              We believe we provide the best services. <br /> We are people`s
+              choice for better and smarter life by providing the best
+              price-performance ratio.
+            </h2>
+            <div style={{ display: 'flex' }}>
+              <span>
+                <FilePdfOutlined /> E-signing
+              </span>
+              <span>
+                <CarOutlined className='span-icon' /> Fast delivery
+              </span>
+              <span>
+                <PercentageOutlined /> Special discounts
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </ConfigProvider>
