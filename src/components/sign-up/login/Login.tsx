@@ -7,6 +7,9 @@ import { UserContext } from '../../../context/UserContext';
 import { Button, ConfigProvider, Form, Input, notification } from 'antd';
 import { FrownOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { openNotification } from '../../../helpers/notifications-functions/openNotification';
+import { auth } from '../../../config/firebase-config';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import googleLogo from '../../../assets/login/google-logo.png'
 
 interface LoginProps {
   setToggleForm: (value: boolean) => void;
@@ -27,6 +30,61 @@ function Login({ setToggleForm }: LoginProps) {
       [e]: prop,
     });
   };
+
+  const signInWithFirebase = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const responseFromFirebase = await signInWithPopup(auth, provider)
+
+      if (responseFromFirebase.user) {
+        const registerUserInMongo = await axios.post(SERVER_URL('registerUser'), {
+          userForm: {
+            username: responseFromFirebase.user.displayName,
+            email: responseFromFirebase.user.email,
+            phoneNumber: '',
+            streamingPlatform: [],
+            isLoggedByGoogle: true
+          }
+        }, { withCredentials: true })
+
+        if (registerUserInMongo.status === 201) {
+          userContext?.setSession(true);
+          userContext?.setUser({
+            email: registerUserInMongo.data.user.email,
+            id: '',
+            phoneNumber: registerUserInMongo.data.user.phoneNumber,
+            username: registerUserInMongo.data.user.username,
+            _id: registerUserInMongo.data.user._id
+          })
+
+
+          localStorage.setItem('user', JSON.stringify(registerUserInMongo.data.user));
+          navigate('/');
+        }
+
+      } else {
+        openNotification({
+          api: api,
+          icon: <FrownOutlined />,
+          message: 'Warning!',
+          description: `There was an issue signing with your account`,
+        });
+      }
+    } catch (error: any) {
+      if (error.message.includes('IdP denied access')) {
+        openNotification({
+          api: api,
+          icon: <FrownOutlined />,
+          message: 'Warning!',
+          description: `Authentication declined`,
+        });
+      } else {
+        console.log(error.message);
+
+      }
+    }
+
+  }
 
   const loginUser = async () => {
     try {
@@ -94,17 +152,25 @@ function Login({ setToggleForm }: LoginProps) {
             placeholder='Password'
           />
         </Form.Item>
-
         <Form.Item>
           <Button
+            className='login-btns'
             block
-            type='primary'
             htmlType='submit'
           >
             Log in
           </Button>
-          or <a onClick={() => setToggleForm(true)}>Register now!</a>
         </Form.Item>
+        <Button
+          style={{ marginBottom: 20 }}
+          block
+          className="login-btns"
+          onClick={signInWithFirebase}
+          icon={<img src={googleLogo} alt="Google" className="google-icon" />}
+        >
+          Continue with Google
+        </Button>
+        or <a onClick={() => setToggleForm(true)}>Register now!</a>
       </Form>
     </ConfigProvider>
   );
