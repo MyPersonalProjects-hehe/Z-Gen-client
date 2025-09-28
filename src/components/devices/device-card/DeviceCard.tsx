@@ -61,7 +61,7 @@ function DeviceCard({ device }: DeviceProp) {
             })
           }
         >
-          Store device
+          Add to cart
         </Button>
         <Button
           className='btn'
