@@ -1,5 +1,5 @@
 import './account-page.scss';
-import { Result, Card, Tag, Badge, Divider, Space, Button } from 'antd';
+import { Result, Card, Tag, Divider, Space, Button } from 'antd';
 import pngImage from '../../assets/account/account-page.png';
 import {
   EuroCircleOutlined,
@@ -20,7 +20,6 @@ import Admin from '../../components/account/admin/Admin';
 import contractPDF from '../../assets/Contract.pdf';
 import { EligibleUserContext } from '../../context/EligibleUserContext';
 import { PurchasedPlatformContext } from '../../context/PurchasedPlatformContext';
-import skeletonImage from '../../assets/skeleton.png';
 import netflixImg from '../../assets/logos/netflix.jpg';
 import disneyImg from '../../assets/logos/disney.png';
 import hboImg from '../../assets/logos/hbo.png';
@@ -40,15 +39,6 @@ function AccountPage() {
       return disneyImg;
   };
 
-  const getPlatformColor = () => {
-    const platformName = platformContext?.streamingPlatform.platformName;
-    switch (platformName) {
-      case 'Netflix': return '#E50914';
-      case 'Disney': return '#113CCF';
-      case 'HBO': return '#9D2DF5';
-      default: return '#1890ff';
-    }
-  };
 
   const getPackageTypeColor = (packageType: string) => {
     switch (packageType?.toLowerCase()) {
