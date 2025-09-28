@@ -11,16 +11,14 @@ import DeviceCard from '../../components/devices/device-card/DeviceCard';
 import Pagination from '../../components/devices/pagination/Pagination';
 
 function DevicesPage() {
-  /**Pagination */
   const [pages, setPages] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLast = currentPage * 6;
   const indexOfFirst = indexOfLast - 6;
-  /**Device fetching/filtering */
   const [allDevices, setAllDevices] = useState([]);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string>('');
   const [filteredDevices, setFilteredDevices] = useState([]);
-  /**Loading state */
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -125,7 +123,7 @@ function DevicesPage() {
           <div className='results'>
             {loading ? (
               <div className='loading__state'>
-                <Spin size='large'>Loading, please wait!</Spin>
+                <Spin size='large'></Spin>
               </div>
             ) : (
               <>

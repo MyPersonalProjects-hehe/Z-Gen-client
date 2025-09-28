@@ -71,7 +71,7 @@ function PlansPage() {
 
       {loading ? (
         <div className='loading__state'>
-          <Spin size='large'>Loading</Spin>
+          <Spin size='large'></Spin>
         </div>
       ) : (
         <div className='plans'>
