@@ -63,8 +63,8 @@ function PlatformsPage() {
     /**Passing on the platform preferences */
     userContext?.user
       ? navigate(
-          `/platformSign/${platformNameParam}/${packageTypeParam}/${priceParam}/${id}/${pickedPlatform}`
-        )
+        `/platformSign/${platformNameParam}/${packageTypeParam}/${priceParam}/${id}/${pickedPlatform}`
+      )
       : navigate('/signUp');
   };
 
@@ -107,7 +107,7 @@ function PlatformsPage() {
       <div className='streaming-platforms'>
         {loading ? (
           <div className='loading__state'>
-            <Spin size='large'>Loading, please wait!</Spin>
+            <Spin size='large'></Spin>
           </div>
         ) : (
           streamingPlatforms.map(
@@ -124,8 +124,8 @@ function PlatformsPage() {
                   <div className='purchased__package'>
                     {platformContext?.streamingPlatform.id ===
                       `${platform.streamingPlatform}-Basic` && (
-                      <h3 className='badge'>Purchased</h3>
-                    )}
+                        <h3 className='badge'>Purchased</h3>
+                      )}
                   </div>
                   <h3>Basic</h3>
                   <ul>
@@ -137,7 +137,7 @@ function PlatformsPage() {
                             <p>
                               {
                                 platform.packageTypes.Basic[
-                                  platform.packageTypes.Basic.length - 1
+                                platform.packageTypes.Basic.length - 1
                                 ]
                               }
                               <EuroCircleOutlined className='euro-icon' />
@@ -162,7 +162,7 @@ function PlatformsPage() {
                           platform.streamingPlatform,
                           'Basic',
                           platform.packageTypes.Basic[
-                            platform.packageTypes.Basic.length - 1
+                          platform.packageTypes.Basic.length - 1
                           ],
                           `${platform.streamingPlatform}-Basic`
                         )
@@ -177,8 +177,8 @@ function PlatformsPage() {
                   <div className='purchased__package'>
                     {platformContext?.streamingPlatform.id ===
                       `${platform.streamingPlatform}-Standard` && (
-                      <h3 className='badge'>Purchased</h3>
-                    )}
+                        <h3 className='badge'>Purchased</h3>
+                      )}
                   </div>
                   <h3>Standard</h3>
                   <ul>
@@ -190,7 +190,7 @@ function PlatformsPage() {
                             <p>
                               {
                                 platform.packageTypes.Standard[
-                                  platform.packageTypes.Standard.length - 1
+                                platform.packageTypes.Standard.length - 1
                                 ]
                               }
                               <EuroCircleOutlined className='euro-icon' />
@@ -212,7 +212,7 @@ function PlatformsPage() {
                           platform.streamingPlatform,
                           'Standard',
                           platform.packageTypes.Standard[
-                            platform.packageTypes.Standard.length - 1
+                          platform.packageTypes.Standard.length - 1
                           ],
                           `${platform.streamingPlatform}-Standard`
                         )
@@ -227,8 +227,8 @@ function PlatformsPage() {
                   <div className='purchased__package'>
                     {platformContext?.streamingPlatform.id ===
                       `${platform.streamingPlatform}-Premium` && (
-                      <h3 className='badge'>Purchased</h3>
-                    )}
+                        <h3 className='badge'>Purchased</h3>
+                      )}
                   </div>
                   <h3>Premium</h3>
                   <ul>
@@ -240,7 +240,7 @@ function PlatformsPage() {
                             <p>
                               {
                                 platform.packageTypes.Premium[
-                                  platform.packageTypes.Premium.length - 1
+                                platform.packageTypes.Premium.length - 1
                                 ]
                               }
                               <EuroCircleOutlined className='euro-icon' />
@@ -262,7 +262,7 @@ function PlatformsPage() {
                           platform.streamingPlatform,
                           'Premium',
                           platform.packageTypes.Premium[
-                            platform.packageTypes.Premium.length - 1
+                          platform.packageTypes.Premium.length - 1
                           ],
                           `${platform.streamingPlatform}-Premium`
                         )
